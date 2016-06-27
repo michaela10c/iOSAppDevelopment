@@ -100,3 +100,13 @@ progression(6,f:closure)
 progression(6, f: {(x:Int) -> Int in
     return x*2
 })
+
+var optionalN:Int? = 24 //YOU handle this stuff
+var implicitOptionalN:Int! = 12//Don't worry, I got you covered (BE CAREFUL!!!)
+
+if let n = optionalN{
+ let doubleN = doubler(n) //POUVOIR vs DEVOIR
+}
+
+doubler(implicitOptionalN)
+
