@@ -26,8 +26,8 @@ enum Neighbors: Int{
 }
 
 struct Cell{
-    var x = 0
-    var y = 0
+    var j = 0
+    var k = 0
 
 }
 
@@ -62,9 +62,7 @@ class Problem2ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func numNeighbors(j: Int, k: Int) -> Int{
-        
-        
+    func numNeighbors(j: Int, k: Int) -> Bool{
         
         var l = j-1 //left
         var rt = j+1
@@ -73,7 +71,6 @@ class Problem2ViewController: UIViewController {
         
         var lives = 0
        
-        
         if cells[j][k]==true{a+=1;live.append(Array(arrayLiteral: j,k))}
         else {d+=1}
         
@@ -98,11 +95,21 @@ class Problem2ViewController: UIViewController {
         if cells[l][t]==true{lives+=1}
         if cells[rt][b]==true{lives+=1}
         
-        
-        
-        return lives
-        
-        
+        if let someValue = Neighbors(rawValue: lives){
+            switch someValue{
+            case .zero,.one:
+                cells[j][k] = false
+            case .two:
+                if cells[j][k]==true{
+                    cells[j][k] = true}
+                else{cells[j][k] = false}
+            case .three:
+                cells[j][k] = true
+            default:
+                cells[j][k] = false
+            }
+        }
+        return cells[j][k]
 }
     
     func appendArrays(){
@@ -110,25 +117,11 @@ class Problem2ViewController: UIViewController {
         d = 0
         for j in 0...9{
             for k in 0...9{
-                if let someValue = Neighbors(rawValue: numNeighbors(j, k: k)){
-                    switch someValue{
-                        case .zero,.one:
-                            cells[j][k] = false
-                        case .two:
-                            if cells[j][k]==true{
-                                cells[j][k] = true}
-                            else{cells[j][k] = false}
-                        case .three:
-                            cells[j][k] = true
-                        default:
-                            cells[j][k] = false
-                    }
-                    
-
-                }
+                numNeighbors(j, k: k)
             }
         }
     }
+    
     
     
     @IBAction func printSomething(sender: AnyObject) {

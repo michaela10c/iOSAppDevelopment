@@ -13,6 +13,7 @@ class Problem3ViewController: UIViewController {
     @IBOutlet weak var textView3: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        sortIt()
 
         // Do any additional setup after loading the view.
     }
@@ -24,7 +25,8 @@ class Problem3ViewController: UIViewController {
   
     
     @IBAction func printSomething(sender: AnyObject) {
-        textView3.text = "Hello"
+        step(cells)
+        textView3.text = "Alive: \(a)\nDead: \(d)"
     }
 
     /*
