@@ -14,7 +14,7 @@ class Problem4ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        sortIt()
         // Do any additional setup after loading the view.
     }
 
@@ -25,16 +25,8 @@ class Problem4ViewController: UIViewController {
     
 
     @IBAction func printSomething(sender: AnyObject) {
-        textView4.text = "Hello"
+        textView4.text = "Alive: \(a)\nDead: \(d)"
+         step2(cells)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

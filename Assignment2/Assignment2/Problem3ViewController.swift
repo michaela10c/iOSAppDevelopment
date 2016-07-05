@@ -25,8 +25,8 @@ class Problem3ViewController: UIViewController {
   
     
     @IBAction func printSomething(sender: AnyObject) {
-        step(cells)
         textView3.text = "Alive: \(a)\nDead: \(d)"
+        step(cells)
     }
 
     /*

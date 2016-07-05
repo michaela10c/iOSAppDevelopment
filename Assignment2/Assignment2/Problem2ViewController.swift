@@ -25,7 +25,7 @@ enum Neighbors: Int{
     case one, two, three, four, five, six, seven, eight
 }
 
-struct Cell{
+struct Point{
     var j = 0
     var k = 0
 
@@ -115,6 +115,7 @@ class Problem2ViewController: UIViewController {
     func appendArrays(){
         a = 0
         d = 0
+        live.removeAll()
         for j in 0...9{
             for k in 0...9{
                 numNeighbors(j, k: k)
@@ -122,6 +123,8 @@ class Problem2ViewController: UIViewController {
         }
     }
     
+    
+
     
     
     @IBAction func printSomething(sender: AnyObject) {
