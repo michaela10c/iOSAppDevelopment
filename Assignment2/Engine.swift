@@ -8,7 +8,7 @@
 
 import Foundation
 
-func step(input:Array<Array<Bool>>) -> Array<Array<Bool>>{//loopover
+func step(input:Array<Array<Bool>>) -> Array<Array<Bool>>{
     var nextStep: Array<Array<Bool>> = Array(count:input.count, repeatedValue:
         Array(count:input.count, repeatedValue:Bool()))
     let l = Problem2ViewController()
@@ -26,13 +26,12 @@ func step(input:Array<Array<Bool>>) -> Array<Array<Bool>>{//loopover
 
 func neighbors(j: Int, k: Int) -> Array<Point>{
     var coord: [Point] = []
-   //  let l = Problem2ViewController()
     for j in (-1...1){
         for k in (-1...1){
             coord.append(Point(j: j+j, k: k+k))
         }
     }
-   // l.appendArrays()
+  
     return coord
     
 }
@@ -43,6 +42,7 @@ func step2(input: Array<Array<Bool>>)->Array<Array<Bool>>{
     for j in 0..<input.count{
         for k in 0..<input.count{
             neighbors(j, k: k)
+              print("\(neighbors(j, k: k))")
         }
     }
     ns = step(ns)
