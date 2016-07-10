@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var graphView: GraphView!
     
+    @IBOutlet weak var averageWaterDrunk: UILabel!
+    @IBOutlet weak var maxLabel: UILabel!
+    
+    
     var isGraphViewShowing = false
     
     override func viewDidLoad() {
@@ -38,31 +42,72 @@ class ViewController: UIViewController {
         counterLabel.text = String(counterView.counter)
         
         if isGraphViewShowing{
-            counterViewTap(nil)
+            //counterViewTap(nil)
         }
     }
     
     @IBAction func counterViewTap(gesture:UITapGestureRecognizer?){
         if (isGraphViewShowing){
             //hide graph
-            UIView.transitionFromView(<#T##fromView: UIView##UIView#>, toView: <#T##UIView#>, duration: <#T##NSTimeInterval#>, options: <#T##UIViewAnimationOptions#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
             UIView.transitionFromView(graphView,
                                       toView: counterView,
                                       duration: 1.0,
-//                                      options: UIViewAnimationOptions.TransitionFlipFromLeft
-//                                        | UIViewAnimationOptions.ShowHideTransitionViews,
-                options: UIViewAnimationOptions.TransitionFlipFromLeft | .ShowHideTransitionViews,
+                                     options: [UIViewAnimationOptions.TransitionFlipFromLeft
+                                        , UIViewAnimationOptions.ShowHideTransitionViews],
                                       completion: nil)
         } else {
             //show graph
             UIView.transitionFromView(counterView,
                                       toView: graphView,
                                       duration: 1.0,
-                                      options: UIViewAnimationOptions.TransitionFlipFromRight
-                                       | UIViewAnimationOptions.ShowHideTransitionViews,
+                                      options: [UIViewAnimationOptions.TransitionFlipFromRight
+                                       , UIViewAnimationOptions.ShowHideTransitionViews],
                                       completion: nil)
+            setUpGraphDisplay()
         }
         isGraphViewShowing = !isGraphViewShowing
+    }
+    
+    func setUpGraphDisplay(){
+        let numDays: Int = 7
+        
+        //1. replace last day with today's data
+        graphView.graphPoints[graphView.graphPoints.count-1] = counterView.counter
+        
+        //2. indicate that graph needs to be redrawn
+        graphView.setNeedsDisplay()
+        maxLabel.text = "\(graphView.graphPoints.maxElement())"
+        
+        //3. calculate average from graphPoints
+        let average = graphView.graphPoints.reduce(0, combine: +) / graphView.graphPoints.count
+        averageWaterDrunk.text = "\(average)"
+        
+        //labels to today
+        
+        //4. today's DATE!!!
+        let dateFormatter = NSDateFormatter()
+        let calendar = NSCalendar.currentCalendar()
+        let componentOptions: NSCalendarUnit = .NSWeekdayCalendarUnit
+        let components = calendar.components(componentOptions, fromDate: NSDate())
+        
+        var weekday = components.weekday
+        
+        let days = ["S", "S", "M", "T", "W", "T", "F"]
+        
+        //5. set up day name labels with correct day
+        for i in (1...days.count).reverse(){
+            if let labelView = graphView.viewWithTag(i) as? UILabel{
+                if weekday == 7{
+                    weekday = 0
+                }
+                labelView.text = "\(days[weekday])"
+                weekday -= 1
+                if weekday < 0{
+                    weekday = days.count - 1
+                }
+            }
+        }
+        
     }
     
 }

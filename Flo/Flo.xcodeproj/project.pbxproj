@@ -17,6 +17,7 @@
 		1233B5B01D2C8EF100B7C6D0 /* PushButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233B5AF1D2C8EF100B7C6D0 /* PushButtonView.swift */; };
 		1233B5B21D2D550600B7C6D0 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233B5B11D2D550600B7C6D0 /* CounterView.swift */; };
 		1233B5B41D2D82B900B7C6D0 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233B5B31D2D82B900B7C6D0 /* GraphView.swift */; };
+		1258981F1D3210F300122995 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1258981E1D3210F300122995 /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1233B5AF1D2C8EF100B7C6D0 /* PushButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushButtonView.swift; sourceTree = "<group>"; };
 		1233B5B11D2D550600B7C6D0 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		1233B5B31D2D82B900B7C6D0 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		1258981E1D3210F300122995 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		1233B5731D2C8E5F00B7C6D0 = {
 			isa = PBXGroup;
 			children = (
+				1258981E1D3210F300122995 /* BackgroundView.swift */,
 				1233B57E1D2C8E6000B7C6D0 /* Flo */,
 				1233B5931D2C8E6000B7C6D0 /* FloTests */,
 				1233B59E1D2C8E6000B7C6D0 /* FloUITests */,
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1258981F1D3210F300122995 /* BackgroundView.swift in Sources */,
 				1233B5B41D2D82B900B7C6D0 /* GraphView.swift in Sources */,
 				1233B5821D2C8E6000B7C6D0 /* ViewController.swift in Sources */,
 				1233B5B01D2C8EF100B7C6D0 /* PushButtonView.swift in Sources */,
@@ -501,6 +505,7 @@
 				1233B5A61D2C8E6000B7C6D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1233B5A71D2C8E6000B7C6D0 /* Build configuration list for PBXNativeTarget "FloTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +514,7 @@
 				1233B5A91D2C8E6000B7C6D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1233B5AA1D2C8E6000B7C6D0 /* Build configuration list for PBXNativeTarget "FloUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +523,7 @@
 				1233B5AC1D2C8E6000B7C6D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

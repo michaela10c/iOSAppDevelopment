@@ -7,23 +7,15 @@
 //
 
 import UIKit
+import Foundation
 
 enum CellState: String{
-    case Living, Empty, Born, Died
+    case Living = "Living"
+    case Empty = "Empty"
+    case Born = "Born"
+    case Died = "Died"
     
-    func allValues(){
-        
-    }
-    
-    func toggle(value: CellState) -> CellState{
-        if value.rawValue == "Empty" || value.rawValue == "Died"{
-            return .Living
-        }
-        else {
-            return .Empty
-        }
-    }
-}
+   }
 
 class ViewController: UIViewController {
 
@@ -38,5 +30,21 @@ class ViewController: UIViewController {
     }
 
 
+    static func description(state: CellState)-> String{
+        return state.rawValue
+    }
+    
+    func allValues() -> [String]{
+        return [CellState.Born.rawValue, CellState.Living.rawValue, CellState.Empty.rawValue, CellState.Died.rawValue]
+    }
+    
+    func toggle(value: CellState) -> CellState{
+        switch value{
+        case .Empty, .Died: return .Living
+        default: return .Empty
+        }
+    }
+
+    
 }
 

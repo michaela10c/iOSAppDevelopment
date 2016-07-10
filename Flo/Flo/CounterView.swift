@@ -75,7 +75,48 @@ let π: CGFloat = CGFloat(M_PI)//Pi declaration
         outlinePath.lineWidth = 5.0
         outlinePath.stroke()
         
+        
+        //counter view markers
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        //1. save original state
+        CGContextSaveGState(context)
+        outlineColor.setFill()
+        
+        let markerWidth: CGFloat = 5.0
+        let markerSize: CGFloat = 10.0
+        
+        //2. marker rectangle at top left
+        var markerPath = UIBezierPath(rect: CGRect(x: -markerWidth/2,
+            y: 0, width: markerWidth, height: markerSize))
+        
+        //3. move top left of context to previous center position
+        CGContextTranslateCTM(context, rect.width/2, rect.height/2)
+        
+        for i in 1...NoOfGlasses{
+           //save centered context
+            CGContextSaveGState(context)
+            
+            //5. calculate rotation angle
+            var angle = arcLengthPerGlass * CGFloat(i) + startAngle - π/2
+            
+            //rotate and translate
+            CGContextRotateCTM(context, angle)
+            CGContextTranslateCTM(context, 0, rect.height/2 - markerSize)
+            
+            //6. fill marker rectangle
+            markerPath.fill()
+            
+            //7. restore centered context for next rotate
+            CGContextRestoreGState(context)
+            }
+            //8. Restore again in case of more drawing
+            CGContextRestoreGState(context)
+        }
+    
+        
     }
  
 
-}
+
