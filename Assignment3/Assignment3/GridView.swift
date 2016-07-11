@@ -12,8 +12,16 @@ import UIKit
 
 @IBDesignable class GridView: UIView {
 
-    @IBInspectable var rows: Int = 20
-    @IBInspectable var cols: Int = 20
+    @IBInspectable var rows: Int = 20{
+        didSet{
+            _ = [[CellState]](count: rows, repeatedValue: Array(count: rows, repeatedValue: CellState.Empty))
+        }
+    }
+    @IBInspectable var cols: Int = 20{
+    didSet{
+        _ = [[CellState]](count: rows, repeatedValue: Array(count: rows, repeatedValue: CellState.Empty))
+        }
+    }
     
     @IBInspectable var emptyColor: UIColor = UIColor.grayColor()
     @IBInspectable var livingColor: UIColor = UIColor.greenColor()
@@ -27,30 +35,22 @@ import UIKit
     
     var cellWidth: CGFloat{
         get{
-            // bounds.width / CGFloat(cols)
             return bounds.width / CGFloat(cols)
         }
     }
     var rowHeight: CGFloat{
         get{
-            //bounds.height / CGFloat(rows)
             return bounds.height / CGFloat(rows)
         }
     }
     
-    var grid: [[CellState]]! = [[]]{
-        didSet{
-            for _ in 0..<rows{
-                for _ in 0..<cols{
-                    grid.append(Array(arrayLiteral: CellState.Empty))
-                }
-            }
-            setNeedsDisplay()
-        }
-    }
+    
+
+    
+    var grid = Array(count:20, repeatedValue:Array(count:20, repeatedValue: CellState.Empty))
    
-    
-    
+   
+   
     
     override func drawRect(rect: CGRect) {
         let line = UIBezierPath()//grid lines
@@ -59,6 +59,7 @@ import UIKit
         let w: CGFloat = min(bounds.width, bounds.height)
         
         line.lineWidth = h
+        
         
         for x in 0..<rows+1{
             for y in 0..<cols+1{
@@ -82,7 +83,7 @@ import UIKit
                 cPath.stroke()
                 cPath.fill()
                 
-                
+               
                 
             }
         }
@@ -91,17 +92,27 @@ import UIKit
     
     
     
-    func isValidCell(x: Int, y: Int) -> Bool{
-        return x >= 0 && x < rows && bounds.width%20>0 && y >= 0 && y < cols && bounds.height%20>0
+    
+    func getPointState(p: CGPoint) -> CellState{
+        let x = Int((p.x / bounds.width) * CGFloat(cols))
+        let y = Int((p.y / bounds.height) * CGFloat(rows))
+        //0,0 deficient?
+        print("\(x),\(y)")
+        
+        let vc = ViewController()
+        grid[x][y] = vc.toggle(grid[x][y])
+        
+        return grid[x][y]
     }
     
-    func returnPoint(x: Int, y: Int) -> CGPoint{
-        return CGPoint(x: CGFloat(x)*bounds.width/CGFloat(rows), y: CGFloat(y)*bounds.height/CGFloat(cols))
-    }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       
+        if let touch = touches.first as UITouch!{
+            let p  = getPointState(touch.locationInView(self))
+            print("\(p)")
+            fillFromTouch(p)
+        }
     }
     
     
@@ -130,7 +141,7 @@ import UIKit
     }
     
 
-    func fillFromTouch(state: CellState){
+    func fillFromTouch(state: CellState){//like toggle()
         switch state{
         case .Born, .Living:
             emptyColor.setStroke()

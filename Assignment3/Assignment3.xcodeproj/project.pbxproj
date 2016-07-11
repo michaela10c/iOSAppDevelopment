@@ -455,6 +455,7 @@
 		1233B5ED1D2D896700B7C6D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				INFOPLIST_FILE = Assignment3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelZhou.Assignment3UITests;
@@ -493,6 +494,7 @@
 				1233B5E81D2D896700B7C6D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1233B5E91D2D896700B7C6D0 /* Build configuration list for PBXNativeTarget "Assignment3Tests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +503,7 @@
 				1233B5EB1D2D896700B7C6D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1233B5EC1D2D896700B7C6D0 /* Build configuration list for PBXNativeTarget "Assignment3UITests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +512,7 @@
 				1233B5EE1D2D896700B7C6D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
