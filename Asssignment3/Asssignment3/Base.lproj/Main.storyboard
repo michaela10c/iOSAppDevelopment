@@ -21,7 +21,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNI-MS-h5z">
                                 <rect key="frame" x="0.0" y="548" width="600" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Cycle"/>
                                 <connections>
                                     <action selector="change:" destination="Qtl-lU-jGD" eventType="touchUpInside" id="5nC-Jc-RHt"/>
                                 </connections>
