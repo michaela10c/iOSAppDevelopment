@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  AssignmentThree
+//  Assignment3.2
 //
-//  Created by Michael Zhou on 7/12/16.
+//  Created by Michael Zhou on 7/13/16.
 //  Copyright © 2016 Michael Zhou. All rights reserved.
 //
 

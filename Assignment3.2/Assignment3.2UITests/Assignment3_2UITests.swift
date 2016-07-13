@@ -1,14 +1,14 @@
 //
-//  AssignmentThreeUITests.swift
-//  AssignmentThreeUITests
+//  Assignment3_2UITests.swift
+//  Assignment3.2UITests
 //
-//  Created by Michael Zhou on 7/12/16.
+//  Created by Michael Zhou on 7/13/16.
 //  Copyright © 2016 Michael Zhou. All rights reserved.
 //
 
 import XCTest
 
-class AssignmentThreeUITests: XCTestCase {
+class Assignment3_2UITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

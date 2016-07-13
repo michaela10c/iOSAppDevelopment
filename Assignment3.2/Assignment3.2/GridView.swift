@@ -1,15 +1,16 @@
 //
 //  GridView.swift
-//  AssignmentThree
+//  Assignment3.2
 //
-//  Created by Michael Zhou on 7/12/16.
+//  Created by Michael Zhou on 7/13/16.
 //  Copyright © 2016 Michael Zhou. All rights reserved.
 //
+
 
 import UIKit
 
 @IBDesignable class GridView: UIView {
-
+    
     @IBInspectable var rows: Int = 20{
         didSet{
             _ = [[CellState]](count: rows, repeatedValue: Array(count: rows, repeatedValue: CellState.Empty))
@@ -85,7 +86,7 @@ import UIKit
         cPath.stroke()
         cPath.fill()
     }
- 
+    
     
     func findCenter (row: Int, col: Int) -> CGPoint{
         let x1 = CGFloat(col) * cellWidth
@@ -98,7 +99,7 @@ import UIKit
         }
         return CGPoint(x: (x1+x2)/2, y: (y1+y2)/2)
     }
-
+    
     func getFill(state: CellState){
         var color: UIColor
         switch state {
@@ -164,12 +165,12 @@ import UIKit
                 
                 switch liveNeighbors{
                 case 0,1:
-                    ns[j][k] = CellState.Died
+                    ns[j][k] = CellState.Empty
                 case 2:
                     if states[j][k] == .Born || ns[j][k] == .Living{
                         ns[j][k] = .Living
                     } else {
-                        ns[j][k] = .Died
+                        ns[j][k] = .Empty
                     }
                 case 3:
                     ns[j][k] = .Living
@@ -177,7 +178,7 @@ import UIKit
                     ns[j][k] = .Empty
                 default:
                     ns[j][k] = ns[j][k]
-                   
+                    
                 }
                 cleanUp(j, y: k)
             }
@@ -187,7 +188,7 @@ import UIKit
         return ns
     }
     
-   
+    
     
     func cleanUp(x: Int, y: Int) -> CellState{
         let state = grid[x][y]
@@ -196,7 +197,7 @@ import UIKit
             if neighbors(x, y: y) == 2 || neighbors(x, y: y) == 3{
                 return CellState.Living
             } else {
-                return CellState.Died
+                return CellState.Empty
             }
         case .Died:
             if neighbors(x, y: y)==3{
