@@ -86,6 +86,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="cycle" destination="0fh-gI-wrz" id="5G5-jb-Ifh"/>
+                        <outlet property="gridView" destination="0fh-gI-wrz" id="rpm-4k-a7V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

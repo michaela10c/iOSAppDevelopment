@@ -1,30 +1,25 @@
 //
 //  ViewController.swift
-//  Assignment3
+//  AssignmentThree
 //
-//  Created by Michael Zhou on 7/6/16.
+//  Created by Michael Zhou on 7/12/16.
 //  Copyright © 2016 Michael Zhou. All rights reserved.
 //
 
 import UIKit
-import Foundation
+
 
 enum CellState: String{
-    case Living = "Living"
-    case Empty = "Empty"
-    case Born = "Born"
-    case Died = "Died"
+    case Living = "Living", Died = "Died", Born = "Born", Empty = "Empty"
     
-   }
+}
+
+
 
 class ViewController: UIViewController {
-    @IBOutlet weak var gridView: UIButton!
 
-    @IBOutlet weak var cycle: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -32,13 +27,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-    static func description(state: CellState)-> String{
+    
+    static func description(state: CellState)->String{
         return state.rawValue
     }
     
-    func allValues() -> [String]{
+    func allValues() -> Array<String>{
         return [CellState.Born.rawValue, CellState.Living.rawValue, CellState.Empty.rawValue, CellState.Died.rawValue]
     }
     
@@ -49,6 +43,6 @@ class ViewController: UIViewController {
         }
     }
 
-    
+
 }
 

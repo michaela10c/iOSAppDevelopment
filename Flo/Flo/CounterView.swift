@@ -88,7 +88,7 @@ let π: CGFloat = CGFloat(M_PI)//Pi declaration
         let markerSize: CGFloat = 10.0
         
         //2. marker rectangle at top left
-        var markerPath = UIBezierPath(rect: CGRect(x: -markerWidth/2,
+        let markerPath = UIBezierPath(rect: CGRect(x: -markerWidth/2,
             y: 0, width: markerWidth, height: markerSize))
         
         //3. move top left of context to previous center position
@@ -99,7 +99,7 @@ let π: CGFloat = CGFloat(M_PI)//Pi declaration
             CGContextSaveGState(context)
             
             //5. calculate rotation angle
-            var angle = arcLengthPerGlass * CGFloat(i) + startAngle - π/2
+            let angle = arcLengthPerGlass * CGFloat(i) + startAngle - π/2
             
             //rotate and translate
             CGContextRotateCTM(context, angle)

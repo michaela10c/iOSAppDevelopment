@@ -67,6 +67,10 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPK-qw-9fI" customClass="MedalView" customModule="Flo" customModuleProvider="target">
+                                                <rect key="frame" x="76" y="147" width="80" height="80"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -185,6 +189,14 @@
                             <constraint firstItem="pz8-pB-XeN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dRt-BT-ujd"/>
                             <constraint firstItem="QZP-BF-ZYF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="u7E-xm-VeE"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                <color key="value" red="0.13839842259999999" green="0.890625" blue="0.05316667395" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="lightColor">
+                                <color key="value" red="0.71300761499999998" green="1" blue="0.63642937209999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="averageWaterDrunk" destination="7Uf-Tf-8Gi" id="YXY-m0-RAN"/>

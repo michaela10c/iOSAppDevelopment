@@ -18,6 +18,7 @@
 		1233B5B21D2D550600B7C6D0 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233B5B11D2D550600B7C6D0 /* CounterView.swift */; };
 		1233B5B41D2D82B900B7C6D0 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233B5B31D2D82B900B7C6D0 /* GraphView.swift */; };
 		1258981F1D3210F300122995 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1258981E1D3210F300122995 /* BackgroundView.swift */; };
+		125898221D33485800122995 /* MedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125898211D33485800122995 /* MedalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		1233B5B11D2D550600B7C6D0 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		1233B5B31D2D82B900B7C6D0 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		1258981E1D3210F300122995 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		125898201D33437200122995 /* MedalDrawing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MedalDrawing.playground; sourceTree = "<group>"; };
+		125898211D33485800122995 /* MedalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,7 @@
 		1233B5731D2C8E5F00B7C6D0 = {
 			isa = PBXGroup;
 			children = (
+				125898211D33485800122995 /* MedalView.swift */,
 				1258981E1D3210F300122995 /* BackgroundView.swift */,
 				1233B57E1D2C8E6000B7C6D0 /* Flo */,
 				1233B5931D2C8E6000B7C6D0 /* FloTests */,
@@ -109,6 +113,7 @@
 				1233B57F1D2C8E6000B7C6D0 /* AppDelegate.swift */,
 				1233B5811D2C8E6000B7C6D0 /* ViewController.swift */,
 				1233B5831D2C8E6000B7C6D0 /* Main.storyboard */,
+				125898201D33437200122995 /* MedalDrawing.playground */,
 				1233B5B11D2D550600B7C6D0 /* CounterView.swift */,
 				1233B5B31D2D82B900B7C6D0 /* GraphView.swift */,
 				1233B5AF1D2C8EF100B7C6D0 /* PushButtonView.swift */,
@@ -271,6 +276,7 @@
 			files = (
 				1258981F1D3210F300122995 /* BackgroundView.swift in Sources */,
 				1233B5B41D2D82B900B7C6D0 /* GraphView.swift in Sources */,
+				125898221D33485800122995 /* MedalView.swift in Sources */,
 				1233B5821D2C8E6000B7C6D0 /* ViewController.swift in Sources */,
 				1233B5B01D2C8EF100B7C6D0 /* PushButtonView.swift in Sources */,
 				1233B5801D2C8E6000B7C6D0 /* AppDelegate.swift in Sources */,

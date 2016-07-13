@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         counterLabel.text = String(counterView.counter)
+        checkTotal()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
         //labels to today
         
         //4. today's DATE!!!
-        let dateFormatter = NSDateFormatter()
+        _ = NSDateFormatter()
         let calendar = NSCalendar.currentCalendar()
         let componentOptions: NSCalendarUnit = .NSWeekdayCalendarUnit
         let components = calendar.components(componentOptions, fromDate: NSDate())
@@ -109,6 +110,16 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    func checkTotal() {
+        let medalView = MedalView()
+        if counterView.counter >= 8 {
+            medalView.showMedal(true)
+        } else {
+            medalView.showMedal(false)
+        }
+    }
+    
     
 }
 

@@ -62,7 +62,7 @@ import UIKit
         let bottomBorder: CGFloat = 50
         let graphHeight = height - topBorder - bottomBorder
         let maxValue = graphPoints.maxElement()
-        var columnYPoint = { (graphPoint: Int) -> CGFloat in
+        let columnYPoint = { (graphPoint: Int) -> CGFloat in
             var y: CGFloat = CGFloat(graphPoint) /
                 CGFloat(maxValue!) * graphHeight
             y = graphHeight + topBorder - y
@@ -72,7 +72,7 @@ import UIKit
         UIColor.whiteColor().setFill()
         UIColor.whiteColor().setStroke()
         
-        var graphPath = UIBezierPath()
+        let graphPath = UIBezierPath()
         graphPath.moveToPoint(CGPoint(x: columnXPoint(0), y: columnYPoint(graphPoints[0])))
         
         for i in 1..<graphPoints.count{
@@ -84,7 +84,7 @@ import UIKit
         CGContextSaveGState(context)
         
         //copy of graphPath
-        var clippingPath = graphPath.copy() as! UIBezierPath
+        let clippingPath = graphPath.copy() as! UIBezierPath
         
         //add lines to copied path
         clippingPath.addLineToPoint(CGPoint(x: columnXPoint(graphPoints.count - 1),
@@ -116,7 +116,7 @@ import UIKit
         }
         
         //draw 3 horizontal lines on top of them
-        var linePath = UIBezierPath()
+        let linePath = UIBezierPath()
         
         //top line
         linePath.moveToPoint(CGPoint(x:margin, y:topBorder))
