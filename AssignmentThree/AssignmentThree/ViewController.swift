@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         case .Born, .Living: return .Empty
         }
     }
-
+   
 
 }
 

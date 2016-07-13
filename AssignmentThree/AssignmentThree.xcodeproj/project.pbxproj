@@ -79,9 +79,9 @@
 		12DBD1E01D35BC1500C498DE = {
 			isa = PBXGroup;
 			children = (
-				12DBD1EB1D35BC1500C498DE /* Assignment3 */,
-				12DBD2001D35BC1500C498DE /* Assignment3Tests */,
-				12DBD20B1D35BC1500C498DE /* Assignment3UITests */,
+				12DBD1EB1D35BC1500C498DE /* AssignmentThree */,
+				12DBD2001D35BC1500C498DE /* AssignmentThreeTests */,
+				12DBD20B1D35BC1500C498DE /* AssignmentThreeUITests */,
 				12DBD1EA1D35BC1500C498DE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		12DBD1EB1D35BC1500C498DE /* Assignment3 */ = {
+		12DBD1EB1D35BC1500C498DE /* AssignmentThree */ = {
 			isa = PBXGroup;
 			children = (
 				12DBD1EC1D35BC1500C498DE /* AppDelegate.swift */,
@@ -107,27 +107,24 @@
 				12DBD1F51D35BC1500C498DE /* LaunchScreen.storyboard */,
 				12DBD1F81D35BC1500C498DE /* Info.plist */,
 			);
-			name = Assignment3;
 			path = AssignmentThree;
 			sourceTree = "<group>";
 		};
-		12DBD2001D35BC1500C498DE /* Assignment3Tests */ = {
+		12DBD2001D35BC1500C498DE /* AssignmentThreeTests */ = {
 			isa = PBXGroup;
 			children = (
 				12DBD2011D35BC1500C498DE /* AssignmentThreeTests.swift */,
 				12DBD2031D35BC1500C498DE /* Info.plist */,
 			);
-			name = Assignment3Tests;
 			path = AssignmentThreeTests;
 			sourceTree = "<group>";
 		};
-		12DBD20B1D35BC1500C498DE /* Assignment3UITests */ = {
+		12DBD20B1D35BC1500C498DE /* AssignmentThreeUITests */ = {
 			isa = PBXGroup;
 			children = (
 				12DBD20C1D35BC1500C498DE /* AssignmentThreeUITests.swift */,
 				12DBD20E1D35BC1500C498DE /* Info.plist */,
 			);
-			name = Assignment3UITests;
 			path = AssignmentThreeUITests;
 			sourceTree = "<group>";
 		};
@@ -211,7 +208,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 12DBD1E41D35BC1500C498DE /* Build configuration list for PBXProject "Assignment3" */;
+			buildConfigurationList = 12DBD1E41D35BC1500C498DE /* Build configuration list for PBXProject "AssignmentThree" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -478,7 +475,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		12DBD1E41D35BC1500C498DE /* Build configuration list for PBXProject "Assignment3" */ = {
+		12DBD1E41D35BC1500C498DE /* Build configuration list for PBXProject "AssignmentThree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				12DBD20F1D35BC1500C498DE /* Debug */,

@@ -52,7 +52,7 @@ import UIKit
             for x in 0..<rows{
                 for y in 0..<rows{
                     fillPoint(x, y: y)
-                    cell = (x,y)
+                    //cell = (x,y)
                 }
             }
         }
@@ -138,8 +138,84 @@ import UIKit
             cell = (x,y)
             let rect = CGRectMake(CGFloat(x)*cellWidth, CGFloat(y)*cellHeight, cellWidth, cellHeight)
             setNeedsDisplayInRect(rect)
-            
-            
         }
     }
+    
+    func neighbors(x: Int, y: Int)->Int{
+        var liveNeighbors = 0
+        for j in (-1...1){
+            for k in (-1...1){
+                if (grid[abs((x-j)%rows)][abs((y-k)%cols)]==CellState.Born||grid[abs((x-j)%rows)][abs((y-k)%cols)]==CellState.Living){
+                    liveNeighbors += 1
+                    if grid[x][y]==CellState.Born||grid[x][y]==CellState.Living{liveNeighbors-=1}
+                }
+            }
+        }
+        print("\(x),\(y),\(liveNeighbors)")
+        return liveNeighbors
+    }
+    
+    func step(states:[[CellState]])->[[CellState]]{
+        var ns: [[CellState]] = Array(count: states.count, repeatedValue: Array(count: states.count, repeatedValue: CellState(rawValue: "Empty")!))
+        
+        for j in 0..<states.count{
+            for k in 0..<states.count{
+                let liveNeighbors = neighbors(j, y: k)
+                
+                switch liveNeighbors{
+                case 0,1:
+                    ns[j][k] = CellState.Died
+                case 2:
+                    if states[j][k] == .Born || ns[j][k] == .Living{
+                        ns[j][k] = .Living
+                    } else {
+                        ns[j][k] = .Died
+                    }
+                case 3:
+                    ns[j][k] = .Living
+                case 4,5,6,7,8:
+                    ns[j][k] = .Empty
+                default:
+                    ns[j][k] = ns[j][k]
+                   
+                }
+                cleanUp(j, y: k)
+            }
+        }
+        
+        
+        return ns
+    }
+    
+   
+    
+    func cleanUp(x: Int, y: Int) -> CellState{
+        let state = grid[x][y]
+        switch state{
+        case .Born:
+            if neighbors(x, y: y) == 2 || neighbors(x, y: y) == 3{
+                return CellState.Living
+            } else {
+                return CellState.Died
+            }
+        case .Died:
+            if neighbors(x, y: y)==3{
+                return CellState.Born
+            } else {
+                return CellState.Empty
+            }
+        default:
+            return .Empty
+        }
+        
+    }
+    
+    @IBAction func change(sender: AnyObject) {
+        grid = step(grid)
+        setNeedsDisplay()
+    }
+    
+    
 }
+
+
