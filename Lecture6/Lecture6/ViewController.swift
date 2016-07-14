@@ -15,10 +15,22 @@ class ViewController: UIViewController, ExampleDelegateProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        example = Example()
+        Example.sharedInstance.rows = 20 //sharedInstance itself is private, but its PROPERTIES - PUBLIC
+        example = Example.sharedInstance
         example?.delegate = self
+        let e = example![9,9]
+        example![7,4] = .B
+        print ("\(e)")
+        
+        let sel = #selector(ViewController.watchForNotifications(_:))
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: sel, name: "ExampleNotification", object: nil)
     }
 
+    func watchForNotifications(notification:NSNotification){
+        print("\(notification.userInfo)")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,6 +43,10 @@ class ViewController: UIViewController, ExampleDelegateProtocol {
     func example(example: Example, didUpdateRows modelRows: UInt) {
         rows.text = "\(modelRows)"
         
+    }
+    func example(example: Example, didUpdateColumns modelColumns: UInt) {
+        rows.text = "\(modelColumns)"
+
     }
 }
 

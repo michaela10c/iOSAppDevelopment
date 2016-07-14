@@ -147,17 +147,24 @@ import UIKit
         
         for j in (-1...1){
             for k in (-1...1){
-                if (grid[abs((x+j)%rows)][abs((y+k)%cols)]==CellState.Born||grid[abs((x+j)%rows)][abs((y+k)%cols)]==CellState.Living){
+                if (grid[abs((wrap(x+j))%rows)][abs((wrap(y+k))%cols)]==CellState.Born||grid[abs((wrap(x+j))%rows)][abs((wrap(y+k))%cols)]==CellState.Living){
+                
                     liveNeighbors += 1
                     
-                    
                 }
+                print("\(abs((x+j)%rows)),\(abs((y+k)%cols))")
             }
            
         }
       if grid[x][y]==CellState.Living||grid[x][y]==CellState.Born{liveNeighbors-=1}
         print("\(x),\(y):\(liveNeighbors)")
         return liveNeighbors
+    }
+    
+    func wrap(n: Int)->Int{
+        if n == -1{return 19}
+        if n == 20{return 0}
+        return n
     }
     
     func step(states:[[CellState]])->[[CellState]]{
