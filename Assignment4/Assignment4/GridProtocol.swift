@@ -10,7 +10,7 @@ import Foundation
 
 protocol GridProtocol{
    
-    init(rows: Int, cols: Int, grid: [[CellState]])
+    init(rows: Int, cols: Int)
     var rows: Int {get}
     var cols: Int {get}
     var grid: [[CellState]] {get set}

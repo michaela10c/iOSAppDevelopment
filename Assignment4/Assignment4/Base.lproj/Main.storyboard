@@ -26,7 +26,7 @@
                                     <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbi-I1-mox">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                         <subviews>
-                                            <view alpha="0.0001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jot-W5-V8s">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jot-W5-V8s">
                                                 <rect key="frame" x="60" y="36" width="480" height="480"/>
                                                 <subviews>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="24J-hR-wYM">

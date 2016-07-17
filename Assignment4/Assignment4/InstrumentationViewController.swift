@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InstrumentationViewController: UIViewController {
+class InstrumentationViewController: UIViewController, EngineDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,10 @@ class InstrumentationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func engineDidUpdate(withGrid: GridProtocol) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
