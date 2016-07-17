@@ -10,7 +10,7 @@ import Foundation
 
 
 class StandardEngine: EngineProtocol{
-    private static var _sharedGridSize: StandardEngine{
+    private static var _sharedGridSize: StandardEngine{//is this how I call this singleton?
         struct Dimensions{
             static var rows: Int = 10
             static var cols: Int = 10
@@ -20,7 +20,7 @@ class StandardEngine: EngineProtocol{
     
     var delegate: EngineDelegate?
     
-    var grid: GridProtocol = Grid(rows: 10, cols: 10, grid: Array(count: 10, repeatedValue: Array(count: 10, repeatedValue: CellState.Empty)))//how should this be declared if it's like this? Is this how it's initialized?
+    var grid: GridProtocol = Grid(rows: 10, cols: 10, grid: Array(count: 10, repeatedValue: Array(count: 10, repeatedValue: CellState.Empty)))//how should this be declared if it's like this? Is this how it's initialized? Rows, cols, and so on in singleton? How should that be modified?
     
     var refreshTimer: NSTimer?//if there is another timer, stop the timer. Otherwise, trigger it when it goes.
     
@@ -58,7 +58,7 @@ class StandardEngine: EngineProtocol{
     }
     
     
-    func step() -> GridProtocol {//Is this the return?
+    func step() -> GridProtocol {//I think this is how you return it, right?
         
         for r in 0..<rows{
             for c in 0..<cols{
@@ -117,9 +117,9 @@ class StandardEngine: EngineProtocol{
         }
     }
 
-    @objc func rateChange(timer: NSTimer){//NS Notification???? Params???
+    @objc func rateChange(timer: NSTimer){//NS Notification? Params?
         let center = NSNotificationCenter.defaultCenter()
-        let notification = NSNotification(name: "GridChanged", object: nil, userInfo: ["object": "grid"])//params???
+        let notification = NSNotification(name: "GridChanged", object: nil, userInfo: ["object": Grid(rows: rows, cols: cols, grid: grid)])//params???
         center.postNotification(notification)
     }
     
