@@ -144,17 +144,27 @@ import UIKit
     
     func neighbors(x: Int, y: Int)->Int{
         var liveNeighbors = 0
+        
         for j in (-1...1){
             for k in (-1...1){
-                if (grid[abs((x-j)%rows)][abs((y-k)%cols)]==CellState.Born||grid[abs((x-j)%rows)][abs((y-k)%cols)]==CellState.Living){
+                if (grid[abs((wrap(x+j))%rows)][abs((wrap(y+k))%cols)]==CellState.Born||grid[abs((wrap(x+j))%rows)][abs((wrap(y+k))%cols)]==CellState.Living){
+                    
                     liveNeighbors += 1
-                    if grid[x][y]==CellState.Living{liveNeighbors-=1}
-                   
+                    
                 }
+                print("\(abs((x+j)%rows)),\(abs((y+k)%cols))")
             }
+            
         }
-        print("\(y),\(x),\(liveNeighbors)")
+        if grid[x][y]==CellState.Living||grid[x][y]==CellState.Born{liveNeighbors-=1}
+        print("\(x),\(y):\(liveNeighbors)")
         return liveNeighbors
+    }
+    
+    func wrap(n: Int)->Int{
+        if n == -1{return 19}
+        if n == 20{return 0}
+        return n
     }
     
     func step(states:[[CellState]])->[[CellState]]{
@@ -162,42 +172,41 @@ import UIKit
         
         for j in 0..<states.count{
             for k in 0..<states.count{
-                let liveNeighbors = neighbors(j, y: k)
-                
-                switch liveNeighbors{
-                case 0,1:
-                    if states[j][k] == .Born || ns[j][k] == .Living{
+                switch states[j][k]{
+                case .Living,.Born:
+                    if  neighbors(j, y: k)<2{
                         ns[j][k] = .Died
-                    } else {
-                        ns[j][k] = .Empty
-                    }
-                case 2:
-                    if states[j][k] == .Born || ns[j][k] == .Living{
+                    } else if neighbors(j, y: k)>1&&neighbors(j, y: k)<4{
                         ns[j][k] = .Living
-                    }
-                    else if states[j][k] == .Died{
-                        ns[j][k] = .Empty}
-                    else{
-                        ns[j][k] = .Died
-                    }
-                    
-                case 3:
-                    if states[j][k] == .Died || states[j][k] == .Empty{
-                        ns[j][k] = .Born }
-                    else {ns[j][k] = .Living}
-                case 4,5,6,7,8:
-                    if states[j][k] == .Died{
-                        ns[j][k] = .Empty}
-                    else {
+                    } else if  neighbors(j, y: k)>3{
                         ns[j][k] = .Died
                     }
                 default:
-                    ns[j][k] = ns[j][k]
+                    if neighbors(j, y: k)==3{
+                        ns[j][k] = .Born
+                    } else {
+                        ns[j][k] = .Empty
+                    }
                     
                 }
+                cleanUp(j, y: k)
+                
             }
         }
+        
         return ns
+    }
+    
+    func cleanUp(x: Int, y: Int)->CellState{
+        switch grid[x][y]{
+        case .Born:
+            grid[x][y] =  .Living
+        case .Died:
+            grid[x][y] = .Empty
+        default:
+            break
+        }
+        return grid[x][y]
     }
     
     @IBAction func change(sender: AnyObject) {
@@ -207,5 +216,3 @@ import UIKit
     
     
 }
-
-
