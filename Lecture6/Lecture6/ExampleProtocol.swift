@@ -82,7 +82,7 @@ class Example : ExampleProtocol{
         {
         didSet{
             if let delegate = delegate {
-                delegate.example(self, didUpdateRows: self.rows)
+                delegate.example(self, didUpdateRows: self.cols)
             }
         }
     }

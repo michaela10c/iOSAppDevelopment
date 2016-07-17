@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12A29AE41D3B364F002FA197 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A29AE31D3B364F002FA197 /* GridView.swift */; };
 		12FA23231D36E64F0001D80F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23221D36E64F0001D80F /* AppDelegate.swift */; };
-		12FA23251D36E64F0001D80F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23241D36E64F0001D80F /* FirstViewController.swift */; };
-		12FA23271D36E64F0001D80F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23261D36E64F0001D80F /* SecondViewController.swift */; };
 		12FA232A1D36E64F0001D80F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12FA23281D36E64F0001D80F /* Main.storyboard */; };
 		12FA232C1D36E64F0001D80F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12FA232B1D36E64F0001D80F /* Assets.xcassets */; };
 		12FA232F1D36E64F0001D80F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12FA232D1D36E64F0001D80F /* LaunchScreen.storyboard */; };
 		12FA233A1D36E6500001D80F /* Assignment4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23391D36E6500001D80F /* Assignment4Tests.swift */; };
 		12FA23451D36E6500001D80F /* Assignment4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23441D36E6500001D80F /* Assignment4UITests.swift */; };
+		12FA23531D37FA2E0001D80F /* InstrumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23521D37FA2E0001D80F /* InstrumentationViewController.swift */; };
+		12FA23551D37FA830001D80F /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23541D37FA830001D80F /* SimulationViewController.swift */; };
+		12FA23571D37FAA00001D80F /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23561D37FAA00001D80F /* StatisticsViewController.swift */; };
+		12FA23931D3814790001D80F /* GridProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23921D3814790001D80F /* GridProtocol.swift */; };
+		12FA23951D3828600001D80F /* EngineDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */; };
+		12FA23971D3828E10001D80F /* EngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23961D3828E10001D80F /* EngineProtocol.swift */; };
+		12FA239B1D3833780001D80F /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA239A1D3833780001D80F /* Grid.swift */; };
+		12FA239D1D38343E0001D80F /* StandardEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA239C1D38343E0001D80F /* StandardEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12A29AE31D3B364F002FA197 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		12FA231F1D36E64F0001D80F /* Assignment4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12FA23221D36E64F0001D80F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		12FA23241D36E64F0001D80F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		12FA23261D36E64F0001D80F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		12FA23291D36E64F0001D80F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12FA232B1D36E64F0001D80F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12FA232E1D36E64F0001D80F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +55,14 @@
 		12FA23401D36E6500001D80F /* Assignment4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12FA23441D36E6500001D80F /* Assignment4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment4UITests.swift; sourceTree = "<group>"; };
 		12FA23461D36E6500001D80F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12FA23521D37FA2E0001D80F /* InstrumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentationViewController.swift; sourceTree = "<group>"; };
+		12FA23541D37FA830001D80F /* SimulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
+		12FA23561D37FAA00001D80F /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		12FA23921D3814790001D80F /* GridProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridProtocol.swift; sourceTree = "<group>"; };
+		12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineDelegateProtocol.swift; sourceTree = "<group>"; };
+		12FA23961D3828E10001D80F /* EngineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineProtocol.swift; sourceTree = "<group>"; };
+		12FA239A1D3833780001D80F /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		12FA239C1D38343E0001D80F /* StandardEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +93,7 @@
 		12FA23161D36E64F0001D80F = {
 			isa = PBXGroup;
 			children = (
+				12A29AE31D3B364F002FA197 /* GridView.swift */,
 				12FA23211D36E64F0001D80F /* Assignment4 */,
 				12FA23381D36E6500001D80F /* Assignment4Tests */,
 				12FA23431D36E6500001D80F /* Assignment4UITests */,
@@ -100,9 +115,15 @@
 			isa = PBXGroup;
 			children = (
 				12FA23221D36E64F0001D80F /* AppDelegate.swift */,
-				12FA23241D36E64F0001D80F /* FirstViewController.swift */,
-				12FA23261D36E64F0001D80F /* SecondViewController.swift */,
 				12FA23281D36E64F0001D80F /* Main.storyboard */,
+				12FA23561D37FAA00001D80F /* StatisticsViewController.swift */,
+				12FA23921D3814790001D80F /* GridProtocol.swift */,
+				12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */,
+				12FA239A1D3833780001D80F /* Grid.swift */,
+				12FA239C1D38343E0001D80F /* StandardEngine.swift */,
+				12FA23961D3828E10001D80F /* EngineProtocol.swift */,
+				12FA23541D37FA830001D80F /* SimulationViewController.swift */,
+				12FA23521D37FA2E0001D80F /* InstrumentationViewController.swift */,
 				12FA232B1D36E64F0001D80F /* Assets.xcassets */,
 				12FA232D1D36E64F0001D80F /* LaunchScreen.storyboard */,
 				12FA23301D36E64F0001D80F /* Info.plist */,
@@ -260,9 +281,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12FA23271D36E64F0001D80F /* SecondViewController.swift in Sources */,
+				12FA23951D3828600001D80F /* EngineDelegateProtocol.swift in Sources */,
+				12FA23551D37FA830001D80F /* SimulationViewController.swift in Sources */,
+				12FA23531D37FA2E0001D80F /* InstrumentationViewController.swift in Sources */,
+				12FA239B1D3833780001D80F /* Grid.swift in Sources */,
 				12FA23231D36E64F0001D80F /* AppDelegate.swift in Sources */,
-				12FA23251D36E64F0001D80F /* FirstViewController.swift in Sources */,
+				12FA23931D3814790001D80F /* GridProtocol.swift in Sources */,
+				12FA23971D3828E10001D80F /* EngineProtocol.swift in Sources */,
+				12FA239D1D38343E0001D80F /* StandardEngine.swift in Sources */,
+				12A29AE41D3B364F002FA197 /* GridView.swift in Sources */,
+				12FA23571D37FAA00001D80F /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +519,7 @@
 				12FA234B1D36E6500001D80F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12FA234C1D36E6500001D80F /* Build configuration list for PBXNativeTarget "Assignment4Tests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +528,7 @@
 				12FA234E1D36E6500001D80F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12FA234F1D36E6500001D80F /* Build configuration list for PBXNativeTarget "Assignment4UITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +537,7 @@
 				12FA23511D36E6500001D80F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

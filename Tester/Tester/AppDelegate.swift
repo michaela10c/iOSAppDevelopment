@@ -1,10 +1,10 @@
 //
 //  AppDelegate.swift
-//  Assignment4
+//  Tester
 //
-//  Created by Michael Zhou on 7/13/16.
+//  Created by Michael Zhou on 7/14/16.
 //  Copyright © 2016 Michael Zhou. All rights reserved.
-//  Icons provided by Icons8  www.icons8.com
+//
 
 import UIKit
 
@@ -13,11 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-  /*  private static var _mySingleton : EngineProtocol = StandardEngine()
-    
-    static var EngineSingleton : EngineProtocol{
-        return _mySingleton
-    }*/
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
