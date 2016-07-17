@@ -88,7 +88,7 @@ class StandardEngine: EngineProtocol{
         var liveNeighbors = 0
         for r in (-1...1){
             for c in (-1...1){
-                if grid[wrap(r+row, col: c+col).0, wrap(r+row, col: c+col).1]==CellState.Born||grid[wrap(r+row, col: c+col).0, wrap(r+row, col: c+col).1]==CellState.Living{
+                if grid[wrap(r+row, col: c+col)]==CellState.Born||grid[wrap(r+row, col: c+col)]==CellState.Living{
                     liveNeighbors += 1
                 }
             }
