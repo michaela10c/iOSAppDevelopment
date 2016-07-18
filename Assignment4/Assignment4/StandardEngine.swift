@@ -12,7 +12,7 @@ import Foundation
 class StandardEngine: EngineProtocol{
    // var grid: GridProtocol
     private static var _sharedGridSize = StandardEngine(rows: 10, cols: 10)
-    static var sharedGridSize: StandardEngine {//is this how I call this singleton?
+    static var sharedGridSize: StandardEngine {//Singleton help? Not updating
         get{
             return _sharedGridSize
         }

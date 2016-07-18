@@ -17,7 +17,9 @@ class InstrumentationViewController: UIViewController, EngineDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        rowText.text = "\(StandardEngine.sharedGridSize.rows)"
+        colText.text = "\(StandardEngine.sharedGridSize.cols)"
+        refreshRate.text = "\(StandardEngine.sharedGridSize.refreshRate)"
 
         // Do any additional setup after loading the view.
     }
@@ -33,15 +35,21 @@ class InstrumentationViewController: UIViewController, EngineDelegate {
     }
     
     @IBAction func RowChange(sender: AnyObject) {
-        
+        let stepper: UIStepper =  sender as! UIStepper
+        StandardEngine.sharedGridSize.rows = Int(stepper.value)
+        rowText.text = "\(StandardEngine.sharedGridSize.rows)"
     }
     
     @IBAction func colChange(sender: AnyObject) {
-        
+        let stepper: UIStepper =  sender as! UIStepper
+        StandardEngine.sharedGridSize.cols = Int(stepper.value)
+        colText.text = "\(StandardEngine.sharedGridSize.cols)"
     }
     
     @IBAction func changeRefreshRate(sender: AnyObject) {
-        
+        let slider: UISlider = sender as! UISlider
+        StandardEngine.sharedGridSize.refreshRate = Double(slider.value)
+        refreshRate.text = "\(StandardEngine.sharedGridSize.refreshRate)"
     }
     
     @IBAction func turnOnOrOff(sender: AnyObject) {

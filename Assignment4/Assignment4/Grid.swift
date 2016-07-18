@@ -48,5 +48,13 @@ class Grid: GridProtocol{
         }
     }
     
+    func toggle(state: CellState)->CellState{
+        switch state{
+        case .Empty, .Died:
+            return .Living
+        default:
+            return .Empty
+        }
+    }
     
 }

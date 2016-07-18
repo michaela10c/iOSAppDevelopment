@@ -6,22 +6,23 @@
 //  Copyright © 2016 Michael Zhou. All rights reserved.
 //
 
+
 import UIKit
 
 @IBDesignable class GridView: UIView {
     
-    @IBInspectable var rows: Int = 20{
+    @IBInspectable var rows: Int = StandardEngine.sharedGridSize.rows{//Change value?
         didSet{
             _ = [[CellState]](count: rows, repeatedValue: Array(count: rows, repeatedValue: CellState.Empty))
         }
     }
-    @IBInspectable var cols: Int = 20{
+    @IBInspectable var cols: Int = StandardEngine.sharedGridSize.cols{
         didSet{
-            _ = [[CellState]](count: rows, repeatedValue: Array(count: rows, repeatedValue: CellState.Empty))
+            _ = [[CellState]](count: cols, repeatedValue: Array(count: cols, repeatedValue: CellState.Empty))
         }
     }
     
-    var grid = Array(count:20, repeatedValue:Array(count:20, repeatedValue: CellState.Empty))
+    var grid = StandardEngine.sharedGridSize.grid
     
     @IBInspectable var emptyColor: UIColor = UIColor.grayColor()
     @IBInspectable var livingColor: UIColor = UIColor.greenColor()
@@ -52,38 +53,23 @@ import UIKit
             
         } else {
             for x in 0..<rows{
-                for y in 0..<rows{
+                for y in 0..<cols{
                     fillPoint(x, y: y)
-                    //cell = (x,y)
                 }
             }
         }
     }
  
     func fillPoint(x: Int, y: Int){
-        let w: CGFloat = min(bounds.width, bounds.height)
-        let h: CGFloat = 1.5
-        let line = UIBezierPath()//grid lines
-        line.lineWidth = h
-        
-        for xDiff in (0...1){
-            line.moveToPoint(CGPoint(x: CGFloat(x+xDiff) * cellWidth, y: CGFloat(y) * cellHeight))
-            line.addLineToPoint(CGPoint(x: CGFloat(x+xDiff) * cellWidth, y: CGFloat(y+1) * cellHeight))
-            UIColor.brownColor().setStroke()
-            line.stroke()
-        }
-        for yDiff in (0...1){
-            line.moveToPoint(CGPoint(x: CGFloat(x) * cellWidth, y: CGFloat(y+yDiff) * cellHeight))
-            line.addLineToPoint(CGPoint(x: CGFloat(x+1) * cellWidth, y: CGFloat(y+yDiff) * cellHeight))
-            UIColor.brownColor().setStroke()
-            line.stroke()
-        }
+        let width: CGFloat = min(bounds.width, bounds.height)
+
         let cPath = UIBezierPath(arcCenter: findCenter(x, col: y),
-                                 radius: (w / CGFloat(rows) / 2)-1,
-                                 startAngle: 0, endAngle: 2 * π,
-                                 clockwise: false)
-        cPath.lineWidth = h
-        getFill(grid[x][y])
+                                radius: (width / CGFloat(rows) / 2)-1,
+                                startAngle: 0, endAngle: 2 * π,
+                                clockwise: false)
+      
+        cPath.lineWidth = 1.5
+        getFill(grid[y,x])
         cPath.stroke()
         cPath.fill()
     }
@@ -109,6 +95,18 @@ import UIKit
         return (Int((p.x / bounds.width) * CGFloat(cols)), Int((p.y / bounds.height) * CGFloat(rows)))
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first{
+            let location = touch.locationInView(self)
+            let row = getCell(location).0
+            let col = getCell(location).1
+            cell = (col,row)
+            let gridClass = Grid(rows: rows, cols: cols)
+            grid[row,col] = gridClass.toggle(grid[row,col])
+            print("\(row),\(col),\(grid[row,col])")
+            setNeedsDisplayInRect(CGRectMake(CGFloat(row)*cellWidth, CGFloat(col)*cellHeight, cellWidth, cellHeight))
+        }
+    }
     
     func findCenter (row: Int, col: Int) -> CGPoint{
         let x1 = CGFloat(col) * cellWidth

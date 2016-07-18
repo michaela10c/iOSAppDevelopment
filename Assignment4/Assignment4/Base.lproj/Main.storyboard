@@ -49,7 +49,6 @@
                                                             <rect key="frame" x="115" y="242" width="51" height="31"/>
                                                         </variation>
                                                         <connections>
-                                                            <action selector="switch:" destination="9pv-A4-QxB" eventType="valueChanged" id="DDE-Cv-A7n"/>
                                                             <action selector="turnOnOrOff:" destination="9pv-A4-QxB" eventType="valueChanged" id="oN7-H7-G2Q"/>
                                                         </connections>
                                                     </switch>
@@ -61,7 +60,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wm3-L2-VGH">
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wm3-L2-VGH">
                                                         <rect key="frame" x="181" y="369" width="118" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="114" id="ExN-yK-vNs"/>
@@ -183,10 +182,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Instrumentation" image="first" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="ColChange" destination="HWh-m8-toa" id="dbd-B4-nPn"/>
-                        <outlet property="cols" destination="8cA-ph-5v5" id="xov-JE-jky"/>
+                        <outlet property="colText" destination="8cA-ph-5v5" id="rom-J5-Ezm"/>
                         <outlet property="refreshRate" destination="lc1-yG-d3b" id="tjN-00-HBC"/>
-                        <outlet property="rows" destination="cKC-9T-Ba4" id="88D-yx-wt3"/>
+                        <outlet property="rowText" destination="cKC-9T-Ba4" id="fcw-VE-Mft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
