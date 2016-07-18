@@ -14,6 +14,7 @@ class InstrumentationViewController: UIViewController, EngineDelegate {
     @IBOutlet weak var rowText: UITextField!
     @IBOutlet weak var colText: UITextField!
     @IBOutlet weak var refreshRate: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +48,7 @@ class InstrumentationViewController: UIViewController, EngineDelegate {
         
     }
     
-    @IBOutlet weak var ColChange: UIStepper!
+    
     
     /*
     // MARK: - Navigation

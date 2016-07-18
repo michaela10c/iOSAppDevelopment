@@ -85,6 +85,7 @@ class StandardEngine: EngineProtocol{
                 }
             }
         }
+        print("Stepped in")
         return grid
     }
     

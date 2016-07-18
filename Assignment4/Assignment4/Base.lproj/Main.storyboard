@@ -50,6 +50,7 @@
                                                         </variation>
                                                         <connections>
                                                             <action selector="switch:" destination="9pv-A4-QxB" eventType="valueChanged" id="DDE-Cv-A7n"/>
+                                                            <action selector="turnOnOrOff:" destination="9pv-A4-QxB" eventType="valueChanged" id="oN7-H7-G2Q"/>
                                                         </connections>
                                                     </switch>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lc1-yG-d3b">
@@ -314,7 +315,7 @@
         <!--Simulation-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" userLabel="Simulation" customClass="SimulationViewController" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" userLabel="Simulation" customClass="SimulationViewController" customModule="Assignment4" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>

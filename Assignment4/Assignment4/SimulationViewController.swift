@@ -17,7 +17,7 @@ class SimulationViewController: UIViewController{
         super.viewDidLoad()
         engineProtocolObj = StandardEngine.sharedGridSize
         engineProtocolObj.delegate = engineDelegate//should be self, but having trouble setting it
-        engineDelegate = self
+        //engineDelegate = self
         //AppDelegate.EngineSingleton
         // Do any additional setup after loading the view.
     }
