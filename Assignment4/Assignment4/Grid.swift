@@ -24,7 +24,6 @@ class Grid: GridProtocol{
         self.rows = rows
         self.cols = cols
         grid = Array(count:rows, repeatedValue:Array(count:cols, repeatedValue: CellState.Empty))
-
     }
     
     

@@ -10,6 +10,9 @@ import UIKit
 
 class InstrumentationViewController: UIViewController, EngineDelegate {
 
+    @IBOutlet weak var rows: UITextField!
+    @IBOutlet weak var cols: UITextField!
+    @IBOutlet weak var refreshRate: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +27,24 @@ class InstrumentationViewController: UIViewController, EngineDelegate {
     func engineDidUpdate(withGrid: GridProtocol) {
         
     }
+    
+    @IBAction func RowChange(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func colChange(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func changeRefreshRate(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func turnOnOrOff(sender: AnyObject) {
+        
+    }
+    
+    @IBOutlet weak var ColChange: UIStepper!
     
     /*
     // MARK: - Navigation

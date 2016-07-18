@@ -44,6 +44,7 @@ class StandardEngine: EngineProtocol{
         didSet{
             if let delegate = delegate{
                 delegate.engineDidUpdate(grid)//send notification about the update
+                NSNotificationCenter.defaultCenter().postNotificationName("Cols", object: nil, userInfo: ["Rows": rows])
             }
         }
     }
@@ -51,6 +52,7 @@ class StandardEngine: EngineProtocol{
         didSet{
             if let delegate = delegate{
                 delegate.engineDidUpdate(grid)
+                NSNotificationCenter.defaultCenter().postNotificationName("Cols", object: nil, userInfo: ["Columns": cols])
             }
         }
     }
@@ -58,8 +60,7 @@ class StandardEngine: EngineProtocol{
         self.rows = rows
         self.cols = cols
     }
-     var theGrid: [[CellState]] = [[]]
-    
+   
     func step() -> GridProtocol {//I think this is how you return it, right?
         
         for r in 0..<rows{
@@ -120,8 +121,8 @@ class StandardEngine: EngineProtocol{
     }
 
     @objc func rateChange(timer: NSTimer){//NS Notification? Params?
-        //let center = NSNotificationCenter.defaultCenter()
-        
+        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ChangeGrid", object: nil, userInfo: ["Rate": refreshRate]))
+        print("Here it is!")
     }
     
 }

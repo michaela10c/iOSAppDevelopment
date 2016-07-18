@@ -31,6 +31,9 @@
                                                 <subviews>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="24J-hR-wYM">
                                                         <rect key="frame" x="30" y="68" width="94" height="29"/>
+                                                        <connections>
+                                                            <action selector="RowChange:" destination="9pv-A4-QxB" eventType="valueChanged" id="5UQ-wy-afM"/>
+                                                        </connections>
                                                     </stepper>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cKC-9T-Ba4">
                                                         <rect key="frame" x="30" y="30" width="94" height="30"/>
@@ -45,6 +48,9 @@
                                                         <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="115" y="242" width="51" height="31"/>
                                                         </variation>
+                                                        <connections>
+                                                            <action selector="switch:" destination="9pv-A4-QxB" eventType="valueChanged" id="DDE-Cv-A7n"/>
+                                                        </connections>
                                                     </switch>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lc1-yG-d3b">
                                                         <rect key="frame" x="183" y="331" width="114" height="30"/>
@@ -59,6 +65,9 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="114" id="ExN-yK-vNs"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="changeRefreshRate:" destination="9pv-A4-QxB" eventType="valueChanged" id="b3U-FT-wPm"/>
+                                                        </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On/Off" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INw-Ff-BFV">
                                                         <rect key="frame" x="214" y="412" width="52.5" height="21"/>
@@ -97,6 +106,9 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="94" id="44L-I7-U1h"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="colChange:" destination="9pv-A4-QxB" eventType="valueChanged" id="rfy-gK-zJg"/>
+                                                        </connections>
                                                     </stepper>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.9797247052192688" green="0.011518153361976147" blue="0.040840186178684235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,6 +181,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Instrumentation" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="ColChange" destination="HWh-m8-toa" id="dbd-B4-nPn"/>
+                        <outlet property="cols" destination="8cA-ph-5v5" id="xov-JE-jky"/>
+                        <outlet property="refreshRate" destination="lc1-yG-d3b" id="tjN-00-HBC"/>
+                        <outlet property="rows" destination="cKC-9T-Ba4" id="88D-yx-wt3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -282,6 +300,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Statistics" image="third" id="MYi-Lh-60T"/>
+                    <connections>
+                        <outlet property="BornCount" destination="Idw-I3-Dh7" id="eZ5-2B-Naw"/>
+                        <outlet property="DeadCount" destination="kly-9J-zHY" id="XxC-T2-YDe"/>
+                        <outlet property="EmptyCount" destination="cLC-gh-JHb" id="yOX-1g-l8g"/>
+                        <outlet property="LivingCount" destination="0KT-Wx-m9F" id="xHz-k5-QEO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XoJ-iB-ziU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

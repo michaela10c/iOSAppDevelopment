@@ -10,6 +10,11 @@ import UIKit
 
 class StatisticsViewController: UIViewController {
 
+    @IBOutlet weak var BornCount: UILabel!
+    @IBOutlet weak var LivingCount: UILabel!
+    @IBOutlet weak var DeadCount: UILabel!
+    @IBOutlet weak var EmptyCount: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
