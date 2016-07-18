@@ -10,17 +10,17 @@ import Foundation
 
 
 class StandardEngine: EngineProtocol{
-    private static var _sharedGridSize: StandardEngine{//is this how I call this singleton?
-        struct Dimensions{
-            static var rows: Int = 10
-            static var cols: Int = 10
+   // var grid: GridProtocol
+    private static var _sharedGridSize = StandardEngine(rows: 10, cols: 10)
+    static var sharedGridSize: StandardEngine {//is this how I call this singleton?
+        get{
+            return _sharedGridSize
         }
-        return StandardEngine(rows: Dimensions.rows, cols: Dimensions.cols)
     }
-    
+    var grid: GridProtocol
     var delegate: EngineDelegate?
     
-    var grid: GridProtocol = Grid(rows: 10, cols: 10)//how should this be declared if it's like this? Is this how it's initialized? Rows, cols, and so on in singleton? How should that be modified?
+   //how should this be declared if it's like this? Is this how it's initialized? Rows, cols, and so on in singleton? How should that be modified?
     
    
     
@@ -31,7 +31,7 @@ class StandardEngine: EngineProtocol{
             if let refreshTimer = refreshTimer{refreshTimer.invalidate()}
             if refreshRate != 0.0{
             let sel = #selector(StandardEngine.rateChange(_:))
-            refreshTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(refreshRate), target: self, selector: sel, userInfo: ["name": "Mike"], repeats: true)
+            refreshTimer = NSTimer.scheduledTimerWithTimeInterval(refreshRate, target: self, selector: sel, userInfo: ["name": refreshRate], repeats: true)
             }
             else if let refreshTimer = refreshTimer{
                 refreshTimer.invalidate()
@@ -44,7 +44,7 @@ class StandardEngine: EngineProtocol{
         didSet{
             if let delegate = delegate{
                 delegate.engineDidUpdate(grid)//send notification about the update
-                NSNotificationCenter.defaultCenter().postNotificationName("Cols", object: nil, userInfo: ["Rows": rows])
+                NSNotificationCenter.defaultCenter().postNotificationName("Cols", object: rows, userInfo: ["Rows": rows])
             }
         }
     }
@@ -52,13 +52,14 @@ class StandardEngine: EngineProtocol{
         didSet{
             if let delegate = delegate{
                 delegate.engineDidUpdate(grid)
-                NSNotificationCenter.defaultCenter().postNotificationName("Cols", object: nil, userInfo: ["Columns": cols])
+                NSNotificationCenter.defaultCenter().postNotificationName("Cols", object: cols, userInfo: ["Columns": cols])
             }
         }
     }
     required init(rows: Int, cols: Int) {
         self.rows = rows
         self.cols = cols
+        grid = Grid(rows: rows, cols: cols)
     }
    
     func step() -> GridProtocol {//I think this is how you return it, right?
@@ -121,7 +122,7 @@ class StandardEngine: EngineProtocol{
     }
 
     @objc func rateChange(timer: NSTimer){//NS Notification? Params?
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ChangeGrid", object: nil, userInfo: ["Rate": refreshRate]))
+        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ChangeGrid", object: refreshRate, userInfo: ["Rate": refreshRate]))
         print("Here it is!")
     }
     

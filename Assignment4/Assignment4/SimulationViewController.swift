@@ -9,11 +9,15 @@
 import UIKit
 
 class SimulationViewController: UIViewController{
-
+    
+    var engineDelegate: EngineDelegate!
+    var engineProtocolObj: EngineProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        engineProtocolObj = StandardEngine.sharedGridSize
+        engineProtocolObj.delegate = engineDelegate//should be self, but having trouble setting it
+        engineDelegate = self
         //AppDelegate.EngineSingleton
         // Do any additional setup after loading the view.
     }
@@ -35,4 +39,7 @@ class SimulationViewController: UIViewController{
     }
     */
 
+    @IBAction func stepTheDelegate(sender: AnyObject) {
+        engineProtocolObj.step()
+    }
 }

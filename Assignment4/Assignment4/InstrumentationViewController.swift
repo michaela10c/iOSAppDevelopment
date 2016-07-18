@@ -8,13 +8,15 @@
 
 import UIKit
 
+
 class InstrumentationViewController: UIViewController, EngineDelegate {
 
-    @IBOutlet weak var rows: UITextField!
-    @IBOutlet weak var cols: UITextField!
+    @IBOutlet weak var rowText: UITextField!
+    @IBOutlet weak var colText: UITextField!
     @IBOutlet weak var refreshRate: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -25,7 +27,8 @@ class InstrumentationViewController: UIViewController, EngineDelegate {
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
-        
+        let standEng = StandardEngine(rows: Int(rowText.text!)!, cols: Int(colText.text!)!)
+        standEng.step()
     }
     
     @IBAction func RowChange(sender: AnyObject) {

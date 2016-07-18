@@ -9,6 +9,7 @@
 import Foundation
 
 protocol EngineDelegate{
-    func engineDidUpdate(withGrid: GridProtocol) 
+    func engineDidUpdate(withGrid: GridProtocol)
+    //func updateSelf(sender: )
 }
 
