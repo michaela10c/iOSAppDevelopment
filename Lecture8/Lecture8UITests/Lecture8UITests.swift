@@ -1,14 +1,14 @@
 //
-//  Assignment4UITests.swift
-//  Assignment4UITests
+//  Lecture8UITests.swift
+//  Lecture8UITests
 //
-//  Created by Michael Zhou on 7/13/16.
+//  Created by Michael Zhou on 7/18/16.
 //  Copyright © 2016 Michael Zhou. All rights reserved.
 //
 
 import XCTest
 
-class Assignment4UITests: XCTestCase {
+class Lecture8UITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
