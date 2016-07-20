@@ -31,7 +31,7 @@ class SecondViewController: UIViewController {
 
     @IBAction func buttonPressed(sender: UIButton) {
         delegate.delegateHasFired(toggle)
-    NSNotificationCenter.defaultCenter().postNotificationName("BobTest", object: nil, userInfo: ["MyValue" : toggle])
+        NSNotificationCenter.defaultCenter().postNotificationName("BobTest", object: nil, userInfo: ["MyValue" : toggle])
         toggle = !toggle
     }
 }

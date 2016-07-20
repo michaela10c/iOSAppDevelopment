@@ -5,4 +5,6 @@ import UIKit
 var str = "Hello, playground"
 
 
-
+func isLeap(year: Int) -> Bool{
+    return
+}
