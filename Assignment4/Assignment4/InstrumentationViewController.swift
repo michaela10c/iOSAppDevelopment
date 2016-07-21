@@ -21,13 +21,14 @@ class InstrumentationViewController: UIViewController {
     
     let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
     var grid = StandardEngine.sharedGridSize.grid
+    var rows = StandardEngine.sharedGridSize.grid.rows
     // let gv = GridView()
     
     let notificationName = "Update!"//name of delegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: notificationName, object: nil)//add me to observe the changes/receiver
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Rows", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,10 +40,11 @@ class InstrumentationViewController: UIViewController {
     @IBAction func RowChange(sender: AnyObject) {//tap for row change
         rowStepper = sender as! UIStepper//my stepper
         gridClass.rows = Int(rowStepper.value)//set
-        rowText.text = "\(gridClass.rows)"//set my text to number of Rows
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: nil, userInfo: ["Rows": gridClass.rows])
-        print("\(gridClass.rows),\(gridClass.cols)")
+        StandardEngine.sharedGridSize.rows = Int(rowStepper.value)
+        rowText.text = "\(StandardEngine.sharedGridSize.rows)"
+        //set my text to number of Rows
+        NSNotificationCenter.defaultCenter().postNotificationName("Rows", object: nil, userInfo: ["Rows": gridClass.rows])
+        print("\(StandardEngine.sharedGridSize.rows),\(gridClass.cols)")
     }
     
     @IBAction func colChange(sender: AnyObject) {//tap for column change
@@ -50,7 +52,7 @@ class InstrumentationViewController: UIViewController {
         gridClass.cols = Int(colStepper.value)
         //StandardEngine.sharedGridSize.cols = gridClass.cols//set cols to singleton cols
         colText.text = "\(gridClass.cols)"//text
-        NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: nil, userInfo: ["Columns": gridClass.cols])
+        NSNotificationCenter.defaultCenter().postNotificationName("Columns", object: nil, userInfo: ["Columns": gridClass.cols])
         print("\(gridClass.rows),\(gridClass.cols)")
         //post it
     }
@@ -73,7 +75,7 @@ class InstrumentationViewController: UIViewController {
     }
     
     func update(){//update me
-        grid.grid = Array(count: grid.rows, repeatedValue: Array(count: grid.cols, repeatedValue: CellState.Empty))
+       // grid.grid = Array(count: grid.rows, repeatedValue: Array(count: grid.cols, repeatedValue: CellState.Empty))
         
     }
     

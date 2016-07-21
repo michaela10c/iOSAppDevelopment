@@ -8,11 +8,14 @@
 
 import Foundation
 
-enum CellState: String{
-    case Born = "Born"
-    case Living = "Living"
-    case Died = "Died"
-    case Empty = "Empty"
+enum CellState{
+    case Born, Living, Died, Empty
+    func isLiving() -> Bool{
+        switch self {
+        case .Born, .Living: return true
+        default: return false
+        }
+    }
 }
 
 class Grid: GridProtocol{
@@ -31,6 +34,8 @@ class Grid: GridProtocol{
     func neighbors(row: Int, col: Int) -> [(Int,Int)] {
         return ourNeighbors.map{((row + rows + $0.0) % rows, (col + cols + $0.1) % cols)}
     }//neighbors count
+    
+    
     
     subscript(row: Int, col: Int)-> CellState{//OUT OF BOUNDS?
         get{

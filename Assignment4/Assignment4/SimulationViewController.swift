@@ -13,27 +13,36 @@ class SimulationViewController: UIViewController, EngineDelegate{
     var engineProtocolObj: EngineProtocol!
     let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
     let gv = GridView()
+    let IVC = InstrumentationViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         engineProtocolObj = StandardEngine.sharedGridSize
         engineProtocolObj.delegate = self
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Update!", object: nil)//set me as notification observer/receiver
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Rows", object: nil)//set me as notification observer/receiver
+       // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stepIt), name: "ChangeGrid", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func changeRows(){
+        StandardEngine.sharedGridSize.rows = StandardEngine.sharedGridSize.grid.rows
     }
     
     func update(){
+        StandardEngine.sharedGridSize.rows = 
+        StandardEngine.sharedGridSize.cols
         print("I just updated")
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
-        gv.rows = gridClass.rows
-        gv.cols = gridClass.cols
-        ("Hello!")
+        print("Hello!")
+    }
+    
+    @objc func stepIt(){
+        StandardEngine.sharedGridSize.step()
     }
     
 

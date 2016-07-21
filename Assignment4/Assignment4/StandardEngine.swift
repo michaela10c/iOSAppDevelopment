@@ -40,17 +40,12 @@ class StandardEngine: EngineProtocol{
     }
     var rows: Int{
         didSet{
-            if let delegate = delegate{
-                print("Hello!")
-                delegate.engineDidUpdate(grid)//send notification about the update
-            }
+            "Set rows!"
         }
     }
     var cols: Int{
         didSet{
-            if let delegate = delegate{
-                delegate.engineDidUpdate(grid)
-            }
+            "Set cols!"
         }
     }
     required init(rows: Int, cols: Int) {
@@ -63,7 +58,7 @@ class StandardEngine: EngineProtocol{
         let newGrid = Grid(rows: grid.rows, cols: grid.cols)
         for r in 0..<grid.rows{
             for c in 0..<grid.cols{
-                switch neighborsAlive(r, col: c){
+                switch liveNeighbors(r, col: c){
                 case 2:
                     if grid[r,c] == .Living || grid[r,c] == .Born {newGrid[r,c] = .Living}
                     else {grid[r,c] = .Died}
@@ -74,30 +69,26 @@ class StandardEngine: EngineProtocol{
                     newGrid[r,c] = .Empty
                 }
                 cleanUp(r, col: c)
-                print("\(r),\(c): \(neighborsAlive(r, col: c))")
             }
         }
         grid = newGrid
         return grid
     }
     
-    func neighborsAlive(row: Int, col: Int) -> Int{
-        var liveNeighbors = 0
-        //let gridClass = Grid(rows: grid.rows, cols: grid.cols)
+   
+    func liveNeighbors(row: Int, col: Int) -> Int{
+        var aliveNeighbors = 0
         for r in (-1...1){
             for c in (-1...1){
-                if r != 0 && c != 0{
-                    switch grid[abs(row+r) % rows, abs(col+c) % cols]{
-                    case .Living, .Born:
-                        liveNeighbors += 1
-                    default:
-                        break
-                    }
+                switch grid[wrap(row+r, col: col+c)] {
+                case .Born, .Living:
+                    if r != 0 && c != 0{aliveNeighbors+=1}
+                default:
+                    break
                 }
             }
-            //print("\(row),\(col): \(gridClass.neighbors(row, col: col)))")
         }
-        return liveNeighbors
+        return aliveNeighbors
     }
     
     func wrap(row: Int, col: Int) -> (Int,Int){
@@ -123,7 +114,7 @@ class StandardEngine: EngineProtocol{
     }
 
     @objc func rateChange(timer: NSTimer){
-        step()
+        //step()
         NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ChangeGrid", object: refreshRate, userInfo: ["Rate": refreshRate]))
         
         print("Here it is!")

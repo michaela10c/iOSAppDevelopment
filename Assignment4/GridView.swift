@@ -16,7 +16,7 @@ import UIKit
     
     var grid = StandardEngine.sharedGridSize.grid{
         didSet{
-           // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setNeedsDisplay), name: "Update!", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Update!", object: nil)
             StandardEngine.sharedGridSize.delegate?.engineDidUpdate(grid)
         }
     }
@@ -130,10 +130,13 @@ import UIKit
     
     @IBAction func change(sender: AnyObject) {
         print("\(grid.grid)")
-        setNeedsDisplay()
         StandardEngine.sharedGridSize.step()
-        
+        setNeedsDisplay()
     }
     
+    func changeRows(){
+        //let IVC = InstrumentationViewController()
+        //rows = IVC.rows
+    }
     
 }
