@@ -83,16 +83,31 @@ class StandardEngine: EngineProtocol{
     
     func neighborsAlive(row: Int, col: Int) -> Int{
         var liveNeighbors = 0
-        let gridClass = Grid(rows: grid.rows, cols: grid.cols)
-        for r in gridClass.neighbors(row, col: col){
-            switch grid[(row+r.0+grid.rows)%grid.rows,(col+r.1+grid.cols)%cols]{
-            case .Living, .Born:
-                liveNeighbors += 1
-            default:
-                break
+        //let gridClass = Grid(rows: grid.rows, cols: grid.cols)
+        for r in (-1...1){
+            for c in (-1...1){
+                if r != 0 && c != 0{
+                    switch grid[abs(row+r) % rows, abs(col+c) % cols]{
+                    case .Living, .Born:
+                        liveNeighbors += 1
+                    default:
+                        break
+                    }
+                }
             }
+            //print("\(row),\(col): \(gridClass.neighbors(row, col: col)))")
         }
         return liveNeighbors
+    }
+    
+    func wrap(row: Int, col: Int) -> (Int,Int){
+       var r = row
+        var c = col
+        if r == -1{r = rows-1}
+        if c == -1{c = cols-1}
+        if r == rows{r = 0}
+        if c == cols{c = 0}
+        return (r,c)
     }
     
     

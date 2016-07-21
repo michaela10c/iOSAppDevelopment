@@ -11,7 +11,7 @@ import UIKit
 class SimulationViewController: UIViewController, EngineDelegate{
     
     var engineProtocolObj: EngineProtocol!
-    let gridClass = Grid(rows: StandardEngine.sharedGridSize.rows, cols: StandardEngine.sharedGridSize.cols)
+    let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
     let gv = GridView()
     
     override func viewDidLoad() {
@@ -33,6 +33,7 @@ class SimulationViewController: UIViewController, EngineDelegate{
     func engineDidUpdate(withGrid: GridProtocol) {
         gv.rows = gridClass.rows
         gv.cols = gridClass.cols
+        ("Hello!")
     }
     
 

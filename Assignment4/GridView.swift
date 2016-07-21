@@ -16,7 +16,7 @@ import UIKit
     
     var grid = StandardEngine.sharedGridSize.grid{
         didSet{
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setNeedsDisplay), name: "Update!", object: nil)
+           // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setNeedsDisplay), name: "Update!", object: nil)
             StandardEngine.sharedGridSize.delegate?.engineDidUpdate(grid)
         }
     }
@@ -124,8 +124,8 @@ import UIKit
         let x = getCell(p).0
         let y = getCell(p).1
         grid[x,y] = gridClass.toggle(grid[x,y])
-        print("\(grid[y,x])")
-        return grid[y,x]
+        print("\(grid[x,y])")
+        return grid[x,y]
     }
     
     @IBAction func change(sender: AnyObject) {

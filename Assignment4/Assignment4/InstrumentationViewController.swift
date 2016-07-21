@@ -73,7 +73,7 @@ class InstrumentationViewController: UIViewController {
     }
     
     func update(){//update me
-        grid = Grid(rows: gridClass.rows, cols:gridClass.cols)
+        grid.grid = Array(count: grid.rows, repeatedValue: Array(count: grid.cols, repeatedValue: CellState.Empty))
         
     }
     

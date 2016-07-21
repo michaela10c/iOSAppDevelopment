@@ -161,9 +161,10 @@ import UIKit
         return liveNeighbors
     }
     
-    func wrap(n: Int)->Int{
-        if n == -1{return 19}
-        if n == 20{return 0}
+    func wrap(row: Int)->Int{
+        let n = row
+        if row == -1{return rows-1}
+        if row == rows{return rows}
         return n
     }
     
