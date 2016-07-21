@@ -10,13 +10,11 @@ import UIKit
 
 @IBDesignable class GridView: UIView {
     let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
-    
-    @IBInspectable var rows: Int = StandardEngine.sharedGridSize.grid.rows
-    @IBInspectable var cols: Int = StandardEngine.sharedGridSize.grid.cols
+    @IBInspectable var rows: Int = StandardEngine.sharedGridSize.rows
+    @IBInspectable var cols: Int = StandardEngine.sharedGridSize.cols
     
     var grid = StandardEngine.sharedGridSize.grid{
         didSet{
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Update!", object: nil)
             StandardEngine.sharedGridSize.delegate?.engineDidUpdate(grid)
         }
     }
@@ -129,7 +127,7 @@ import UIKit
     }
     
     @IBAction func change(sender: AnyObject) {
-        print("\(grid.grid)")
+        print("\(grid)")
         StandardEngine.sharedGridSize.step()
         setNeedsDisplay()
     }

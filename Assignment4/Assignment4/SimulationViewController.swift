@@ -10,17 +10,16 @@ import UIKit
 
 class SimulationViewController: UIViewController, EngineDelegate{
     
+    @IBOutlet weak var gridView: GridView!
     var engineProtocolObj: EngineProtocol!
-    let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
-    let gv = GridView()
-    let IVC = InstrumentationViewController()
+    //let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         engineProtocolObj = StandardEngine.sharedGridSize
         engineProtocolObj.delegate = self
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Rows", object: nil)//set me as notification observer/receiver
-       // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stepIt), name: "ChangeGrid", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Rows", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeCols), name: "Cols", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,22 +27,19 @@ class SimulationViewController: UIViewController, EngineDelegate{
     }
     
     func changeRows(){
-        StandardEngine.sharedGridSize.rows = StandardEngine.sharedGridSize.grid.rows
+        gridView.rows = StandardEngine.sharedGridSize.rows
     }
     
-    func update(){
-        StandardEngine.sharedGridSize.rows = 
-        StandardEngine.sharedGridSize.cols
-        print("I just updated")
+    func changeCols(){
+        gridView.cols = StandardEngine.sharedGridSize.cols
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
-        print("Hello!")
+        gridView.grid = withGrid
     }
     
     @objc func stepIt(){
         StandardEngine.sharedGridSize.step()
     }
     
-
 }
