@@ -9,14 +9,15 @@
 import UIKit
 
 @IBDesignable class GridView: UIView {
-    let gridClass = Grid(rows: StandardEngine.sharedGridSize.rows, cols: StandardEngine.sharedGridSize.cols)
+    let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
     
-    @IBInspectable var rows: Int = StandardEngine.sharedGridSize.rows
-    @IBInspectable var cols: Int = StandardEngine.sharedGridSize.cols
+    @IBInspectable var rows: Int = StandardEngine.sharedGridSize.grid.rows
+    @IBInspectable var cols: Int = StandardEngine.sharedGridSize.grid.cols
     
     var grid = StandardEngine.sharedGridSize.grid{
         didSet{
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setNeedsDisplay), name: "Update!", object: nil)
+            StandardEngine.sharedGridSize.delegate?.engineDidUpdate(grid)
         }
     }
     
@@ -30,12 +31,12 @@ import UIKit
 
     var cellWidth: CGFloat{
         get{
-            return bounds.width / CGFloat(gridClass.cols)
+            return bounds.width / CGFloat(cols)
         }
     }
     var cellHeight: CGFloat{
         get{
-            return bounds.height / CGFloat(gridClass.rows)
+            return bounds.height / CGFloat(rows)
         }
     }
     
@@ -50,8 +51,8 @@ import UIKit
             fillPoint(cell.0, y: cell.1)
             
         } else {
-            for x in 0..<gridClass.rows{
-                for y in 0..<gridClass.cols{
+            for x in 0..<rows{
+                for y in 0..<cols{
                     fillPoint(x, y: y)
                 }
             }
@@ -61,7 +62,7 @@ import UIKit
     func fillPoint(x: Int, y: Int){
         let width: CGFloat = min(bounds.width, bounds.height)
         let cPath = UIBezierPath(arcCenter: findCenter(x, col: y),
-                                 radius: (width / CGFloat(gridClass.rows) / 2)-1,
+                                 radius: (width / CGFloat(rows) / 2)-1,
                                  startAngle: 0, endAngle: 2 * π,
                                  clockwise: false)
         cPath.lineWidth = 1.5
@@ -89,7 +90,7 @@ import UIKit
     }
 
     func getCell(p:CGPoint)->(Int,Int){
-        return (Int((p.x / bounds.width) * CGFloat(gridClass.cols)), Int((p.y / bounds.height) * CGFloat(gridClass.rows)))
+        return (Int((p.x / bounds.width) * CGFloat(cols)), Int((p.y / bounds.height) * CGFloat(rows)))
     }
     
     
@@ -108,10 +109,9 @@ import UIKit
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first{
             let location = touch.locationInView(self)
-            let col = getCell(location).0
+            let col = getCell(location).0//getCell -> (col, row)
             let row = getCell(location).1
             grid[row,col] = getPointStateAndToggle(location)
-            
             cell = (row,col)
             print("\(cell)")
             let rect = CGRectMake(CGFloat(col)*cellWidth, CGFloat(row)*cellHeight, cellWidth, cellHeight)
@@ -124,13 +124,15 @@ import UIKit
         let x = getCell(p).0
         let y = getCell(p).1
         grid[x,y] = gridClass.toggle(grid[x,y])
-        print("\(grid[x,y])")
-        return grid[x,y]
+        print("\(grid[y,x])")
+        return grid[y,x]
     }
     
     @IBAction func change(sender: AnyObject) {
-        StandardEngine.sharedGridSize.step()
+        print("\(grid.grid)")
         setNeedsDisplay()
+        StandardEngine.sharedGridSize.step()
+        
     }
     
     

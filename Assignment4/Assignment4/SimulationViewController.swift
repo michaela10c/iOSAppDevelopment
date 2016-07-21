@@ -31,7 +31,6 @@ class SimulationViewController: UIViewController, EngineDelegate{
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
-        StandardEngine.sharedGridSize.step()
         gv.rows = gridClass.rows
         gv.cols = gridClass.cols
     }

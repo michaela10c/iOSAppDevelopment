@@ -244,21 +244,21 @@
                                                         <exclude reference="qL6-EO-LhV"/>
                                                         <exclude reference="8RF-xq-B0l"/>
                                                         <exclude reference="fkS-tl-OQg"/>
-                                                        <exclude reference="0gb-yy-jim"/>
-                                                        <exclude reference="pUp-hr-CEf"/>
-                                                        <exclude reference="vXx-Cl-3vW"/>
-                                                        <exclude reference="vZG-sQ-cnE"/>
-                                                        <exclude reference="FRW-tF-F8Q"/>
-                                                        <exclude reference="OrT-yk-qES"/>
-                                                        <exclude reference="hGj-nG-AFQ"/>
-                                                        <exclude reference="uVQ-Zx-RRv"/>
-                                                        <exclude reference="EoQ-7g-wm6"/>
-                                                        <exclude reference="P9k-dy-uLz"/>
                                                         <exclude reference="3ig-Q4-ycg"/>
                                                         <exclude reference="i68-tr-q7J"/>
                                                         <exclude reference="zkP-B5-voV"/>
                                                         <exclude reference="9Iy-hB-bzW"/>
                                                         <exclude reference="cm4-VM-3Nh"/>
+                                                        <exclude reference="0gb-yy-jim"/>
+                                                        <exclude reference="pUp-hr-CEf"/>
+                                                        <exclude reference="vXx-Cl-3vW"/>
+                                                        <exclude reference="vZG-sQ-cnE"/>
+                                                        <exclude reference="EoQ-7g-wm6"/>
+                                                        <exclude reference="P9k-dy-uLz"/>
+                                                        <exclude reference="FRW-tF-F8Q"/>
+                                                        <exclude reference="OrT-yk-qES"/>
+                                                        <exclude reference="hGj-nG-AFQ"/>
+                                                        <exclude reference="uVQ-Zx-RRv"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=compact-widthClass=regular">
@@ -273,19 +273,7 @@
                                                         <exclude reference="qL6-EO-LhV"/>
                                                         <exclude reference="8RF-xq-B0l"/>
                                                         <include reference="fkS-tl-OQg"/>
-                                                        <exclude reference="0gb-yy-jim"/>
-                                                        <exclude reference="Qu2-OF-oiO"/>
-                                                        <include reference="pUp-hr-CEf"/>
-                                                        <include reference="vXx-Cl-3vW"/>
-                                                        <exclude reference="ws4-zK-E8h"/>
                                                         <exclude reference="Gr4-yg-GOd"/>
-                                                        <exclude reference="FRW-tF-F8Q"/>
-                                                        <exclude reference="GOU-LR-ts8"/>
-                                                        <include reference="OrT-yk-qES"/>
-                                                        <include reference="hGj-nG-AFQ"/>
-                                                        <include reference="uVQ-Zx-RRv"/>
-                                                        <include reference="EoQ-7g-wm6"/>
-                                                        <include reference="P9k-dy-uLz"/>
                                                         <include reference="3ig-Q4-ycg"/>
                                                         <exclude reference="tud-og-qeH"/>
                                                         <exclude reference="AlJ-CJ-QCo"/>
@@ -294,6 +282,18 @@
                                                         <include reference="9Iy-hB-bzW"/>
                                                         <exclude reference="Yp4-V1-4dn"/>
                                                         <include reference="cm4-VM-3Nh"/>
+                                                        <exclude reference="0gb-yy-jim"/>
+                                                        <exclude reference="Qu2-OF-oiO"/>
+                                                        <include reference="pUp-hr-CEf"/>
+                                                        <include reference="vXx-Cl-3vW"/>
+                                                        <exclude reference="ws4-zK-E8h"/>
+                                                        <include reference="EoQ-7g-wm6"/>
+                                                        <include reference="P9k-dy-uLz"/>
+                                                        <exclude reference="FRW-tF-F8Q"/>
+                                                        <exclude reference="GOU-LR-ts8"/>
+                                                        <include reference="OrT-yk-qES"/>
+                                                        <include reference="hGj-nG-AFQ"/>
+                                                        <include reference="uVQ-Zx-RRv"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -604,9 +604,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="a7f-AV-ixX" kind="relationship" relationship="viewControllers" id="CFI-eN-Eei"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="2Jt-Vc-sYk"/>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="Xgb-WV-f69"/>
+                        <segue destination="a7f-AV-ixX" kind="relationship" relationship="viewControllers" id="rAw-I2-1zl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

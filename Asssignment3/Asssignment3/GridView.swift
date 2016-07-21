@@ -187,10 +187,8 @@ import UIKit
                     } else {
                         ns[j][k] = .Empty
                     }
-                    
                 }
                 cleanUp(j, y: k)
-            
             }
         }
         
