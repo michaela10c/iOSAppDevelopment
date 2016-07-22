@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable class GridView: UIView {
-    let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
+    //let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
     var rows: Int = StandardEngine.sharedGridSize.grid.rows
     var cols: Int = StandardEngine.sharedGridSize.grid.cols
     
@@ -124,9 +124,9 @@ import UIKit
     func getPointStateAndToggle(p: CGPoint)->CellState{
         let x = getCell(p).0
         let y = getCell(p).1
-        grid[x,y] = gridClass.toggle(grid[x,y])
+        grid[x,y] = toggle(grid[x,y])
         print("\(grid[x,y])")
-        return grid[x,y]
+        return grid[y,x]
     }
     
     @IBAction func change(sender: AnyObject) {
@@ -135,4 +135,12 @@ import UIKit
         setNeedsDisplay()
     }
     
+    func toggle(state: CellState)->CellState{//Toggle from click
+        switch state {
+        case .Born, .Living:
+            return .Empty
+        default:
+            return .Living
+        }
+    }
 }

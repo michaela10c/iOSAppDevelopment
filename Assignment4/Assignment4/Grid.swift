@@ -23,7 +23,7 @@ class Grid: GridProtocol{
    
     var rows: Int
     var cols: Int
-    internal var grid: [[CellState]] = [[]]
+    var grid: [[CellState]] = [[]]
     required init(rows: Int, cols: Int){
         self.rows = rows
         self.cols = cols
@@ -47,12 +47,5 @@ class Grid: GridProtocol{
         }
     }
     
-    func toggle(state: CellState)->CellState{//Toggle from click
-        switch state {
-        case .Born, .Living:
-            return .Empty
-        default:
-            return .Living
-        }
-    }
+    
 }

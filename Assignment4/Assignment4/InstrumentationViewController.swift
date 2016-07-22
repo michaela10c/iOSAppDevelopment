@@ -23,6 +23,7 @@ class InstrumentationViewController: UIViewController {
     //let notificationName = "Update!"
     var newGrid = StandardEngine.sharedGridSize.grid
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Rows", object: nil)
@@ -52,7 +53,6 @@ class InstrumentationViewController: UIViewController {
     @IBAction func changeRefreshRate(sender: AnyObject) {
        // StandardEngine.sharedGridSize.refreshRate = sender.value
         refreshRateText.text = "\(StandardEngine.sharedGridSize.refreshRate)"
-        
     }
     
     @IBAction func turnOnOrOff(sender: AnyObject) {
