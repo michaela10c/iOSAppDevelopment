@@ -18,14 +18,15 @@ class InstrumentationViewController: UIViewController {
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var refreshRateText: UITextField!
     
+   // var delegate = StandardEngine.sharedGridSize.delegate
     
-    let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
-    let notificationName = "Update!"//name of delegate
+    //let notificationName = "Update!"
+    var newGrid = StandardEngine.sharedGridSize.grid
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Rows", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Columns", object: nil)
+       // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Rows", object: nil)
+       // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(update), name: "Cols", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,26 +37,22 @@ class InstrumentationViewController: UIViewController {
     
     @IBAction func RowChange(sender: AnyObject) {//tap for row change
         rowStepper = sender as! UIStepper//my stepper
-        //StandardEngine.sharedGridSize.rows = "\(rowStepper.value)"
-        NSNotificationCenter.defaultCenter().postNotificationName("Rows", object: nil, userInfo: ["Rows": StandardEngine.sharedGridSize.rows])
-        print("\(StandardEngine.sharedGridSize.rows),\(StandardEngine.sharedGridSize.cols)")
+        newGrid.rows = Int(rowStepper.value)
+        print("\(newGrid.rows),\(newGrid.cols)")
         rowText.text = "\(rowStepper.value)"
     }
     
     @IBAction func colChange(sender: AnyObject) {//tap for column change
         colStepper = sender as! UIStepper//my stepper
-        //gridClass.cols = Int(colStepper.value)
-        //text
-        NSNotificationCenter.defaultCenter().postNotificationName("Columns", object: nil, userInfo: ["Columns": gridClass.cols])
-        print("\(gridClass.rows),\(gridClass.cols)")
-        colText.text = "\(StandardEngine.sharedGridSize.cols)"
-        //post it
+        newGrid.cols = Int(colStepper.value)
+        print("\(newGrid.rows),\(newGrid.cols)")
+        colText.text = "\(colStepper.value)"
     }
     
     @IBAction func changeRefreshRate(sender: AnyObject) {
        // StandardEngine.sharedGridSize.refreshRate = sender.value
         refreshRateText.text = "\(StandardEngine.sharedGridSize.refreshRate)"
-        // NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ChangeGrid", object: StandardEngine.sharedGridSize.refreshRate, userInfo: ["Rate": StandardEngine.sharedGridSize.refreshRate]))
+        
     }
     
     @IBAction func turnOnOrOff(sender: AnyObject) {
@@ -67,10 +64,5 @@ class InstrumentationViewController: UIViewController {
             timer?.fire()
             //standEng.step()
         }
-    }
-    
-    func update(){//update me
-       // grid.grid = Array(count: grid.rows, repeatedValue: Array(count: grid.cols, repeatedValue: CellState.Empty))
-        
     }
 }

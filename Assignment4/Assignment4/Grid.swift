@@ -1,3 +1,4 @@
+
 //
 //  Grid.swift
 //  Assignment4
@@ -33,7 +34,7 @@ class Grid: GridProtocol{
 
     func neighbors(row: Int, col: Int) -> [(Int,Int)] {
         return ourNeighbors.map{((row + rows + $0.0) % rows, (col + cols + $0.1) % cols)}
-    }//neighbors count
+    }
     
     
     

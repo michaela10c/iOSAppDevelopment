@@ -38,24 +38,32 @@ class StandardEngine: EngineProtocol{
             
         }
     }
+    private var _rows: Int
     var rows: Int{
-        didSet{
-            "Set rows!"
-            rows = StandardEngine.sharedGridSize.rows
+        get{
+            return _rows
+        }
+        set{
+            _rows = newValue
+            grid = Grid(rows: _rows, cols: _cols)
             delegate?.engineDidUpdate(grid)
-            
         }
     }
+    private var _cols: Int
     var cols: Int{
-        didSet{
-            "Set cols!"
-            cols = StandardEngine.sharedGridSize.cols
+        get{
+            return _cols
+        }
+        set{
+             _cols = newValue
+            grid = Grid(rows: _rows, cols: _cols)
             delegate?.engineDidUpdate(grid)
+           
         }
     }
     required init(rows: Int, cols: Int) {
-        self.rows = rows
-        self.cols = cols
+        self._rows = rows
+        self._cols = cols
         grid = Grid(rows: rows, cols: cols)
     }
    
@@ -77,6 +85,7 @@ class StandardEngine: EngineProtocol{
             }
         }
         grid = newGrid
+        print("Am I Stepped?")
         delegate?.engineDidUpdate(grid)
         return grid
     }

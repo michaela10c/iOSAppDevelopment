@@ -11,11 +11,13 @@ func isLeap(year: Int) -> Bool{
 }
 
 func julianDate(year: Int, month: Int, day: Int) -> Int{
-    let days = (1...month).map({monthdays[$0]})
-    return days.reduce(0, combine: { $0 + $1 })
-    (1...month).map({isLeap(year) && $0 == 2 ? 29})
+    return monthdays.reduce(year, combine: +)
+    //let days = (1...month).map({monthdays[$0]})
+    //return days.reduce(0, combine: { $0 + $1 })
+    //(1...month).map({isLeap(year) && $0 == 2 ? 29 : 28})
     
-}//Inspired from section
+}
+//Inspired by Nathan Guerin's section
 
 isLeap(1960)
 isLeap(1900)

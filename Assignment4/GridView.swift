@@ -10,12 +10,15 @@ import UIKit
 
 @IBDesignable class GridView: UIView {
     let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
-    @IBInspectable var rows: Int = StandardEngine.sharedGridSize.rows
-    @IBInspectable var cols: Int = StandardEngine.sharedGridSize.cols
+    var rows: Int = StandardEngine.sharedGridSize.grid.rows
+    var cols: Int = StandardEngine.sharedGridSize.grid.cols
     
     var grid = StandardEngine.sharedGridSize.grid{
         didSet{
-            StandardEngine.sharedGridSize.delegate?.engineDidUpdate(grid)
+            rows = grid.rows
+            cols = grid.cols
+            setNeedsDisplay()
+            print("I set my grid!")
         }
     }
     
@@ -46,12 +49,12 @@ import UIKit
     override func drawRect(rect: CGRect) {
         // Drawing code
         if rect.width == cellWidth{
-            fillPoint(cell.0, y: cell.1)
-            
+            fillPoint(cell.1, y: cell.0)
         } else {
             for x in 0..<rows{
                 for y in 0..<cols{
                     fillPoint(x, y: y)
+                    print("\(x), \(y)")
                 }
             }
         }
@@ -130,11 +133,6 @@ import UIKit
         print("\(grid)")
         StandardEngine.sharedGridSize.step()
         setNeedsDisplay()
-    }
-    
-    func changeRows(){
-        //let IVC = InstrumentationViewController()
-        //rows = IVC.rows
     }
     
 }

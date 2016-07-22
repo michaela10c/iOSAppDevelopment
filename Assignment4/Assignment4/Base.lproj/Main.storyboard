@@ -178,7 +178,7 @@
                                                             </mask>
                                                         </variation>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wm3-L2-VGH">
+                                                    <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Wm3-L2-VGH">
                                                         <rect key="frame" x="211" y="168" width="118" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="114" id="ExN-yK-vNs"/>
@@ -518,7 +518,7 @@
                                                 <rect key="frame" x="0.0" y="494" width="600" height="30"/>
                                                 <state key="normal" title="Step"/>
                                                 <connections>
-                                                    <action selector="change:" destination="tvo-sR-rQD" eventType="touchUpInside" id="jab-Ok-oFK"/>
+                                                    <action selector="change:" destination="tvo-sR-rQD" eventType="touchUpInside" id="BNQ-T6-BV1"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvo-sR-rQD" customClass="GridView" customModule="Assignment4" customModuleProvider="target">

@@ -115,12 +115,12 @@
 			isa = PBXGroup;
 			children = (
 				12FA23221D36E64F0001D80F /* AppDelegate.swift */,
+				12FA239C1D38343E0001D80F /* StandardEngine.swift */,
 				12FA23281D36E64F0001D80F /* Main.storyboard */,
 				12FA23561D37FAA00001D80F /* StatisticsViewController.swift */,
 				12FA23921D3814790001D80F /* GridProtocol.swift */,
 				12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */,
 				12FA239A1D3833780001D80F /* Grid.swift */,
-				12FA239C1D38343E0001D80F /* StandardEngine.swift */,
 				12FA23961D3828E10001D80F /* EngineProtocol.swift */,
 				12FA23541D37FA830001D80F /* SimulationViewController.swift */,
 				12FA23521D37FA2E0001D80F /* InstrumentationViewController.swift */,

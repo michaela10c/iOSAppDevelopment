@@ -27,15 +27,19 @@ class SimulationViewController: UIViewController, EngineDelegate{
     }
     
     func changeRows(){
-        gridView.rows = StandardEngine.sharedGridSize.rows
+        gridView.grid.rows = StandardEngine.sharedGridSize.rows
+        //gridView.grid
     }
     
-    func changeCols(){
-        gridView.cols = StandardEngine.sharedGridSize.cols
+    func changeCols(notification: NSNotification){
+        if let obj = notification.userInfo!["Cols"]{
+            let myprotocol = obj as! EngineProtocol
+            gridView.grid.cols = myprotocol.cols}
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
         gridView.grid = withGrid
+        gridView.setNeedsDisplay()
     }
     
     @objc func stepIt(){
