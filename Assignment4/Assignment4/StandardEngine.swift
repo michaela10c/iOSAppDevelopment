@@ -58,7 +58,6 @@ class StandardEngine: EngineProtocol{
              _cols = newValue
             grid = Grid(rows: _rows, cols: _cols)
             delegate?.engineDidUpdate(grid)
-           
         }
     }
     required init(rows: Int, cols: Int) {

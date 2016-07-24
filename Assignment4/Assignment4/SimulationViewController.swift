@@ -25,9 +25,10 @@ class SimulationViewController: UIViewController, EngineDelegate{
         super.didReceiveMemoryWarning()
     }
     
-    func changeRows(){
-        gridView.grid.rows = StandardEngine.sharedGridSize.rows
-        print("Did I come?")
+    func changeRows(notification: NSNotification){
+        if let obj = notification.userInfo!["Rows"]{
+            let myprotocol = obj as! EngineProtocol
+            gridView.grid.rows = myprotocol.rows}
     }
     
     func changeCols(notification: NSNotification){

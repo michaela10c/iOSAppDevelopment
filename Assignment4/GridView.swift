@@ -15,6 +15,8 @@ import UIKit
     
     var grid = StandardEngine.sharedGridSize.grid{
         didSet{
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Rows", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Cols", object: nil)
             rows = grid.rows
             cols = grid.cols
             setNeedsDisplay()
@@ -50,7 +52,8 @@ import UIKit
         // Drawing code
         if rect.width == cellWidth{
             fillPoint(cell.1, y: cell.0)
-        } else {
+        }
+        else {
             for x in 0..<rows{
                 for y in 0..<cols{
                     fillPoint(x, y: y)
@@ -142,5 +145,19 @@ import UIKit
         default:
             return .Living
         }
+    }
+    
+    func updatedToDraw(notification: NSNotification){
+        let newGrid = grid
+        if let obj = notification.userInfo!["Rows"]{
+            var newGrid = obj as! EngineProtocol
+            newGrid.rows = StandardEngine.sharedGridSize.rows
+        }
+        if let obj = notification.userInfo!["Cols"]{
+            var newGrid = obj as! EngineProtocol
+            newGrid.cols = StandardEngine.sharedGridSize.cols
+        }
+        grid = newGrid
+        setNeedsDisplay()
     }
 }
