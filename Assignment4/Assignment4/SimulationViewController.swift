@@ -13,14 +13,30 @@ class SimulationViewController: UIViewController, EngineDelegate{
     @IBOutlet weak var gridView: GridView!
     var engineProtocolObj: EngineProtocol!
     let newGridView = GridView()
+    var grid = StandardEngine.sharedGridSize.grid
+    var rows: Int {
+        get { return StandardEngine.sharedGridSize.rows }
+        set {
+            var engine = StandardEngine.sharedGridSize
+            engine.rows = newValue
+        }
+    }
+    var cols: Int{
+        get { return StandardEngine.sharedGridSize.cols }
+        set {
+            var engine = StandardEngine.sharedGridSize
+            engine.cols = newValue
+        }
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         engineProtocolObj = StandardEngine.sharedGridSize
         engineProtocolObj.delegate = self
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Rows", object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeCols), name: "Cols", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeRows), name: "Rows", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeCols), name: "Cols", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +67,13 @@ class SimulationViewController: UIViewController, EngineDelegate{
     func stepIt(){
         StandardEngine.sharedGridSize.step()
     }
+    
+    @IBAction func change(sender: AnyObject) {
+        print("\(grid)")
+        StandardEngine.sharedGridSize.step()
+        //setNeedsDisplay()
+    }
+
         
     
 }

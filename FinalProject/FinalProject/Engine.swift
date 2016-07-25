@@ -100,30 +100,67 @@ struct Grid: GridProtocol{
 }
 
 class StandardEngine: EngineProtocol{
+    private static var _sharedUpdates = StandardEngine(rows: 10, cols: 10)
+    static var sharedUpdates: EngineProtocol{
+        get{
+            return _sharedUpdates
+        }
+    }
+    
     
     var grid: GridProtocol
+    weak var delegate: EngineDelegate?
     
-    var rows: Int = 10{
-        didSet{
+    private var _rows: Int
+    var rows: Int{
+        get{
+        return _rows
+        }
+        set{
             grid = Grid(rows: self.rows, cols: self.cols) {_,_ in .Empty}
             if let delegate = delegate { delegate.engineDidUpdate(grid) }
         }
     }
     
-    
-    var cols: Int = 20 {
-        didSet {
+    private var _cols: Int
+    var cols: Int{
+        get{
+            return _cols
+        }
+        set{
             grid = Grid(rows: self.rows, cols: self.cols) { _,_ in .Empty }
-            if let delegate = delegate { delegate.engineDidUpdate(grid) }
+            if let delegate = delegate { delegate.engineDidUpdate(grid)
+                
+            }
         }
     }
 
-    weak var delegate: EngineDelegate?
+    
+    
+    var refreshRate: Double = 0.0
+    
+    var refreshTimer: NSTimer?
     
     required init(rows: Int, cols: Int) {
-        self.rows = rows
-        self.cols = cols
+        self._rows = rows
+        self._cols = cols
         grid = Grid(rows: rows, cols: cols)
+    }
+    
+    func step() -> GridProtocol {
+        var newGrid = Grid(rows: rows, cols: cols)
+        newGrid.gridCells = grid.gridCells.map({
+            switch grid.livingNeighbors(($0.row, $0.col)){
+            case 2,3 where $1.isLiving(): return Cell(($0.row, $0.col), .Alive)
+            case 3 where !$1.isLiving(): return Cell(($0.row, $0.col), .Born)
+            case _ where $1.isLiving(): return Cell(($0.row, $0.col), .Died)
+            default: return Cell(($0.row, $0.col), .Empty)
+            }
+        })
+        grid = newGrid
+        if let delegate = delegate{
+            delegate.engineDidUpdate(grid)}
+        return grid
     }
 }
 

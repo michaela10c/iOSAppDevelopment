@@ -10,10 +10,11 @@ import UIKit
 
 @IBDesignable class GridView: UIView {
     //let gridClass = Grid(rows: StandardEngine.sharedGridSize.grid.rows, cols: StandardEngine.sharedGridSize.grid.cols)
-    var rows: Int = StandardEngine.sharedGridSize.grid.rows
-    var cols: Int = StandardEngine.sharedGridSize.grid.cols
+    @IBInspectable var rows: Int = 10
+    @IBInspectable var cols: Int = 10
     
-    var grid = StandardEngine.sharedGridSize.grid{
+    
+    var grid = [[CellState]]{
         didSet{
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Rows", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Cols", object: nil)
@@ -132,12 +133,7 @@ import UIKit
         return grid[y,x]
     }
     
-    @IBAction func change(sender: AnyObject) {
-        print("\(grid)")
-        StandardEngine.sharedGridSize.step()
-        setNeedsDisplay()
-    }
-    
+        
     func toggle(state: CellState)->CellState{//Toggle from click
         switch state {
         case .Born, .Living:

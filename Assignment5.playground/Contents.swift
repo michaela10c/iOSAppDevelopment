@@ -6,7 +6,7 @@ import UIKit
 var monthDaysInYear = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 func isLeap(year: Int) -> Bool{
-    return year%400==0 ? true : year%100==0 ? false : year%4==0 ? true : false
+    return year%4==0  && year%100 != 0 || year%400 == 0 ? true : false
 }
 
 func julianDate(year: Int, month: Int, day: Int) -> Int{//get leap year condition

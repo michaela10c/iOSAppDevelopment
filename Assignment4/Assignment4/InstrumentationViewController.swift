@@ -40,7 +40,7 @@ class InstrumentationViewController: UIViewController {
     
     @IBAction func RowChange(sender: AnyObject) {//tap for row change
         rowStepper = sender as! UIStepper//my stepper
-        newGrid.rows = Int(rowStepper.value)
+        //newGrid.rows = Int(rowStepper.value)
         print("\(newGrid.rows),\(newGrid.cols)")
         gv.grid = newGrid
         rowText.text = "\(rowStepper.value)"
@@ -48,7 +48,7 @@ class InstrumentationViewController: UIViewController {
     
     @IBAction func colChange(sender: AnyObject) {//tap for column change
         colStepper = sender as! UIStepper//my stepper
-        newGrid.cols = Int(colStepper.value)
+        //newGrid.cols = Int(colStepper.value)
         print("\(newGrid.rows),\(newGrid.cols)")
         gv.grid = newGrid
         colText.text = "\(colStepper.value)"

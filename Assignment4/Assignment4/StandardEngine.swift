@@ -12,7 +12,7 @@ import Foundation
 class StandardEngine: EngineProtocol{
    // var grid: GridProtocol
     private static var _sharedGridSize = StandardEngine(rows: 4, cols: 4)
-    static var sharedGridSize: EngineProtocol{//is this how I call this singleton?
+    static var sharedGridSize: EngineProtocol {//is this how I call this singleton?
         get{
             return _sharedGridSize
         }

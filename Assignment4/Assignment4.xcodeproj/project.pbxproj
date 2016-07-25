@@ -18,7 +18,7 @@
 		12FA23551D37FA830001D80F /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23541D37FA830001D80F /* SimulationViewController.swift */; };
 		12FA23571D37FAA00001D80F /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23561D37FAA00001D80F /* StatisticsViewController.swift */; };
 		12FA23931D3814790001D80F /* GridProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23921D3814790001D80F /* GridProtocol.swift */; };
-		12FA23951D3828600001D80F /* EngineDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */; };
+		12FA23951D3828600001D80F /* EngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23941D3828600001D80F /* EngineDelegate.swift */; };
 		12FA23971D3828E10001D80F /* EngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA23961D3828E10001D80F /* EngineProtocol.swift */; };
 		12FA239B1D3833780001D80F /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA239A1D3833780001D80F /* Grid.swift */; };
 		12FA239D1D38343E0001D80F /* StandardEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FA239C1D38343E0001D80F /* StandardEngine.swift */; };
@@ -59,7 +59,7 @@
 		12FA23541D37FA830001D80F /* SimulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
 		12FA23561D37FAA00001D80F /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		12FA23921D3814790001D80F /* GridProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridProtocol.swift; sourceTree = "<group>"; };
-		12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineDelegateProtocol.swift; sourceTree = "<group>"; };
+		12FA23941D3828600001D80F /* EngineDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineDelegate.swift; sourceTree = "<group>"; };
 		12FA23961D3828E10001D80F /* EngineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineProtocol.swift; sourceTree = "<group>"; };
 		12FA239A1D3833780001D80F /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		12FA239C1D38343E0001D80F /* StandardEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardEngine.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				12FA23281D36E64F0001D80F /* Main.storyboard */,
 				12FA23561D37FAA00001D80F /* StatisticsViewController.swift */,
 				12FA23921D3814790001D80F /* GridProtocol.swift */,
-				12FA23941D3828600001D80F /* EngineDelegateProtocol.swift */,
+				12FA23941D3828600001D80F /* EngineDelegate.swift */,
 				12FA239C1D38343E0001D80F /* StandardEngine.swift */,
 				12FA239A1D3833780001D80F /* Grid.swift */,
 				12FA23961D3828E10001D80F /* EngineProtocol.swift */,
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12FA23951D3828600001D80F /* EngineDelegateProtocol.swift in Sources */,
+				12FA23951D3828600001D80F /* EngineDelegate.swift in Sources */,
 				12FA23551D37FA830001D80F /* SimulationViewController.swift in Sources */,
 				12FA23531D37FA2E0001D80F /* InstrumentationViewController.swift in Sources */,
 				12FA239B1D3833780001D80F /* Grid.swift in Sources */,

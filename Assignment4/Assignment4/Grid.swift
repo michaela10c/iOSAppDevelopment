@@ -21,8 +21,8 @@ enum CellState{
 
 class Grid: GridProtocol{
    
-    var rows: Int
-    var cols: Int
+    private(set) var rows: Int
+    private(set) var cols: Int
     var grid: [[CellState]] = [[]]
     required init(rows: Int, cols: Int){
         self.rows = rows
