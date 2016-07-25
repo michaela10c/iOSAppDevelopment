@@ -178,7 +178,7 @@
                                                             </mask>
                                                         </variation>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Wm3-L2-VGH">
+                                                    <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wm3-L2-VGH">
                                                         <rect key="frame" x="211" y="168" width="118" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="114" id="ExN-yK-vNs"/>

@@ -12,6 +12,8 @@ class SimulationViewController: UIViewController, EngineDelegate{
     
     @IBOutlet weak var gridView: GridView!
     var engineProtocolObj: EngineProtocol!
+    let gridView = GridView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,23 +30,24 @@ class SimulationViewController: UIViewController, EngineDelegate{
     func changeRows(notification: NSNotification){
         if let obj = notification.userInfo!["Rows"]{
             let myprotocol = obj as! EngineProtocol
-            gridView.grid.rows = myprotocol.rows}
+            //gridView.grid.rows = myprotocol.rows}
     }
     
     func changeCols(notification: NSNotification){
         if let obj = notification.userInfo!["Cols"]{
             let myprotocol = obj as! EngineProtocol
-            gridView.grid.cols = myprotocol.cols}
+            //gridView.grid.cols = myprotocol.cols
+        }
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
-        gridView.grid.rows = StandardEngine.sharedGridSize.rows
-        gridView.grid.cols = StandardEngine.sharedGridSize.cols
+        //gridView.grid.rows = StandardEngine.sharedGridSize.rows
+        //gridView.grid.cols = StandardEngine.sharedGridSize.cols
         gridView.grid = withGrid
         gridView.setNeedsDisplay()
     }
     
-    @objc func stepIt(){
+    func stepIt(){
         StandardEngine.sharedGridSize.step()
     }
     

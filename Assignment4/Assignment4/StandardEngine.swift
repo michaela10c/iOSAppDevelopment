@@ -47,6 +47,7 @@ class StandardEngine: EngineProtocol{
             _rows = newValue
             grid = Grid(rows: _rows, cols: _cols)
             delegate?.engineDidUpdate(grid)
+            NSNotificationCenter.defaultCenter().addObserver("Rows", selector: #selector(changeRows), name: "Rows", object: nil)
         }
     }
     private var _cols: Int
@@ -132,5 +133,9 @@ class StandardEngine: EngineProtocol{
         NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "ChangeGrid", object: refreshRate, userInfo: ["Rate": refreshRate]))
         
         print("Here it is!")
+    }
+    
+    func changeRows(){
+        
     }
 }

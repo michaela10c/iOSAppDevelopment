@@ -14,12 +14,12 @@
 		12173FF41D4455DB00BEA18F /* FinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12173FF31D4455DB00BEA18F /* FinalProjectTests.swift */; };
 		12173FFF1D4455DB00BEA18F /* FinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12173FFE1D4455DB00BEA18F /* FinalProjectUITests.swift */; };
 		1217400D1D44585400BEA18F /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217400C1D44585400BEA18F /* Engine.swift */; };
-		121740111D4470E900BEA18F /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740101D4470E900BEA18F /* GridView.swift */; };
 		121740131D44712A00BEA18F /* ConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740121D44712A00BEA18F /* ConfigurationsViewController.swift */; };
 		121740151D44719E00BEA18F /* InstrumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740141D44719E00BEA18F /* InstrumentationViewController.swift */; };
 		121740171D4471B200BEA18F /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740161D4471B200BEA18F /* SimulationViewController.swift */; };
 		121740191D4471BA00BEA18F /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740181D4471BA00BEA18F /* StatisticsViewController.swift */; };
 		1217401B1D4471E400BEA18F /* ConfigurationEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217401A1D4471E400BEA18F /* ConfigurationEditorViewController.swift */; };
+		12A90F231D459F250065AF3C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A90F221D459F250065AF3C /* GridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,12 +53,12 @@
 		12173FFE1D4455DB00BEA18F /* FinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITests.swift; sourceTree = "<group>"; };
 		121740001D4455DB00BEA18F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1217400C1D44585400BEA18F /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
-		121740101D4470E900BEA18F /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridView.swift; path = ../GridView.swift; sourceTree = "<group>"; };
 		121740121D44712A00BEA18F /* ConfigurationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsViewController.swift; sourceTree = "<group>"; };
 		121740141D44719E00BEA18F /* InstrumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstrumentationViewController.swift; path = ../InstrumentationViewController.swift; sourceTree = "<group>"; };
 		121740161D4471B200BEA18F /* SimulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
 		121740181D4471BA00BEA18F /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		1217401A1D4471E400BEA18F /* ConfigurationEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationEditorViewController.swift; sourceTree = "<group>"; };
+		12A90F221D459F250065AF3C /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +89,7 @@
 		12173FD01D4455DA00BEA18F = {
 			isa = PBXGroup;
 			children = (
+				12A90F221D459F250065AF3C /* GridView.swift */,
 				12173FDB1D4455DB00BEA18F /* FinalProject */,
 				12173FF21D4455DB00BEA18F /* FinalProjectTests */,
 				12173FFD1D4455DB00BEA18F /* FinalProjectUITests */,
@@ -110,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				12173FDC1D4455DB00BEA18F /* AppDelegate.swift */,
-				121740101D4470E900BEA18F /* GridView.swift */,
 				121740141D44719E00BEA18F /* InstrumentationViewController.swift */,
 				121740161D4471B200BEA18F /* SimulationViewController.swift */,
 				121740181D4471BA00BEA18F /* StatisticsViewController.swift */,
@@ -277,10 +277,10 @@
 			files = (
 				1217401B1D4471E400BEA18F /* ConfigurationEditorViewController.swift in Sources */,
 				1217400D1D44585400BEA18F /* Engine.swift in Sources */,
+				12A90F231D459F250065AF3C /* GridView.swift in Sources */,
 				12173FDD1D4455DB00BEA18F /* AppDelegate.swift in Sources */,
 				121740131D44712A00BEA18F /* ConfigurationsViewController.swift in Sources */,
 				121740171D4471B200BEA18F /* SimulationViewController.swift in Sources */,
-				121740111D4470E900BEA18F /* GridView.swift in Sources */,
 				121740151D44719E00BEA18F /* InstrumentationViewController.swift in Sources */,
 				121740191D4471BA00BEA18F /* StatisticsViewController.swift in Sources */,
 			);
@@ -511,6 +511,7 @@
 				121740051D4455DB00BEA18F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		121740061D4455DB00BEA18F /* Build configuration list for PBXNativeTarget "FinalProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +520,7 @@
 				121740081D4455DB00BEA18F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		121740091D4455DB00BEA18F /* Build configuration list for PBXNativeTarget "FinalProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +529,7 @@
 				1217400B1D4455DB00BEA18F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -150,7 +150,7 @@
                             <constraint firstItem="X0R-Ub-C7v" firstAttribute="width" secondItem="UuK-5j-mMJ" secondAttribute="width" id="sbx-fM-Ox5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Instrumentation" image="first" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,9 +170,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3t-Qy-0mo">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <color key="backgroundColor" red="0.9959757924079895" green="0.87693494558334351" blue="0.0020608142949640751" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-V0-Apt">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-V0-Apt">
                                 <rect key="frame" x="204" y="190" width="193" height="220"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JCG-hm-6i5">
@@ -220,7 +220,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98039215686274506" green="0.8901960784313725" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="aV3-0W-7Dq"/>
                                     <constraint firstAttribute="width" constant="193" id="scz-YS-8rC"/>
@@ -245,7 +245,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="third" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -325,7 +325,7 @@
         <scene sceneID="WMT-VO-ACC">
             <objects>
                 <navigationController id="t1C-al-MGk" userLabel="Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="knB-l0-cc2"/>
+                    <tabBarItem key="tabBarItem" title="SImulation" image="second" selectedImage="third" id="knB-l0-cc2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cjd-oX-ZoL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -350,17 +350,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssD-YS-e4T">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssD-YS-e4T">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isl-dt-sf5">
-                                        <rect key="frame" x="284" y="459" width="32" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="hK7-Ai-UZw"/>
-                                            <constraint firstAttribute="height" constant="25" id="jBj-jp-dcw"/>
-                                        </constraints>
-                                        <state key="normal" title="Step"/>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNE-8p-jej">
                                         <rect key="frame" x="90" y="34" width="420" height="420"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,8 +366,16 @@
                                             </mask>
                                         </variation>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isl-dt-sf5">
+                                        <rect key="frame" x="284" y="459" width="32" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="hK7-Ai-UZw"/>
+                                            <constraint firstAttribute="height" constant="25" id="jBj-jp-dcw"/>
+                                        </constraints>
+                                        <state key="normal" title="Step"/>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.084838546812534332" green="0.75006264448165894" blue="0.76892131567001343" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="0.69687500000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="width" secondItem="ssD-YS-e4T" secondAttribute="width" multiplier="0.7" priority="750" id="Fb9-0Y-IC6"/>
                                     <constraint firstItem="isl-dt-sf5" firstAttribute="top" secondItem="JNE-8p-jej" secondAttribute="bottom" constant="5" id="RcY-0q-3cr"/>
@@ -424,7 +424,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="first" width="25" height="25"/>
+        <image name="second" width="24" height="24"/>
+        <image name="third" width="24" height="24"/>
     </resources>
 </document>

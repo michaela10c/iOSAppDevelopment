@@ -8,6 +8,8 @@
 
 import UIKit
 
+//Inspired by Van's prototype
+
 typealias Position = (row: Int, col: Int)
 typealias Cell = (position: Position, state: CellState)
 
@@ -59,10 +61,6 @@ protocol EngineProtocol {
 
 typealias InitialCell = (Position) -> CellState
 
-/*class StandardEngine: EngineProtocol{
-    
-}*/
-
 struct Grid: GridProtocol{
     private(set) var rows: Int
     private(set) var cols: Int
@@ -100,6 +98,32 @@ struct Grid: GridProtocol{
     func livingNeighbors(position: Position) -> Int {
         return gridCells.reduce(0, combine: {$1.state.isLiving() ? $0+1 : $0})
     }
+}
+
+class StandardEngine: EngineProtocol{
+    private static var _sharedObj: StandardEngine = StandardEngine(10, 10)
+    static var sharedObj = StandardEngine{
+        get{return _sharedObj}
+    }
+    
+    var grid: GridProtocol
+    
+    var rows: Int = 10{
+        didSet{
+            grid = Grid(rows: self.rows, cols: self.cols) {_,_ in .Empty}
+            if let delegate = delegate { delegate.engineDidUpdate(grid) }
+        }
+    }
+    
+    var cols: Int = 20 {
+        didSet {
+            grid = Grid(rows: self.rows, cols: self.cols) { _,_ in .Empty }
+            if let delegate = delegate { delegate.engineDidUpdate(grid) }
+        }
+    }
+
+    weak var delegate: EngineDelegate?
+    
 }
 
 
