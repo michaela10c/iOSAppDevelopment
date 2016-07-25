@@ -77,8 +77,7 @@ struct Grid: GridProtocol{
         self.rows = rows
         self.cols = cols
         self.gridCells = (0..<rows*cols).map {
-            let position = Position($0/cols, $0%cols)
-            return Cell(position, initialCell(position))
+            return Cell(Position($0/cols, $0%cols), initialCell(Position($0/cols, $0%cols)))
         }
     }
     
@@ -101,10 +100,6 @@ struct Grid: GridProtocol{
 }
 
 class StandardEngine: EngineProtocol{
-    private static var _sharedObj: StandardEngine = StandardEngine(10, 10)
-    static var sharedObj = StandardEngine{
-        get{return _sharedObj}
-    }
     
     var grid: GridProtocol
     
@@ -115,6 +110,7 @@ class StandardEngine: EngineProtocol{
         }
     }
     
+    
     var cols: Int = 20 {
         didSet {
             grid = Grid(rows: self.rows, cols: self.cols) { _,_ in .Empty }
@@ -124,6 +120,11 @@ class StandardEngine: EngineProtocol{
 
     weak var delegate: EngineDelegate?
     
+    required init(rows: Int, cols: Int) {
+        self.rows = rows
+        self.cols = cols
+        grid = Grid(rows: rows, cols: cols)
+    }
 }
 
 
