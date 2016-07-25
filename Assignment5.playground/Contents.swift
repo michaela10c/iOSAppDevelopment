@@ -3,17 +3,16 @@
 import UIKit
 
 
-var monthdays = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+var monthDaysInYear = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 func isLeap(year: Int) -> Bool{
     return year%400==0 ? true : year%100==0 ? false : year%4==0 ? true : false
 }
 
 func julianDate(year: Int, month: Int, day: Int) -> Int{//get leap year condition
-    //let yeardays =  (1900..<year).reduce(0, combine: {($1-1900) * (isLeap($1) ? 366 : 365)})
-   // let months = monthdays.reduce(0, combine: +)
-    //return yeardays + day
-    return (1900..<year).reduce(0, combine: {(year-1900) * (selfConfigurationsViewController.isLeap($1) ? 366 : 365)})
+    let yearDays = (1900..<year).map({(number:Int)->Int in return isLeap(number) ? 366 : 365}).reduce(0, combine: +)
+    let monthDays = monthDaysInYear[0..<month].reduce(0, combine: +)
+    return yearDays + monthDays + day
 }
 
 //Inspired by Nathan Guerin's section
@@ -21,7 +20,9 @@ func julianDate(year: Int, month: Int, day: Int) -> Int{//get leap year conditio
 isLeap(1960)
 isLeap(1900)
 isLeap(2000)
-isLeap(1100)
 
 
-julianDate(1904, month: 1, day: 28)
+julianDate(1960, month: 9, day: 28)
+julianDate(1900, month: 1, day: 1)
+julianDate(2000, month: 12, day: 31)
+julianDate(2001, month: 1, day: 1) - julianDate(2000, month: 1, day: 1)
