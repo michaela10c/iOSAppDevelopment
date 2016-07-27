@@ -13,7 +13,6 @@ import UIKit
 typealias Position = (row: Int, col: Int)
 typealias Cell = (position: Position, state: CellState)
 
-let differences: [Position] = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
 
 enum CellState{
     case Empty, Died, Born, Alive
@@ -26,10 +25,14 @@ enum CellState{
     }
 }
 
+protocol EngineDelegate: class {
+    func engineDidUpdate(withGrid: GridProtocol)
+}
+
 protocol GridProtocol {
     var rows: Int {get}
     var cols: Int {get}
-    var gridCells: [Cell] {get}
+    var gridCells: [Cell] {get set}
     
     var living: Int {get}
     var died: Int{get}
@@ -43,11 +46,7 @@ protocol GridProtocol {
     func livingNeighbors(position: Position) -> Int
 }
 
-protocol EngineDelegate: class {
-    func engineDidUpdate(withGrid: GridProtocol)
-}
-
-protocol EngineProtocol {
+protocol EngineProtocol : class{
     var rows: Int{get set}
     var cols: Int{get set}
     var grid: GridProtocol {get}
@@ -90,6 +89,8 @@ struct Grid: GridProtocol{
         }
     }
     
+    let differences: [Position] = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+    
     func neighbors(position: Position) -> [Position] {
         return differences.map{(($0.row + rows + position.row), ($0.col + cols + position.col))}
     }
@@ -99,8 +100,10 @@ struct Grid: GridProtocol{
     }
 }
 
+
+
 class StandardEngine: EngineProtocol{
-    private static var _sharedUpdates = StandardEngine(rows: 10, cols: 10)
+    private static var _sharedUpdates = StandardEngine(rows: 30, cols: 20)
     static var sharedUpdates: EngineProtocol{
         get{
             return _sharedUpdates
@@ -110,6 +113,10 @@ class StandardEngine: EngineProtocol{
     
     var grid: GridProtocol
     weak var delegate: EngineDelegate?
+    //weak - automatic garbage collection
+    //Java, Python: at runtime, deallocate, memory
+    //Apple: compiler controls the memory 4 u, release at compile time
+    //Reference counting garbage collection
     
     private var _rows: Int
     var rows: Int{

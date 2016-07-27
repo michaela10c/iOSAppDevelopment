@@ -28,8 +28,8 @@ class StandardEngine: EngineProtocol{
         didSet{
             if let refreshTimer = refreshTimer{refreshTimer.invalidate()}
             if refreshRate != 0.0{
-            let sel = #selector(StandardEngine.rateChange(_:))
-            refreshTimer = NSTimer.scheduledTimerWithTimeInterval(refreshRate, target: GridView(), selector: sel, userInfo: ["name": refreshRate], repeats: true)
+          //  let sel = #selector(StandardEngine.rateChange(_:))
+            //refreshTimer = NSTimer.scheduledTimerWithTimeInterval(refreshRate, target: GridView(), selector: sel, userInfo: ["name": refreshRate], repeats: true)
             }
             else if let refreshTimer = refreshTimer{
                 refreshTimer.invalidate()

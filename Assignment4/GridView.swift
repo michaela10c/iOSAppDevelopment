@@ -14,16 +14,18 @@ import UIKit
     @IBInspectable var cols: Int = 10
     
     
-    var grid = [[CellState]]{
-        didSet{
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Rows", object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Cols", object: nil)
-            rows = grid.rows
-            cols = grid.cols
-            setNeedsDisplay()
-            print("I set my grid!")
-        }
-    }
+//    var grid : GridProtocol {
+//        didSet{
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Rows", object: nil)
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatedToDraw), name: "Cols", object: nil)
+//            rows = grid.rows
+//            cols = grid.cols
+//            setNeedsDisplay()
+//            print("I set my grid!")
+//            //self.grid = Array(count: )
+//            
+//        }
+//    }
     
     @IBInspectable var emptyColor: UIColor = UIColor.grayColor()
     @IBInspectable var livingColor: UIColor = UIColor.greenColor()
@@ -71,7 +73,7 @@ import UIKit
                                  startAngle: 0, endAngle: 2 * π,
                                  clockwise: false)
         cPath.lineWidth = 1.5
-        getFill(grid[y,x])
+//        getFill(grid[y,x])
 
         cPath.stroke()
         cPath.fill()
@@ -116,7 +118,7 @@ import UIKit
             let location = touch.locationInView(self)
             let col = getCell(location).0//getCell -> (col, row)
             let row = getCell(location).1
-            grid[row,col] = getPointStateAndToggle(location)
+//            grid[row,col] = getPointStateAndToggle(location)
             cell = (row,col)
             print("\(cell)")
             let rect = CGRectMake(CGFloat(col)*cellWidth, CGFloat(row)*cellHeight, cellWidth, cellHeight)
@@ -126,11 +128,12 @@ import UIKit
     }
     
     func getPointStateAndToggle(p: CGPoint)->CellState{
-        let x = getCell(p).0
-        let y = getCell(p).1
-        grid[x,y] = toggle(grid[x,y])
-        print("\(grid[x,y])")
-        return grid[y,x]
+    //    let x = getCell(p).0
+     //   let y = getCell(p).1
+//        grid[x,y] = toggle(grid[x,y])
+//        print("\(grid[x,y])")
+//        return grid[y,x]
+        return .Empty
     }
     
         
@@ -144,7 +147,7 @@ import UIKit
     }
     
     func updatedToDraw(notification: NSNotification){
-        let newGrid = grid
+//        let newGrid = grid
         if let obj = notification.userInfo!["Rows"]{
             var newGrid = obj as! EngineProtocol
             newGrid.rows = StandardEngine.sharedGridSize.rows
@@ -153,7 +156,7 @@ import UIKit
             var newGrid = obj as! EngineProtocol
             newGrid.cols = StandardEngine.sharedGridSize.cols
         }
-        grid = newGrid
+//        grid = newGrid
         setNeedsDisplay()
     }
 }

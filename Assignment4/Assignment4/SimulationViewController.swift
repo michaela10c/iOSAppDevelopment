@@ -12,7 +12,7 @@ class SimulationViewController: UIViewController, EngineDelegate{
     
     @IBOutlet weak var gridView: GridView!
     var engineProtocolObj: EngineProtocol!
-    let newGridView = GridView()
+   // let newGridView = GridView()
     var grid = StandardEngine.sharedGridSize.grid
     var rows: Int {
         get { return StandardEngine.sharedGridSize.rows }
@@ -60,7 +60,7 @@ class SimulationViewController: UIViewController, EngineDelegate{
     func engineDidUpdate(withGrid: GridProtocol) {
         //gridView.grid.rows = StandardEngine.sharedGridSize.rows
         //gridView.grid.cols = StandardEngine.sharedGridSize.cols
-        gridView.grid = withGrid
+//        gridView.grid = withGrid
         gridView.setNeedsDisplay()
     }
     

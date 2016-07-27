@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MyClass : MyProtocol{
+class MyClass : MyProtocol {
     var myField: Int = 0
     
 }

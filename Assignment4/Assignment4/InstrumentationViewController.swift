@@ -23,7 +23,7 @@ class InstrumentationViewController: UIViewController {
     //let notificationName = "Update!"
     var newGrid = StandardEngine.sharedGridSize.grid
    // let SVC = SimulationViewController()
-    let gv = GridView()
+    //let gv = GridView()
     
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class InstrumentationViewController: UIViewController {
         rowStepper = sender as! UIStepper//my stepper
         //newGrid.rows = Int(rowStepper.value)
         print("\(newGrid.rows),\(newGrid.cols)")
-        gv.grid = newGrid
+//        gv.grid = newGrid
         rowText.text = "\(rowStepper.value)"
     }
     
@@ -50,7 +50,7 @@ class InstrumentationViewController: UIViewController {
         colStepper = sender as! UIStepper//my stepper
         //newGrid.cols = Int(colStepper.value)
         print("\(newGrid.rows),\(newGrid.cols)")
-        gv.grid = newGrid
+//        gv.grid = newGrid
         colText.text = "\(colStepper.value)"
         
     }
