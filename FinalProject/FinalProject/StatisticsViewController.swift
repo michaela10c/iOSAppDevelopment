@@ -8,28 +8,34 @@
 
 import UIKit
 
-class StatisticsViewController: UIViewController {
+class StatisticsViewController: UIViewController, EngineDelegate {
+    
+    @IBOutlet weak var emptyTextField: UITextField!
+    @IBOutlet weak var bornTextField: UITextField!
+    @IBOutlet weak var livingTextField: UITextField!
+    @IBOutlet weak var deadTextField: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        StandardEngine.sharedUpdates.delegate = self
+        setupTextFields(StandardEngine.sharedUpdates.grid)
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func engineDidUpdate(withGrid: GridProtocol) {
+        setupTextFields(withGrid)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setupTextFields(grid: GridProtocol) {
+        emptyTextField.text = "\(grid.getCount(.Empty))"
+        bornTextField.text = "\(grid.getCount(.Born))"
+        livingTextField.text = "\(grid.getCount(.Living))"
+        deadTextField.text = "\(grid.getCount(.Dead))"
     }
-    */
-
 }

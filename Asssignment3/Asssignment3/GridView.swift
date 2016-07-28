@@ -70,12 +70,14 @@ import UIKit
             line.addLineToPoint(CGPoint(x: CGFloat(x+xDiff) * cellWidth, y: CGFloat(y+1) * cellHeight))
             UIColor.brownColor().setStroke()
             line.stroke()
+            line.fill()
         }
         for yDiff in (0...1){
             line.moveToPoint(CGPoint(x: CGFloat(x) * cellWidth, y: CGFloat(y+yDiff) * cellHeight))
             line.addLineToPoint(CGPoint(x: CGFloat(x+1) * cellWidth, y: CGFloat(y+yDiff) * cellHeight))
             UIColor.brownColor().setStroke()
             line.stroke()
+            line.fill()
         }
         let cPath = UIBezierPath(arcCenter: findCenter(x, col: y),
                                  radius: (w / CGFloat(rows) / 2)-1,

@@ -19,6 +19,9 @@
 		121740171D4471B200BEA18F /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740161D4471B200BEA18F /* SimulationViewController.swift */; };
 		121740191D4471BA00BEA18F /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121740181D4471BA00BEA18F /* StatisticsViewController.swift */; };
 		1217401B1D4471E400BEA18F /* ConfigurationEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217401A1D4471E400BEA18F /* ConfigurationEditorViewController.swift */; };
+		1263EBC01D4AA0A6003F31DA /* S65g-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1263EBBF1D4AA0A6003F31DA /* S65g-1.json */; };
+		1263EBC21D4AA27F003F31DA /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1263EBC11D4AA27F003F31DA /* Fetcher.swift */; };
+		1263EBC41D4AA53E003F31DA /* GridConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1263EBC31D4AA53E003F31DA /* GridConfiguration.swift */; };
 		12EB45D41D47FFE9007517C5 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EB45D31D47FFE9007517C5 /* GridView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,9 @@
 		121740161D4471B200BEA18F /* SimulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
 		121740181D4471BA00BEA18F /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		1217401A1D4471E400BEA18F /* ConfigurationEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationEditorViewController.swift; sourceTree = "<group>"; };
+		1263EBBF1D4AA0A6003F31DA /* S65g-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "S65g-1.json"; path = "../../../../Downloads/S65g-1.json"; sourceTree = "<group>"; };
+		1263EBC11D4AA27F003F31DA /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		1263EBC31D4AA53E003F31DA /* GridConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridConfiguration.swift; sourceTree = "<group>"; };
 		12EB45D31D47FFE9007517C5 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridView.swift; path = ../GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,10 +120,12 @@
 				121740161D4471B200BEA18F /* SimulationViewController.swift */,
 				121740181D4471BA00BEA18F /* StatisticsViewController.swift */,
 				12EB45D31D47FFE9007517C5 /* GridView.swift */,
-				12173FE21D4455DB00BEA18F /* Main.storyboard */,
-				1217401A1D4471E400BEA18F /* ConfigurationEditorViewController.swift */,
-				121740121D44712A00BEA18F /* ConfigurationsViewController.swift */,
 				1217400C1D44585400BEA18F /* Engine.swift */,
+				12173FE21D4455DB00BEA18F /* Main.storyboard */,
+				121740121D44712A00BEA18F /* ConfigurationsViewController.swift */,
+				1263EBC31D4AA53E003F31DA /* GridConfiguration.swift */,
+				1263EBC11D4AA27F003F31DA /* Fetcher.swift */,
+				1217401A1D4471E400BEA18F /* ConfigurationEditorViewController.swift */,
 				12173FE51D4455DB00BEA18F /* Assets.xcassets */,
 				12173FE71D4455DB00BEA18F /* LaunchScreen.storyboard */,
 				12173FEA1D4455DB00BEA18F /* Info.plist */,
@@ -129,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				12173FF31D4455DB00BEA18F /* FinalProjectTests.swift */,
+				1263EBBF1D4AA0A6003F31DA /* S65g-1.json */,
 				12173FF51D4455DB00BEA18F /* Info.plist */,
 			);
 			path = FinalProjectTests;
@@ -258,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1263EBC01D4AA0A6003F31DA /* S65g-1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,10 +289,12 @@
 				1217400D1D44585400BEA18F /* Engine.swift in Sources */,
 				12EB45D41D47FFE9007517C5 /* GridView.swift in Sources */,
 				12173FDD1D4455DB00BEA18F /* AppDelegate.swift in Sources */,
+				1263EBC41D4AA53E003F31DA /* GridConfiguration.swift in Sources */,
 				121740131D44712A00BEA18F /* ConfigurationsViewController.swift in Sources */,
 				121740171D4471B200BEA18F /* SimulationViewController.swift in Sources */,
 				121740151D44719E00BEA18F /* InstrumentationViewController.swift in Sources */,
 				121740191D4471BA00BEA18F /* StatisticsViewController.swift in Sources */,
+				1263EBC21D4AA27F003F31DA /* Fetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

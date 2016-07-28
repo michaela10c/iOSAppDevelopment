@@ -14,12 +14,12 @@ typealias Position = (row: Int, col: Int)
 typealias Cell = (position: Position, state: CellState)
 
 
-enum CellState{
-    case Empty, Died, Born, Alive
+enum CellState: Int {
+    case Empty = 0, Born, Living, Dead
     
     func isLiving() -> Bool {
         switch self {
-        case .Born, .Alive: return true
+        case .Born, .Living: return true
         default: return false
         }
     }
@@ -32,24 +32,19 @@ protocol EngineDelegate: class {
 protocol GridProtocol {
     var rows: Int {get}
     var cols: Int {get}
-    var gridCells: [Cell] {get set}
-    
-    var living: Int {get}
-    var died: Int{get}
-    var alive: Int{get}
-    var born: Int{get}
-    var empty: Int{get}
+    var gridCells: [[CellState]] {get set}
     
     subscript (a: Int, b: Int) -> CellState {get set}
     
-    func neighbors(position: Position) -> [Position]
-    func livingNeighbors(position: Position) -> Int
+    func getNeighbors(position: Position) -> [Position]
+    func getLivingNeighbors(position: Position) -> Int
+    func getCount(desiredState: CellState) -> Int
 }
 
 protocol EngineProtocol : class{
     var rows: Int{get set}
     var cols: Int{get set}
-    var grid: GridProtocol {get}
+    var grid: GridProtocol {get set}
     weak var delegate: EngineDelegate? {get set}
     
     var refreshRate:  Double {get set}
@@ -60,115 +55,159 @@ protocol EngineProtocol : class{
 
 typealias InitialCell = (Position) -> CellState
 
-struct Grid: GridProtocol{
-    private(set) var rows: Int
-    private(set) var cols: Int
-    var gridCells: [Cell]
+struct Grid: GridProtocol {
+    var rows: Int
+    var cols: Int
+    var gridCells: [[CellState]]
     
-    var living: Int {return gridCells.reduce(0) {return $1.state.isLiving() ? $0 + 1 : $0}}
-    var dead: Int {return gridCells.reduce(0) {return !$1.state.isLiving() ? $0 + 1 : $0}}
-    var born: Int {return gridCells.reduce(0) {return $1.state == .Born ? $0 + 1 : $0}}
-    var alive: Int {return gridCells.reduce(0) {return $1.state == .Alive ? $0 + 1 : $0}}
-    var died: Int {return gridCells.reduce(0) {return $1.state == .Died ? $0 + 1 : $0}}
-    var empty: Int {return gridCells.reduce(0) {return $1.state == .Empty ? $0 + 1 : $0}}
+    static let neighborOffsets: [Position] = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
     
-    init(rows: Int, cols: Int, initialCell: InitialCell = {_ in .Empty}){
+    init(rows: Int, cols: Int) {
         self.rows = rows
         self.cols = cols
-        self.gridCells = (0..<rows*cols).map {
-            return Cell(Position($0/cols, $0%cols), initialCell(Position($0/cols, $0%cols)))
-        }
+        
+        self.gridCells = [[CellState]](count: rows, repeatedValue: [CellState](count: cols, repeatedValue: CellState.Empty))
     }
-    
-    subscript (a: Int, b: Int) -> CellState{
+
+    subscript (a: Int, b: Int) -> CellState {
         get{
-            return gridCells[a*cols+b].state
+            return gridCells[a][b]
         }
         set{
-            gridCells[a*cols+b].state = newValue
+            gridCells[a][b] = newValue
         }
     }
     
-    let differences: [Position] = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
-    
-    func neighbors(position: Position) -> [Position] {
-        return differences.map{(($0.row + rows + position.row), ($0.col + cols + position.col))}
+    func getNeighbors(position: Position) -> [Position] {
+        return Grid.neighborOffsets.map({ (offset) -> Position in
+            var retVal = Position(row: position.row + offset.row , col: position.col + offset.col)
+            
+            // fix out of bounds row
+            if (retVal.row < 0) {
+                retVal.row = rows + retVal.row
+            } else if (retVal.row >= rows) {
+                retVal.row = retVal.row - rows
+            }
+            
+            // fix out of bounds col
+            if (retVal.col < 0) {
+                retVal.col = cols + retVal.col
+            } else if (retVal.col >= cols) {
+                retVal.col = retVal.col - cols
+            }
+            
+            return retVal
+        })
     }
     
-    func livingNeighbors(position: Position) -> Int {
-        return gridCells.reduce(0, combine: {$1.state.isLiving() ? $0+1 : $0})
+    func getLivingNeighbors(position: Position) -> Int {
+        let neighborPositions = getNeighbors(position)
+        
+        return neighborPositions.reduce(0) { (count, neighborPosition) -> Int in
+            let neighborCellState = gridCells[neighborPosition.row][neighborPosition.col]
+            if neighborCellState == .Living || neighborCellState == .Born {
+                return count + 1
+            } else {
+                return count
+            }
+        }
+    }
+    
+    func getCount(desiredState: CellState) -> Int {
+        return gridCells.reduce(0, combine: { (count, column) -> Int in
+            return count + column.reduce(0, combine: { (count2, state) -> Int in
+                if state == desiredState {
+                    return count2 + 1
+                } else {
+                    return count2
+                }
+            })
+        })
     }
 }
 
 
 
-class StandardEngine: EngineProtocol{
-    private static var _sharedUpdates = StandardEngine(rows: 30, cols: 20)
-    static var sharedUpdates: EngineProtocol{
-        get{
-            return _sharedUpdates
+class StandardEngine: EngineProtocol {
+    static var sharedUpdates: EngineProtocol = StandardEngine(rows: 10, cols: 10)
+    
+    var grid: GridProtocol{
+        didSet{
+         delegate?.engineDidUpdate(grid)
         }
     }
-    
-    
-    var grid: GridProtocol
     weak var delegate: EngineDelegate?
     //weak - automatic garbage collection
     //Java, Python: at runtime, deallocate, memory
     //Apple: compiler controls the memory 4 u, release at compile time
     //Reference counting garbage collection
     
-    private var _rows: Int
-    var rows: Int{
-        get{
-        return _rows
-        }
-        set{
-            grid = Grid(rows: self.rows, cols: self.cols) {_,_ in .Empty}
-            if let delegate = delegate { delegate.engineDidUpdate(grid) }
+    var rows: Int {
+        didSet {
+            grid = Grid(rows: self.rows, cols: self.cols)
+            delegate?.engineDidUpdate(grid)
         }
     }
     
-    private var _cols: Int
-    var cols: Int{
-        get{
-            return _cols
+    var cols: Int {
+        didSet{
+            grid = Grid(rows: self.rows, cols: self.cols)
+            delegate?.engineDidUpdate(grid)
         }
-        set{
-            grid = Grid(rows: self.rows, cols: self.cols) { _,_ in .Empty }
-            if let delegate = delegate { delegate.engineDidUpdate(grid)
-                
+    }
+    
+    var refreshRate: NSTimeInterval = 0.0{
+        didSet{
+            if refreshRate != 0{
+                if let timer = refreshTimer{timer.invalidate()}
+                refreshTimer = NSTimer.scheduledTimerWithTimeInterval(1/refreshRate, target: self, selector: #selector(timerDidFire), userInfo: ["Timer": refreshRate], repeats: true)
+                NSNotificationCenter.defaultCenter().postNotificationName("GridStep", object: nil, userInfo: ["Timer": refreshRate])
             }
+            else if let timer = refreshTimer{timer.invalidate()}
         }
     }
-
-    
-    
-    var refreshRate: Double = 0.0
     
     var refreshTimer: NSTimer?
     
     required init(rows: Int, cols: Int) {
-        self._rows = rows
-        self._cols = cols
+        self.rows = rows
+        self.cols = cols
         grid = Grid(rows: rows, cols: cols)
     }
     
     func step() -> GridProtocol {
         var newGrid = Grid(rows: rows, cols: cols)
-        newGrid.gridCells = grid.gridCells.map({
-            switch grid.livingNeighbors(($0.row, $0.col)){
-            case 2,3 where $1.isLiving(): return Cell(($0.row, $0.col), .Alive)
-            case 3 where !$1.isLiving(): return Cell(($0.row, $0.col), .Born)
-            case _ where $1.isLiving(): return Cell(($0.row, $0.col), .Died)
-            default: return Cell(($0.row, $0.col), .Empty)
-            }
+        
+        newGrid.gridCells = grid.gridCells.enumerate().map({ (rowNumber, row) -> [CellState] in
+            return row.enumerate().map({ (colNumber, state) -> CellState in
+                let livingNeighborCount = grid.getLivingNeighbors(Position(row: rowNumber, col: colNumber))
+                
+                switch state {
+                case .Living, .Born:
+                    if livingNeighborCount == 2 || livingNeighborCount == 3 {
+                        return .Living
+                    } else {
+                        return .Dead
+                    }
+                default:
+                    if livingNeighborCount == 3 {
+                        return .Born
+                    } else {
+                        return .Empty
+                    }
+                }
+            })
         })
+        
         grid = newGrid
-        if let delegate = delegate{
-            delegate.engineDidUpdate(grid)}
-        return grid
+        return newGrid
     }
+    
+    @objc func timerDidFire(timer: NSTimer){
+        step()
+    }
+    
+    
 }
 
 
