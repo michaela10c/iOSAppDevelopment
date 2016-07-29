@@ -10,9 +10,14 @@ import UIKit
 
 class ConfigurationEditorViewController: UIViewController {
 
+    var name: String?
+    var commit: (String -> Void)?
+    
+    @IBOutlet weak var configurationNameText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configurationNameText.text = name
         // Do any additional setup after loading the view.
     }
 
@@ -32,4 +37,10 @@ class ConfigurationEditorViewController: UIViewController {
     }
     */
 
+    @IBAction func saveConfiguration(sender: AnyObject) {
+        guard let newText = configurationNameText.text, commit = commit
+            else{return}
+        commit(newText)
+        navigationController!.popViewControllerAnimated(true)
+    }
 }

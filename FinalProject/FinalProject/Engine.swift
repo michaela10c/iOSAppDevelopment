@@ -41,7 +41,7 @@ protocol GridProtocol {
     func getCount(desiredState: CellState) -> Int
 }
 
-protocol EngineProtocol : class{
+protocol EngineProtocol{
     var rows: Int{get set}
     var cols: Int{get set}
     var grid: GridProtocol {get set}
@@ -51,6 +51,9 @@ protocol EngineProtocol : class{
     var refreshTimer: NSTimer? {get set}
     
     func step() -> GridProtocol
+    
+    func startTimer()
+    func stopTimer()
 }
 
 typealias InitialCell = (Position) -> CellState
@@ -205,6 +208,15 @@ class StandardEngine: EngineProtocol {
     
     @objc func timerDidFire(timer: NSTimer){
         step()
+    }
+    
+    func startTimer(){
+        refreshTimer?.invalidate()
+        refreshTimer = NSTimer.scheduledTimerWithTimeInterval(1/refreshRate, target: self, selector: #selector(timerDidFire), userInfo: ["Timer": refreshRate], repeats: true)
+    }
+    
+    func stopTimer(){
+        refreshTimer?.invalidate()
     }
     
     

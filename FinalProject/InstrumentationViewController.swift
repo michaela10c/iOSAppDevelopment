@@ -16,14 +16,12 @@ class InstrumentationViewController: UIViewController {
     @IBOutlet weak var refreshRateText: UITextField!
     @IBOutlet weak var onOffSwitch: UISwitch!
 
-    //var configurations : [GridConfiguration] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         rowText.text =  StandardEngine.sharedUpdates.rows.description
         colText.text =  StandardEngine.sharedUpdates.cols.description
         refreshRateText.text = StandardEngine.sharedUpdates.refreshRate.description
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,29 +42,28 @@ class InstrumentationViewController: UIViewController {
     }
     
     @IBAction func onRefreshRateChanged(sender: UISlider) {
+        if onOffSwitch.on{
         let rate = Double(sender.value)
         refreshRateText.text = "\(rate)"
         StandardEngine.sharedUpdates.refreshRate = rate
+        }
+        else{
+            StandardEngine.sharedUpdates.stopTimer()
+        }
+        
     }
     
-    //Inspired and modified from Nathan Guerin's section
-    func fetch(){
-        let url = NSURL(string: "https://dl.dropboxusercontent.com/u/7544475/S65g.json")!
-        let fetcher = Fetcher()
-        fetcher.requestJSON(url) { (json, message) in
-            if let json = json {
-               //let correctType = json as! [AnyObject]
-               // let parser = GridConfigurationParser(configurations: correctType)
-               // self.configurations = parser.parse()!
-            }
-            
-            
-            let op = NSBlockOperation {
-                //self.tableView.reloadData()
-            }
-            NSOperationQueue.mainQueue().addOperation(op)
+    @IBAction func startStopTimer(sender: AnyObject) {
+        if onOffSwitch.on{
+             StandardEngine.sharedUpdates.startTimer()
+        } else{
+            StandardEngine.sharedUpdates.stopTimer()
         }
+        
     }
+
+    
+   
     
     
 
