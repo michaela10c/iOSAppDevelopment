@@ -53,7 +53,7 @@ class ConfigurationsViewController: UITableViewController {
             else{preconditionFailure("Nanny?")}
         editingVC.name = editingString
         editingVC.commit = {
-            configurations[editingRow].title = $0 //***********title is a let constant, how should I change this to be that edited name?
+            self.configurations[editingRow].title = $0 //***********title is a let constant, how should I change this to be that edited name?
             print("\($0)")
             let indexPath = NSIndexPath(forRow: editingRow, inSection: 0)
             self.tableView.reloadRowsAtIndexPaths([indexPath],
@@ -90,7 +90,7 @@ class ConfigurationsViewController: UITableViewController {
     
 
     @IBAction func addConfiguration(sender: AnyObject) {
-        configurations.append("Add new configuration....") //***********What is the form of adding a new configuration in this case?
+       // configurations.append("Add new configuration....") //***********What is the form of adding a new configuration in this case?
         let itemRow = configurations.count - 1
         let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
         tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)

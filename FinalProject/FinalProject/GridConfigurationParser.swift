@@ -11,8 +11,8 @@ import Foundation
 //sample code from Nathan Guerin's section
 
 struct GridConfiguration{
-    let title : String
-    let points : [(Int,Int)]
+    var title : String
+    var points : [(Int,Int)]
 }
 
 class GridConfigurationParser{
