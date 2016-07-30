@@ -27,6 +27,12 @@ enum CellState: Int {
 
 protocol EngineDelegate: class {
     func engineDidUpdate(withGrid: GridProtocol)
+    func engineDidUpdate(withConfigurations: [GridConfiguration])
+}
+extension EngineDelegate{
+    func engineDidUpdate(withConfigurations: [GridConfiguration]){
+        //default implementation
+    }
 }
 
 protocol GridProtocol {
@@ -44,6 +50,10 @@ protocol GridProtocol {
 protocol EngineProtocol{
     var rows: Int{get set}
     var cols: Int{get set}
+    
+    var configuration : GridConfiguration? {get set}
+    var configurations : [GridConfiguration]{get set}
+    
     var grid: GridProtocol {get set}
     weak var delegate: EngineDelegate? {get set}
     
@@ -133,6 +143,14 @@ struct Grid: GridProtocol {
 
 class StandardEngine: EngineProtocol {
     static var sharedUpdates: EngineProtocol = StandardEngine(rows: 10, cols: 10)
+    
+    var configuration : GridConfiguration? 
+    
+    var configurations = [GridConfiguration](){
+        didSet{
+            delegate?.engineDidUpdate(configurations)
+        }
+    }
     
     var grid: GridProtocol{
         didSet{

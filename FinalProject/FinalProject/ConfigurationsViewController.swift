@@ -8,9 +8,17 @@
 
 import UIKit
 
-class ConfigurationsViewController: UITableViewController {
+class ConfigurationsViewController: UITableViewController, EngineDelegate {
     
-    var configurations : [GridConfiguration] = []
+    var engine = StandardEngine.sharedUpdates
+    var configurations : [GridConfiguration] {
+        get{
+            return engine.configurations
+        }
+        set(newValue){
+            engine.configurations = newValue
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +28,11 @@ class ConfigurationsViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        engine.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,13 +66,17 @@ class ConfigurationsViewController: UITableViewController {
             else{preconditionFailure("Nanny?")}
         editingVC.name = editingString
         editingVC.commit = {
-            self.configurations[editingRow].title = $0 //***********title is a let constant, how should I change this to be that edited name?
-            print("\($0)")
+            (title,points) in
+            self.configurations[editingRow].title = title
+            self.configurations[editingRow].points = points
             let indexPath = NSIndexPath(forRow: editingRow, inSection: 0)
             self.tableView.reloadRowsAtIndexPaths([indexPath],
                                                   withRowAnimation: .Automatic)
+            
         }
     }
+    
+    
     //inspired by Nathan Guerin's section
     func fetch(){
         let url = NSURL(string: "https://dl.dropboxusercontent.com/u/7544475/S65g.json")!
@@ -90,7 +107,7 @@ class ConfigurationsViewController: UITableViewController {
     
 
     @IBAction func addConfiguration(sender: AnyObject) {
-       // configurations.append("Add new configuration....") //***********What is the form of adding a new configuration in this case?
+        configurations.append(GridConfiguration(title: "Add new configuration", points: [(0,0)])) //***********What is the form of adding a new configuration in this case?
         let itemRow = configurations.count - 1
         let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
         tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
@@ -106,6 +123,16 @@ class ConfigurationsViewController: UITableViewController {
         }
     }
     
-   
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        engine.configuration = configurations[indexPath.row]
+    }
+    
+    func engineDidUpdate(withGrid: GridProtocol) {
+        
+    }
+    
+    func engineDidUpdate(withConfigurations: [GridConfiguration]) {
+        tableView.reloadData()//update the table view
+    }
 
 }

@@ -11,13 +11,16 @@ import UIKit
 class ConfigurationEditorViewController: UIViewController {
 
     var name: String?
-    var commit: (String -> Void)?
+    var commit: ((String,[(Int,Int)]) -> Void)?
+    
+    @IBOutlet weak var gridView: GridView!
     
     @IBOutlet weak var configurationNameText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurationNameText.text = name
+       // NSNotificationCenter.defaultCenter().postNotificationName("drawGrid", object: nil, userInfo: ["drawOriginalGrid": ])
         // Do any additional setup after loading the view.
     }
 
@@ -40,7 +43,15 @@ class ConfigurationEditorViewController: UIViewController {
     @IBAction func saveConfiguration(sender: AnyObject) {
         guard let newText = configurationNameText.text, commit = commit
             else{return}
-        commit(newText)
+        var points : [(Int, Int)] = []
+        for row in 0..<gridView.rows{
+            for col in 0..<gridView.cols{
+                if gridView.grid[row][col] == .Living{
+                    points.append(row,col)
+                }
+            }
+        }
+        commit(newText, points)
         navigationController!.popViewControllerAnimated(true)
     }
 }

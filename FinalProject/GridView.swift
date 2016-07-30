@@ -10,13 +10,78 @@ import UIKit
 
 
 @IBDesignable class GridView: UIView {
+    var engine = StandardEngine.sharedUpdates
     
     var points : [Position] = []
+    var grid : [[CellState]]{
+        get{//if the configuration exists...
+            var cells = [[CellState]](count: rows, repeatedValue: [CellState](count: cols, repeatedValue: .Empty))
+            if let configuration = engine.configuration{
+                configuration.points.forEach({ point in
+                    cells[point.0][point.1] = .Living
+                })
+            }
+            else{
+                cells = engine.grid.gridCells
+            }
+            
+            return cells
+        }
+        set(newValue){
+            if let _ = engine.configuration{
+                var aliveCells = [(Int,Int)]()
+                for row in 0..<rows{
+                    for col in 0..<cols{
+                        if newValue[row][col] == .Living{
+                            aliveCells.append((row,col))
+                        }
+                    }
+                }
+                engine.configuration?.points = aliveCells
+                //update configurations array, update points too.
+            }
+            else{
+                engine.grid.gridCells = newValue
+            }
+            
+        }
+    }
     
-   // var position = Position(0,0)
+    var rows: Int{
+        get{
+            if let configuration = engine.configuration{
+                let rowValues : [Int] = configuration.points.map({ (tuple) -> Int in
+                    return tuple.0
+                })
+                return rowValues.maxElement()! + 1
+            }
+            return engine.rows
+        }
+        set(newValue){
+            guard (engine.configuration) == nil else{return}
+            engine.rows = newValue
+        }
+    }
     
-    var cellWidth: CGFloat { get{return bounds.width/CGFloat(StandardEngine.sharedUpdates.cols)}}
-    var cellHeight: CGFloat { get{return bounds.width/CGFloat(StandardEngine.sharedUpdates.rows)}}
+    var cols: Int{
+        get{
+            if let configuration = engine.configuration{
+                let colValues : [Int] = configuration.points.map({ (tuple) -> Int in
+                    return tuple.1
+                })
+                return colValues.maxElement()! + 1
+            }
+            return engine.cols
+        }
+        set(newValue){
+            guard (engine.configuration) == nil else{return}
+            engine.cols = newValue
+        }
+    }
+    
+    
+    var cellWidth: CGFloat { get{return bounds.width/CGFloat(cols)}}
+    var cellHeight: CGFloat { get{return bounds.width/CGFloat(rows)}}
     
     @IBInspectable var emptyColor: UIColor = UIColor.grayColor()
     @IBInspectable var livingColor: UIColor = UIColor.greenColor()
@@ -39,8 +104,8 @@ import UIKit
             fillPosition(cell)
         }
         else{
-        for row in 0..<StandardEngine.sharedUpdates.rows{
-            for col in 0..<StandardEngine.sharedUpdates.cols{
+        for row in 0..<rows{
+            for col in 0..<cols{
                 fillPosition(Position(row,col))
                 }
             }
@@ -71,18 +136,18 @@ import UIKit
     }
     
     func getCellState(pos: Position) -> CellState{
-        return StandardEngine.sharedUpdates.grid[pos.row, pos.col]
+        return grid[pos.row][pos.col]
     }
     
     func getCell(p: CGPoint) -> Position{
-        return Position(Int((p.y / bounds.height) * CGFloat(StandardEngine.sharedUpdates.rows)), Int((p.x / bounds.width) * CGFloat(StandardEngine.sharedUpdates.cols)))
+        return Position(Int((p.y / bounds.height) * CGFloat(rows)), Int((p.x / bounds.width) * CGFloat(cols)))
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first{
             let location = touch.locationInView(self)
             cell = getCell(location)
-            StandardEngine.sharedUpdates.grid[cell.row, cell.col] = toggle(getCellState(cell))
+            grid[cell.row][cell.col] = toggle(getCellState(cell))
             let rect = CGRectMake(CGFloat(cell.col)*cellWidth, CGFloat(cell.row)*cellHeight, cellWidth-1, cellHeight-1)
             setNeedsDisplayInRect(rect)
             print("\(cell), \(getCellState(cell))")

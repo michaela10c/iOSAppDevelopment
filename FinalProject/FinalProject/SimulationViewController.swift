@@ -22,6 +22,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        StandardEngine.sharedUpdates.configuration = nil
         StandardEngine.sharedUpdates.delegate = self
         gridView.setNeedsDisplay()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: notification, object: nil)
@@ -30,6 +31,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
     override func viewDidDisappear(animated: Bool) {
          NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
     
     func engineDidUpdate(withGrid: GridProtocol) {
         // draw new grid
@@ -44,5 +46,8 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @objc func refreshGrid(){
         StandardEngine.sharedUpdates.step()
         gridView.setNeedsDisplay()
+    }
+    @IBAction func addNewConfiguration(sender: AnyObject) {
+        
     }
 }
