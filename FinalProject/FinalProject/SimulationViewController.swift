@@ -50,11 +50,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @IBAction func addNewConfiguration(sender: AnyObject) {
        let controller = UIAlertController(title: "New Configuration", message: "Type in configuration name", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        let add = UIAlertAction(title: "Add", style: .Default) { (action) in
-            if let textField: UITextField = (controller.textFields?.first)! as UITextField{
-                
-            }
-        }
+        let add = UIAlertAction(title: "Add", style: .Default) { (action) in}
         controller.addAction(cancel)
         controller.addAction(add)
         controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in textField.placeholder = "Configuration name"})

@@ -10,6 +10,8 @@ import UIKit
 
 class ConfigurationsViewController: UITableViewController, EngineDelegate {
     
+    @IBOutlet weak var urlTextField: UITextField!
+    
     var engine = StandardEngine.sharedUpdates
     var configurations : [GridConfiguration] {
         get{
@@ -28,6 +30,8 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         engine.delegate = self
+         let url = NSURL(string: "https://dl.dropboxusercontent.com/u/7544475/S65g.json")!
+        urlTextField.text = String(url)
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,8 +77,8 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     
     
     //inspired by Nathan Guerin's section
-    func fetch(){
-        let url = NSURL(string: "https://dl.dropboxusercontent.com/u/7544475/S65g.json")!
+    func fetch(urlStr: String = "https://dl.dropboxusercontent.com/u/7544475/S65g.json"){
+        let url = NSURL(string: urlStr)!
         let fetcher = Fetcher()
         fetcher.requestJSON(url){(json, message) in
             if let json = json{
@@ -83,10 +87,23 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
                 self.configurations = parser.parse()!
             }
             
+            if let message = message{
+               let alertController = UIAlertController(title: "Wrong URL", message: message, preferredStyle: .Alert)
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: { (action) in})
+                alertController.addAction(okButton)
+                let op = NSBlockOperation {
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
+                NSOperationQueue.mainQueue().addOperation(op)
+                
+            }
+            
             let op = NSBlockOperation {
                 self.tableView.reloadData()
             }
             NSOperationQueue.mainQueue().addOperation(op)
+            
+            print("\(message)")
         }
     }
     
@@ -106,7 +123,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     }
     
     func addConfigurationHelper(){
-        configurations.append(GridConfiguration(title: "Add new configuration", points: [(0,0)])) //***********What is the form of adding a new configuration in this case?
+    configurations.append(GridConfiguration(title: "Add new configuration", points: [(0,0)])) //***********What is the form of adding a new configuration in this case?
         
         let itemRow = configurations.count - 1
         let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
@@ -131,9 +148,22 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     func engineDidUpdate(withGrid: GridProtocol) {
         
     }
+    @IBAction func clearTable(sender: AnyObject) {
+        configurations.removeAll()
+        tableView.reloadData()
+        fetch()
+    }
     
     func engineDidUpdate(withConfigurations: [GridConfiguration]) {
         tableView.reloadData()//update the table view
     }
 
+}
+
+extension ConfigurationsViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        fetch(textField.text!)
+        return true
+    }
 }
