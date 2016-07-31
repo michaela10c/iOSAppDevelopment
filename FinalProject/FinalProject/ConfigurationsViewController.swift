@@ -23,11 +23,6 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetch()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -107,10 +102,16 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     
 
     @IBAction func addConfiguration(sender: AnyObject) {
+        addConfigurationHelper()
+    }
+    
+    func addConfigurationHelper(){
         configurations.append(GridConfiguration(title: "Add new configuration", points: [(0,0)])) //***********What is the form of adding a new configuration in this case?
+        
         let itemRow = configurations.count - 1
         let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
         tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
+        print("configuration added")
     }
     
     override func tableView(tableView: UITableView,

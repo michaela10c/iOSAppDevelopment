@@ -219,7 +219,6 @@ class StandardEngine: EngineProtocol {
                 }
             })
         })
-        
         grid = newGrid
         return newGrid
     }

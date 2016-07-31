@@ -48,6 +48,16 @@ class SimulationViewController: UIViewController, EngineDelegate {
         gridView.setNeedsDisplay()
     }
     @IBAction func addNewConfiguration(sender: AnyObject) {
-        
+       let controller = UIAlertController(title: "New Configuration", message: "Type in configuration name", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let add = UIAlertAction(title: "Add", style: .Default) { (action) in
+            if let textField: UITextField = (controller.textFields?.first)! as UITextField{
+                
+            }
+        }
+        controller.addAction(cancel)
+        controller.addAction(add)
+        controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in textField.placeholder = "Configuration name"})
+        self.presentViewController(controller, animated: true, completion: nil)
     }
 }

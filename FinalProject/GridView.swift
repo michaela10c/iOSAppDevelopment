@@ -49,10 +49,8 @@ import UIKit
     
     var rows: Int{
         get{
-            if let configuration = engine.configuration{
-                let rowValues : [Int] = configuration.points.map({ (tuple) -> Int in
-                    return tuple.0
-                })
+            if let configuration = engine.configuration{//get the points, and then find the max integer
+                let rowValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.0})
                 return rowValues.maxElement()! + 1
             }
             return engine.rows
@@ -66,9 +64,7 @@ import UIKit
     var cols: Int{
         get{
             if let configuration = engine.configuration{
-                let colValues : [Int] = configuration.points.map({ (tuple) -> Int in
-                    return tuple.1
-                })
+                let colValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.1})
                 return colValues.maxElement()! + 1
             }
             return engine.cols
@@ -91,10 +87,7 @@ import UIKit
     let π: CGFloat = CGFloat(M_PI)
     var cell = Position(0,0)
     
-    
-    
     var swiped = false
-    //var lastPoint = CGPoint.zero
     
     override func drawRect(rect: CGRect) {
         // TODO: add drawing code
