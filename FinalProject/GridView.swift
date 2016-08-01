@@ -54,7 +54,7 @@ import UIKit
                 print("RowVal: \(rowValues.maxElement()!+1)")
                 return rowValues.maxElement()! + 1
             }
-            return engine.rows
+            return StandardEngine.sharedUpdates.rows
         }
         set(newValue){
             guard (engine.configuration) == nil else{return}
@@ -69,7 +69,7 @@ import UIKit
                 print("ColVal: \(colValues.maxElement()!+1)")
                 return colValues.maxElement()! + 1
             }
-            return engine.cols
+            return StandardEngine.sharedUpdates.cols
         }
         set(newValue){
             guard (engine.configuration) == nil else{return}

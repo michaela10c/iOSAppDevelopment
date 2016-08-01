@@ -21,6 +21,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
             engine.configurations = newValue
         }
     }
+    var configuration = GridConfiguration(title: "Add new configuration", points: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,21 +121,33 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     
 
     @IBAction func addConfiguration(sender: AnyObject) {
-        addConfigurationHelper()
-    }
-    
-    func addConfigurationHelper(){
         print("will add configuration")
         print("configurations[\(configurations.count)]")
-    configurations.append(GridConfiguration(title: "Add new configuration", points: [(8,22)])) //***********What is the form of adding a new configuration in this case?
+        configuration.points = [(StandardEngine.sharedUpdates.rows-1, StandardEngine.sharedUpdates.cols-1)]
+        configurations.append(configuration) //***********What is the form of adding a new configuration in this case?
         print("configurations[\(configurations.count)]")
-
-//        let itemRow = configurations.count - 1
-//        let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
-//        tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
+        
+        //        let itemRow = configurations.count - 1
+        //        let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
+        //        tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
         
         tableView.reloadData()
         print("configuration added")
+       // addConfigurationHelper()
+    }
+    
+    func addConfigurationHelper(){
+        let newGrid = Grid(rows: StandardEngine.sharedUpdates.rows, cols: StandardEngine.sharedUpdates.cols)
+        for row in 0..<StandardEngine.sharedUpdates.rows{
+            for col in 0..<StandardEngine.sharedUpdates.cols{
+                if StandardEngine.sharedUpdates.grid.gridCells[row][col].isLiving(){
+                    configuration.points.append(row,col)}
+            }
+        }
+//        print("\(StandardEngine.sharedUpdates.rows),\(StandardEngine.sharedUpdates.cols)")
+        StandardEngine.sharedUpdates.grid = newGrid
+        configurations.append(configuration)
+        tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView,
@@ -164,7 +177,6 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     func engineDidUpdate(withConfigurations: [GridConfiguration]) {
         tableView.reloadData()//update the table view
     }
-
 }
 
 extension ConfigurationsViewController: UITextFieldDelegate{

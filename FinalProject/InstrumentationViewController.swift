@@ -21,6 +21,7 @@ class InstrumentationViewController: UIViewController {
         rowText.text =  StandardEngine.sharedUpdates.rows.description
         colText.text =  StandardEngine.sharedUpdates.cols.description
         refreshRateText.text = StandardEngine.sharedUpdates.refreshRate.description
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateValues), name: "Change Values", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,11 +61,21 @@ class InstrumentationViewController: UIViewController {
         
     }
 
+    func updateValues(){
+        rowText.text = String(StandardEngine.sharedUpdates.rows)
+        print("\(StandardEngine.sharedUpdates.rows)")
+        colText.text = String(StandardEngine.sharedUpdates.cols)
+    }
+    
 }
 
 extension InstrumentationViewController: UITextFieldDelegate{
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    func textFieldDidEndEditing(textField: UITextField) {
+        StandardEngine.sharedUpdates.cols = Int(colText.text!)!
+        StandardEngine.sharedUpdates.rows = Int(rowText.text!)!
     }
 }

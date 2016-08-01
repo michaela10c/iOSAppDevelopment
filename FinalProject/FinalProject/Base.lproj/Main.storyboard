@@ -30,7 +30,7 @@
                                                 <rect key="frame" x="30" y="12" width="540" height="219"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99I-uj-or8">
-                                                        <rect key="frame" x="92.5" y="44" width="355" height="131"/>
+                                                        <rect key="frame" x="93" y="0.0" width="355" height="131"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8N-Un-d3Y">
                                                                 <rect key="frame" x="198" y="21" width="99" height="21"/>
@@ -190,8 +190,8 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.96078431369999995" green="0.32549019610000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="99I-uj-or8" firstAttribute="centerY" secondItem="q9l-oy-xHR" secondAttribute="centerY" id="DfI-eC-SON"/>
                                                     <constraint firstItem="99I-uj-or8" firstAttribute="centerX" secondItem="q9l-oy-xHR" secondAttribute="centerX" id="wyL-wx-dsS"/>
+                                                    <constraint firstItem="99I-uj-or8" firstAttribute="top" secondItem="q9l-oy-xHR" secondAttribute="top" id="zcb-7C-3Gq"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -356,8 +356,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="W4l-n4-por" kind="relationship" relationship="viewControllers" id="qb8-1u-Rfi"/>
                         <segue destination="t1C-al-MGk" kind="relationship" relationship="viewControllers" id="yDN-ci-Tia"/>
+                        <segue destination="W4l-n4-por" kind="relationship" relationship="viewControllers" id="qb8-1u-Rfi"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>

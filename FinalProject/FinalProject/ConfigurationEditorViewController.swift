@@ -59,8 +59,7 @@ class ConfigurationEditorViewController: UIViewController {
         StandardEngine.sharedUpdates.rows = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}))! + 1
         StandardEngine.sharedUpdates.cols = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}))! + 1
         StandardEngine.sharedUpdates.grid.gridCells = gridView.grid
-//        print("\(gridView.grid)")
-        //navigationController!.popViewControllerAnimated(true)
+        NSNotificationCenter.defaultCenter().postNotificationName("Change Values", object: nil, userInfo: ["Change the values": gridView])
     }
 }
 
