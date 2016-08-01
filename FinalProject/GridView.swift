@@ -66,7 +66,7 @@ import UIKit
         get{
             if let configuration = engine.configuration{
                 let colValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.1})
-                print("ColVal: \(colValues.maxElement())")
+               // print("ColVal: \(colValues.maxElement())")
                 return colValues.maxElement()! + 1
             }
             return engine.cols
@@ -133,7 +133,7 @@ import UIKit
     }
     
     func getCellState(pos: Position) -> CellState{ 
-        print("\(pos)")
+        //print("\(grid[pos.row][pos.col])")
         return grid[pos.row][pos.col]
     }
     
@@ -148,7 +148,7 @@ import UIKit
             grid[cell.row][cell.col] = toggle(getCellState(cell))
             let rect = CGRectMake(CGFloat(cell.col)*cellWidth, CGFloat(cell.row)*cellHeight, cellWidth-1, cellHeight-1)
             setNeedsDisplayInRect(rect)
-            print("\(cell), \(getCellState(cell))")
+            print("\(cell)")
         }
     }
     

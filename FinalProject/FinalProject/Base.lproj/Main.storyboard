@@ -70,6 +70,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="9pv-A4-QxB" id="985-eX-36M"/>
+                                                                </connections>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyu-2N-CQv">
                                                                 <rect key="frame" x="28" y="22" width="41" height="21"/>
@@ -89,6 +92,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="9pv-A4-QxB" id="fxE-PT-IT4"/>
+                                                                </connections>
                                                             </textField>
                                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="t2m-yh-yWy">
                                                                 <rect key="frame" x="196" y="80" width="103" height="31"/>
@@ -134,6 +140,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="9pv-A4-QxB" id="l5c-F4-V1d"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.96078431369999995" green="0.32549019610000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>

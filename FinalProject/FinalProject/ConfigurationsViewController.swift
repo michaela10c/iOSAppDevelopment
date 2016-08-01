@@ -126,7 +126,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     func addConfigurationHelper(){
         print("will add configuration")
         print("configurations[\(configurations.count)]")
-    configurations.append(GridConfiguration(title: "Add new configuration", points: [(2,9), (8,10), (4,3)])) //***********What is the form of adding a new configuration in this case?
+    configurations.append(GridConfiguration(title: "Add new configuration", points: [(8,22)])) //***********What is the form of adding a new configuration in this case?
         print("configurations[\(configurations.count)]")
 
 //        let itemRow = configurations.count - 1

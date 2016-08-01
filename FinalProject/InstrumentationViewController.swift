@@ -31,13 +31,13 @@ class InstrumentationViewController: UIViewController {
     @IBAction func rowStepperChanged(sender: UIStepper) {
         let numRows = Int(sender.value)
         rowText.text = "\(numRows)"
-        StandardEngine.sharedUpdates.rows = numRows
+        StandardEngine.sharedUpdates.rows = Int(rowText.text!)!
     }
     
     @IBAction func colStepperChanged(sender: UIStepper) {
         let numCols = Int(sender.value)
         colText.text = "\(numCols)"
-        StandardEngine.sharedUpdates.cols = numCols
+        StandardEngine.sharedUpdates.cols = Int(colText.text!)!
     }
     
     @IBAction func onRefreshRateChanged(sender: UISlider) {
@@ -60,9 +60,11 @@ class InstrumentationViewController: UIViewController {
         
     }
 
-    
-   
-    
-    
+}
 
+extension InstrumentationViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
