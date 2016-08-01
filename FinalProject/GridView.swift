@@ -51,7 +51,7 @@ import UIKit
         get{
             if let configuration = engine.configuration{//get the points, and then find the max integer
                 let rowValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.0})
-                //print("RowVal: \(rowValues.maxElement())")
+                print("RowVal: \(rowValues.maxElement()!+1)")
                 return rowValues.maxElement()! + 1
             }
             return engine.rows
@@ -66,7 +66,7 @@ import UIKit
         get{
             if let configuration = engine.configuration{
                 let colValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.1})
-               // print("ColVal: \(colValues.maxElement())")
+                print("ColVal: \(colValues.maxElement()!+1)")
                 return colValues.maxElement()! + 1
             }
             return engine.cols

@@ -13,6 +13,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @IBOutlet weak var gridView: GridView!
     var rate = StandardEngine.sharedUpdates.refreshRate
     let notification = "GridStep"
+    let editor = ConfigurationEditorViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @IBAction func saveConfiguration(sender: AnyObject) {
         let controller = UIAlertController(title: "New Configuration", message: "Type in configuration name", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        let add = UIAlertAction(title: "Add", style: .Default) { (action) in}
+        let add = UIAlertAction(title: "Add", style: .Default) { (action) in }
         controller.addAction(cancel)
         controller.addAction(add)
         controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in

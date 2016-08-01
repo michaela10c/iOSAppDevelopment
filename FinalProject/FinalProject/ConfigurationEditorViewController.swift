@@ -56,11 +56,11 @@ class ConfigurationEditorViewController: UIViewController {
     }
     
     @IBAction func reloadGrid(sender: AnyObject) {
-        StandardEngine.sharedUpdates.rows = (StandardEngine.sharedUpdates.configuration?.points.last?.0)! + 1
-        StandardEngine.sharedUpdates.cols = (StandardEngine.sharedUpdates.configuration?.points.last?.1)! + 1
+        StandardEngine.sharedUpdates.rows = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}))! + 1
+        StandardEngine.sharedUpdates.cols = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}))! + 1
         StandardEngine.sharedUpdates.grid.gridCells = gridView.grid
 //        print("\(gridView.grid)")
-        navigationController!.popViewControllerAnimated(true)
+        //navigationController!.popViewControllerAnimated(true)
     }
 }
 
