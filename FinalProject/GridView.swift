@@ -51,6 +51,7 @@ import UIKit
         get{
             if let configuration = engine.configuration{//get the points, and then find the max integer
                 let rowValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.0})
+                //print("RowVal: \(rowValues.maxElement())")
                 return rowValues.maxElement()! + 1
             }
             return engine.rows
@@ -65,6 +66,7 @@ import UIKit
         get{
             if let configuration = engine.configuration{
                 let colValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.1})
+                print("ColVal: \(colValues.maxElement())")
                 return colValues.maxElement()! + 1
             }
             return engine.cols
@@ -95,6 +97,7 @@ import UIKit
             let state = getCellState(cell)
             getFillColor(state).setFill()
             fillPosition(cell)
+            print("only one clicked")
         }
         else{
         for row in 0..<rows{
@@ -102,6 +105,7 @@ import UIKit
                 fillPosition(Position(row,col))
                 }
             }
+            print("redrew whole grid")
         }
     }
     
@@ -133,7 +137,7 @@ import UIKit
     }
     
     func getCell(p: CGPoint) -> Position{
-        return Position(Int((p.y / bounds.height) * CGFloat(rows)), Int((p.x / bounds.width) * CGFloat(cols)))
+        return Position(Int((p.y / bounds.height) * CGFloat(rows))%rows, Int((p.x / bounds.width) * CGFloat(cols))%cols)
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

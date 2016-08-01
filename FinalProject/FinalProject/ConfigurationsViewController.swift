@@ -25,6 +25,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetch()
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(addConfigurationHelper), name: "Add configuration", object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -123,11 +124,16 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     }
     
     func addConfigurationHelper(){
-    configurations.append(GridConfiguration(title: "Add new configuration", points: [(0,0)])) //***********What is the form of adding a new configuration in this case?
+        print("will add configuration")
+        print("configurations[\(configurations.count)]")
+    configurations.append(GridConfiguration(title: "Add new configuration", points: [(2,9), (8,10), (4,3)])) //***********What is the form of adding a new configuration in this case?
+        print("configurations[\(configurations.count)]")
+
+//        let itemRow = configurations.count - 1
+//        let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
+//        tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
         
-        let itemRow = configurations.count - 1
-        let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
-        tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
+        tableView.reloadData()
         print("configuration added")
     }
     
@@ -148,7 +154,8 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     func engineDidUpdate(withGrid: GridProtocol) {
         
     }
-    @IBAction func clearTable(sender: AnyObject) {
+    
+    @IBAction func clearTableAndReload(sender: AnyObject) {
         configurations.removeAll()
         tableView.reloadData()
         fetch()

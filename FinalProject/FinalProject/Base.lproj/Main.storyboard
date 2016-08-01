@@ -368,17 +368,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suz-Mv-Wrh">
-                                    <rect key="frame" x="330" y="7" width="47" height="30"/>
-                                    <state key="normal" title="Reload"/>
-                                    <connections>
-                                        <action selector="clearTable:" destination="xX4-5n-Yqi" eventType="touchUpInside" id="qzl-mK-6sX"/>
-                                    </connections>
-                                </button>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nCc-dn-FaN">
-                                    <rect key="frame" x="8" y="8" width="297" height="30"/>
+                                    <rect key="frame" x="8" y="8" width="180" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="297" id="Wpw-C2-JEj"/>
+                                        <constraint firstAttribute="width" constant="180" id="4YL-Fi-n29"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -386,15 +379,36 @@
                                         <outlet property="delegate" destination="xX4-5n-Yqi" id="Ow0-pW-nz0"/>
                                     </connections>
                                 </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suz-Mv-Wrh">
+                                    <rect key="frame" x="208" y="7" width="47" height="30"/>
+                                    <state key="normal" title="Reload"/>
+                                    <connections>
+                                        <action selector="clearTableAndReload:" destination="xX4-5n-Yqi" eventType="touchUpInside" id="ztk-dA-dCq"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6S-Ef-dBw">
+                                    <rect key="frame" x="550" y="7" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="SrS-hF-TnT"/>
+                                        <constraint firstAttribute="height" constant="30" id="tbJ-nA-pcc"/>
+                                    </constraints>
+                                    <state key="normal" title="+"/>
+                                    <connections>
+                                        <action selector="addConfiguration:" destination="xX4-5n-Yqi" eventType="touchUpInside" id="zWz-YS-iYq"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="suz-Mv-Wrh" secondAttribute="bottom" constant="7" id="1iU-SO-ay6"/>
                                 <constraint firstItem="nCc-dn-FaN" firstAttribute="top" secondItem="zhu-Jn-QGA" secondAttribute="top" constant="8" id="DXU-3U-gxF"/>
-                                <constraint firstItem="suz-Mv-Wrh" firstAttribute="leading" secondItem="nCc-dn-FaN" secondAttribute="trailing" constant="25" id="LUl-CX-I58"/>
+                                <constraint firstAttribute="trailing" secondItem="F6S-Ef-dBw" secondAttribute="trailing" constant="20" id="FOO-YX-dX2"/>
+                                <constraint firstItem="F6S-Ef-dBw" firstAttribute="top" secondItem="zhu-Jn-QGA" secondAttribute="top" constant="7" id="XAu-gP-JW2"/>
                                 <constraint firstItem="nCc-dn-FaN" firstAttribute="leading" secondItem="zhu-Jn-QGA" secondAttribute="leading" constant="8" id="aKO-L8-CvL"/>
                                 <constraint firstAttribute="bottom" secondItem="nCc-dn-FaN" secondAttribute="bottom" constant="6" id="j17-x5-R3y"/>
                                 <constraint firstItem="suz-Mv-Wrh" firstAttribute="top" secondItem="zhu-Jn-QGA" secondAttribute="top" constant="7" id="maS-Aa-KBg"/>
+                                <constraint firstItem="suz-Mv-Wrh" firstAttribute="leading" secondItem="nCc-dn-FaN" secondAttribute="trailing" constant="20" id="rWb-rh-gUU"/>
+                                <constraint firstAttribute="bottom" secondItem="F6S-Ef-dBw" secondAttribute="bottom" constant="7" id="uLw-lJ-tBi"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -424,13 +438,7 @@
                             <outlet property="delegate" destination="xX4-5n-Yqi" id="8lH-eN-6U8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Configurations" id="emT-4X-yZ3">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="v99-4T-1pM">
-                            <connections>
-                                <action selector="addConfiguration:" destination="xX4-5n-Yqi" id="07A-AT-LlY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Configurations" id="emT-4X-yZ3"/>
                     <connections>
                         <outlet property="urlTextField" destination="nCc-dn-FaN" id="Ggd-vF-ciO"/>
                     </connections>
@@ -451,17 +459,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XYx-DY-N1C">
-                                <rect key="frame" x="252" y="557" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="iAH-hL-3Ad"/>
-                                    <constraint firstAttribute="height" constant="30" id="qQO-cb-ngO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPO-zU-cxW">
-                                <rect key="frame" x="393" y="557" width="34" height="30"/>
+                                <rect key="frame" x="466" y="557" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveConfiguration:" destination="iTj-AH-QC5" eventType="touchUpInside" id="uvH-a4-lkp"/>
@@ -474,19 +473,44 @@
                                     <constraint firstAttribute="width" secondItem="Hqw-Lo-fpo" secondAttribute="height" id="Pia-fg-imb"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXx-aC-97a">
+                                <rect key="frame" x="100" y="557" width="47" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="afr-4m-wBu"/>
+                                    <constraint firstAttribute="height" constant="30" id="ynn-Jl-7Qp"/>
+                                </constraints>
+                                <state key="normal" title="Reload"/>
+                                <connections>
+                                    <action selector="reloadGrid:" destination="iTj-AH-QC5" eventType="touchUpInside" id="sho-lZ-swl"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLn-mB-qk8">
+                                <rect key="frame" x="252" y="47" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="HgO-oj-5gs"/>
+                                    <constraint firstAttribute="height" constant="30" id="YaO-hz-jrT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iTj-AH-QC5" id="cYZ-U3-zXu"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vPO-zU-cxW" firstAttribute="leading" secondItem="XYx-DY-N1C" secondAttribute="trailing" constant="44" id="1DQ-1s-zue"/>
                             <constraint firstItem="Hqw-Lo-fpo" firstAttribute="width" secondItem="s2A-KM-ZTK" secondAttribute="width" multiplier="0.7" priority="750" id="1d8-75-T6v"/>
-                            <constraint firstItem="rXn-4z-oxI" firstAttribute="top" secondItem="XYx-DY-N1C" secondAttribute="bottom" constant="13" id="6Ck-aw-XkB"/>
+                            <constraint firstItem="rXn-4z-oxI" firstAttribute="top" secondItem="PXx-aC-97a" secondAttribute="bottom" constant="13" id="1qv-0f-SiG"/>
                             <constraint firstItem="Hqw-Lo-fpo" firstAttribute="height" secondItem="s2A-KM-ZTK" secondAttribute="height" multiplier="0.7" priority="750" id="CCN-gW-FU4"/>
                             <constraint firstItem="Hqw-Lo-fpo" firstAttribute="centerX" secondItem="s2A-KM-ZTK" secondAttribute="centerX" id="EEP-YE-MJc"/>
                             <constraint firstItem="Hqw-Lo-fpo" firstAttribute="centerY" secondItem="s2A-KM-ZTK" secondAttribute="centerY" id="GUR-gt-IZz"/>
-                            <constraint firstItem="XYx-DY-N1C" firstAttribute="centerX" secondItem="s2A-KM-ZTK" secondAttribute="centerX" id="NN0-eR-ob0"/>
-                            <constraint firstItem="vPO-zU-cxW" firstAttribute="top" secondItem="XYx-DY-N1C" secondAttribute="top" id="c3h-iw-EYQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vPO-zU-cxW" secondAttribute="trailing" constant="80" id="Sp2-ki-C6l"/>
+                            <constraint firstItem="Hqw-Lo-fpo" firstAttribute="top" secondItem="gLn-mB-qk8" secondAttribute="bottom" constant="13" id="fJP-NR-525"/>
                             <constraint firstItem="Hqw-Lo-fpo" firstAttribute="width" relation="lessThanOrEqual" secondItem="s2A-KM-ZTK" secondAttribute="width" multiplier="0.7" id="iu7-zf-cx1"/>
+                            <constraint firstItem="PXx-aC-97a" firstAttribute="baseline" secondItem="vPO-zU-cxW" secondAttribute="baseline" id="uQg-QF-B4i"/>
                             <constraint firstItem="Hqw-Lo-fpo" firstAttribute="height" relation="lessThanOrEqual" secondItem="s2A-KM-ZTK" secondAttribute="height" multiplier="0.7" id="vO5-rp-338"/>
+                            <constraint firstItem="gLn-mB-qk8" firstAttribute="centerX" secondItem="s2A-KM-ZTK" secondAttribute="centerX" id="xHK-JX-oDs"/>
+                            <constraint firstItem="PXx-aC-97a" firstAttribute="leading" secondItem="s2A-KM-ZTK" secondAttribute="leadingMargin" constant="80" id="zmJ-pc-o7X"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -503,7 +527,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Configuration" id="LT5-OD-RYi"/>
                     <connections>
-                        <outlet property="configurationNameText" destination="XYx-DY-N1C" id="ci9-SU-Vjd"/>
+                        <outlet property="configurationNameText" destination="gLn-mB-qk8" id="ofN-az-Eg1"/>
                         <outlet property="gridView" destination="Hqw-Lo-fpo" id="SGD-3f-Nsh"/>
                     </connections>
                 </viewController>
@@ -575,22 +599,32 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITD-hL-Fdx">
-                                        <rect key="frame" x="220" y="481" width="160" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71M-jL-R2V">
+                                        <rect key="frame" x="117" y="452" width="34" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="0K7-pT-RZb"/>
-                                            <constraint firstAttribute="height" constant="30" id="SMZ-vo-zwO"/>
+                                            <constraint firstAttribute="width" constant="34" id="oAc-hX-h7P"/>
+                                            <constraint firstAttribute="height" constant="30" id="ufd-rx-EXN"/>
                                         </constraints>
-                                        <state key="normal" title="Add New Configuration"/>
+                                        <state key="normal" title="Save"/>
                                         <connections>
-                                            <action selector="addNewConfiguration:" destination="W4l-n4-por" eventType="touchUpInside" id="no0-b2-Wle"/>
+                                            <action selector="saveConfiguration:" destination="W4l-n4-por" eventType="touchUpInside" id="RXt-ys-2wh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9G-Ka-vPy">
+                                        <rect key="frame" x="444" y="452" width="39" height="30"/>
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="resetGrid:" destination="W4l-n4-por" eventType="touchUpInside" id="0ms-T6-zrq"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="0.69687500000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="71M-jL-R2V" firstAttribute="leading" secondItem="JNE-8p-jej" secondAttribute="leading" id="8Il-on-mm4"/>
+                                    <constraint firstItem="71M-jL-R2V" firstAttribute="top" secondItem="JNE-8p-jej" secondAttribute="bottom" constant="3" id="8oh-Iw-UeL"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="width" secondItem="ssD-YS-e4T" secondAttribute="width" multiplier="0.61" priority="750" id="Fb9-0Y-IC6"/>
-                                    <constraint firstItem="ITD-hL-Fdx" firstAttribute="top" secondItem="isl-dt-sf5" secondAttribute="bottom" constant="2" id="LnY-CL-xDg"/>
+                                    <constraint firstItem="Y9G-Ka-vPy" firstAttribute="trailing" secondItem="JNE-8p-jej" secondAttribute="trailing" id="Fmo-hx-x1I"/>
+                                    <constraint firstItem="71M-jL-R2V" firstAttribute="baseline" secondItem="Y9G-Ka-vPy" secondAttribute="baseline" id="OiR-d8-cNQ"/>
                                     <constraint firstItem="isl-dt-sf5" firstAttribute="top" secondItem="JNE-8p-jej" secondAttribute="bottom" constant="5" id="RcY-0q-3cr"/>
                                     <constraint firstItem="isl-dt-sf5" firstAttribute="centerX" secondItem="ssD-YS-e4T" secondAttribute="centerX" id="SLp-lg-1Xr"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="centerY" secondItem="ssD-YS-e4T" secondAttribute="centerY" id="Uqq-Qr-PGe"/>
@@ -599,7 +633,6 @@
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="height" secondItem="ssD-YS-e4T" secondAttribute="height" multiplier="0.61" priority="750" id="iDo-aQ-waW"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="width" relation="lessThanOrEqual" secondItem="ssD-YS-e4T" secondAttribute="width" multiplier="0.61" id="mGx-sM-udE"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="centerX" secondItem="ssD-YS-e4T" secondAttribute="centerX" id="tAc-SQ-OUt"/>
-                                    <constraint firstItem="ITD-hL-Fdx" firstAttribute="centerX" secondItem="ssD-YS-e4T" secondAttribute="centerX" id="yDQ-gp-0A6"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">

@@ -21,7 +21,6 @@ class InstrumentationViewController: UIViewController {
         rowText.text =  StandardEngine.sharedUpdates.rows.description
         colText.text =  StandardEngine.sharedUpdates.cols.description
         refreshRateText.text = StandardEngine.sharedUpdates.refreshRate.description
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +49,6 @@ class InstrumentationViewController: UIViewController {
         else{
             StandardEngine.sharedUpdates.stopTimer()
         }
-        
     }
     
     @IBAction func startStopTimer(sender: AnyObject) {

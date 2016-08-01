@@ -64,6 +64,7 @@ protocol EngineProtocol{
     
     func startTimer()
     func stopTimer()
+    func emptyGrid() -> GridProtocol
 }
 
 typealias InitialCell = (Position) -> CellState
@@ -144,7 +145,10 @@ struct Grid: GridProtocol {
 class StandardEngine: EngineProtocol {
     static var sharedUpdates: EngineProtocol = StandardEngine(rows: 10, cols: 10)
     
-    var configuration : GridConfiguration? 
+    //used when parsing JSON, and then converted into points on the GridView.
+    //GridConfiguration is a struct that takes in a configuration title and an array of points.
+    var configuration : GridConfiguration?
+    
     
     var configurations = [GridConfiguration](){
         didSet{
@@ -236,7 +240,12 @@ class StandardEngine: EngineProtocol {
         refreshTimer?.invalidate()
     }
     
-    
+    func emptyGrid() -> GridProtocol{
+        var emptiedGrid = Grid(rows: rows, cols: cols)
+        emptiedGrid.gridCells = [[CellState]](count: rows, repeatedValue: [CellState](count: cols, repeatedValue: CellState.Empty))
+        grid = emptiedGrid
+        return grid
+    }
 }
 
 

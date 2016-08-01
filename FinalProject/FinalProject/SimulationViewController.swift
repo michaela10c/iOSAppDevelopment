@@ -47,13 +47,24 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.step()
         gridView.setNeedsDisplay()
     }
-    @IBAction func addNewConfiguration(sender: AnyObject) {
-       let controller = UIAlertController(title: "New Configuration", message: "Type in configuration name", preferredStyle: .Alert)
+    
+    @IBAction func saveConfiguration(sender: AnyObject) {
+        let controller = UIAlertController(title: "New Configuration", message: "Type in configuration name", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in}
         controller.addAction(cancel)
         controller.addAction(add)
-        controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in textField.placeholder = "Configuration name"})
+        controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in
+            textField.placeholder = "Configuration name"
+            NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": textField.text!])
+            
+        })
         self.presentViewController(controller, animated: true, completion: nil)
     }
+    
+    @IBAction func resetGrid(sender: AnyObject) {
+        StandardEngine.sharedUpdates.emptyGrid()
+        gridView.setNeedsDisplay()
+    }
+    
 }

@@ -54,4 +54,15 @@ class ConfigurationEditorViewController: UIViewController {
         commit(newText, points)
         navigationController!.popViewControllerAnimated(true)
     }
+    
+    @IBAction func reloadGrid(sender: AnyObject) {
+        
+    }
+}
+
+extension ConfigurationEditorViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
