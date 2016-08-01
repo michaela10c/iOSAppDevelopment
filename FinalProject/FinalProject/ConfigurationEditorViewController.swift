@@ -56,7 +56,9 @@ class ConfigurationEditorViewController: UIViewController {
     }
     
     @IBAction func reloadGrid(sender: AnyObject) {
-        
+        StandardEngine.sharedUpdates.rows = (StandardEngine.sharedUpdates.configuration?.points.last?.0)! + 1
+        StandardEngine.sharedUpdates.cols = (StandardEngine.sharedUpdates.configuration?.points.last?.1)! + 1
+        print("\(StandardEngine.sharedUpdates.configuration?.points.first!.0),\(StandardEngine.sharedUpdates.configuration?.points.last?.1)")
     }
 }
 

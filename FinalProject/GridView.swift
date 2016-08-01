@@ -132,7 +132,8 @@ import UIKit
         }
     }
     
-    func getCellState(pos: Position) -> CellState{
+    func getCellState(pos: Position) -> CellState{ 
+        print("\(pos)")
         return grid[pos.row][pos.col]
     }
     
