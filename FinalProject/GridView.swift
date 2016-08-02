@@ -11,7 +11,6 @@ import UIKit
 
 @IBDesignable class GridView: UIView {
     var engine = StandardEngine.sharedUpdates
-    
     var points : [Position] = []
     var grid : [[CellState]]{
         get{//if the configuration exists...
@@ -32,7 +31,7 @@ import UIKit
                 var aliveCells = [(Int,Int)]()
                 for row in 0..<rows{
                     for col in 0..<cols{
-                        if newValue[row][col] == .Living{
+                        if newValue[row][col].isLiving(){
                             aliveCells.append((row,col))
                         }
                     }
@@ -51,10 +50,17 @@ import UIKit
         get{
             if let configuration = engine.configuration{//get the points, and then find the max integer
                 let rowValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.0})
-                print("RowVal: \(rowValues.maxElement()!+1)")
-                return rowValues.maxElement()! + 1
+                
+                if let maxRowVals = rowValues.maxElement(){
+                    return max(maxRowVals + 1, 10)//This is the default number of cols, no more 1 by 1 grids!!!
+                }
+                else{
+                    return 10
+                }
             }
-            return StandardEngine.sharedUpdates.rows
+            print("RowVal: \(engine.rows)")
+
+            return engine.rows
         }
         set(newValue){
             guard (engine.configuration) == nil else{return}
@@ -66,10 +72,16 @@ import UIKit
         get{
             if let configuration = engine.configuration{
                 let colValues : [Int] = configuration.points.map({(tuple) -> Int in return tuple.1})
-                print("ColVal: \(colValues.maxElement()!+1)")
-                return colValues.maxElement()! + 1
+                
+                if let maxColVals = colValues.maxElement(){
+                return max(maxColVals + 1, 10)//This is the default number of cols, no more 1 by 1 grids!!!
+                }
+                else{
+                    return 10
+                }
             }
-            return StandardEngine.sharedUpdates.cols
+            print("ColVal: \(engine.cols)")
+            return engine.cols
         }
         set(newValue){
             guard (engine.configuration) == nil else{return}
@@ -120,7 +132,6 @@ import UIKit
         CGContextSetFillColorWithColor(context,
                                        getFillColor(getCellState(pos)).CGColor)
         CGContextFillPath(context)
-
     }
     
     func getFillColor(state: CellState) -> UIColor{

@@ -123,7 +123,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     @IBAction func addConfiguration(sender: AnyObject) {
         print("will add configuration")
         print("configurations[\(configurations.count)]")
-        configuration.points = [(StandardEngine.sharedUpdates.rows-1, StandardEngine.sharedUpdates.cols-1)]
+        configuration.points = []
         configurations.append(configuration) //***********What is the form of adding a new configuration in this case?
         print("configurations[\(configurations.count)]")
         
@@ -155,8 +155,9 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
                                                forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             configurations.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath],
-                                             withRowAnimation: .Automatic)
+            //tableView.deleteRowsAtIndexPaths([indexPath],
+                                             //withRowAnimation: .Automatic)
+            tableView.reloadData()
         }
     }
     

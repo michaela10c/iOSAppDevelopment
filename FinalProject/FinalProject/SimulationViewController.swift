@@ -57,13 +57,14 @@ class SimulationViewController: UIViewController, EngineDelegate {
         })
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in
             StandardEngine.sharedUpdates.startTimer()
+            NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
+            
         }
         controller.addAction(cancel)
         controller.addAction(add)
         controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in
             textField.placeholder = "Configuration name"
-            NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": textField.text!])
-            
+           
             
         })
         self.presentViewController(controller, animated: true, completion: nil)
