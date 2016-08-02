@@ -121,31 +121,18 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     
 
     @IBAction func addConfiguration(sender: AnyObject) {
-        print("will add configuration")
-        print("configurations[\(configurations.count)]")
-        configuration.points = []
-        configurations.append(configuration) //***********What is the form of adding a new configuration in this case?
-        print("configurations[\(configurations.count)]")
-        
-        //        let itemRow = configurations.count - 1
-        //        let itemPath = NSIndexPath(forRow: itemRow, inSection: 0)
-        //        tableView.insertRowsAtIndexPaths([itemPath], withRowAnimation: .Automatic)
-        
+        configurations.append(configuration)
         tableView.reloadData()
-        print("configuration added")
-       // addConfigurationHelper()
     }
     
     func addConfigurationHelper(){
-        let newGrid = Grid(rows: StandardEngine.sharedUpdates.rows, cols: StandardEngine.sharedUpdates.cols)
+        
         for row in 0..<StandardEngine.sharedUpdates.rows{
             for col in 0..<StandardEngine.sharedUpdates.cols{
                 if StandardEngine.sharedUpdates.grid.gridCells[row][col].isLiving(){
                     configuration.points.append(row,col)}
             }
         }
-//        print("\(StandardEngine.sharedUpdates.rows),\(StandardEngine.sharedUpdates.cols)")
-        StandardEngine.sharedUpdates.grid = newGrid
         configurations.append(configuration)
         tableView.reloadData()
     }

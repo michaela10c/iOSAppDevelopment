@@ -169,6 +169,7 @@ class StandardEngine: EngineProtocol {
     
     var rows: Int {
         didSet {
+            if self.rows < 10{self.rows = 10}
             grid = Grid(rows: self.rows, cols: self.cols)
             delegate?.engineDidUpdate(grid)
         }
@@ -176,6 +177,7 @@ class StandardEngine: EngineProtocol {
     
     var cols: Int {
         didSet{
+            if self.cols < 10{self.cols = 10}
             grid = Grid(rows: self.rows, cols: self.cols)
             delegate?.engineDidUpdate(grid)
         }

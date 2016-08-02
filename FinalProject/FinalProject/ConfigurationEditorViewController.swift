@@ -19,9 +19,6 @@ class ConfigurationEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurationNameText.text = name
-       // NSNotificationCenter.defaultCenter().postNotificationName("drawGrid", object: nil, userInfo: ["drawOriginalGrid": ])
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +27,9 @@ class ConfigurationEditorViewController: UIViewController {
     }
     
 
+    override func viewDidAppear(animated: Bool) {
+        configurationNameText.text = name
+    }
     /*
     // MARK: - Navigation
 
@@ -56,9 +56,11 @@ class ConfigurationEditorViewController: UIViewController {
     }
     
     @IBAction func reloadGrid(sender: AnyObject) {
-        StandardEngine.sharedUpdates.rows = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}))! + 1
+         print("\((StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}))! + 1)")
+        StandardEngine.sharedUpdates.rows = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}))! + 1//When set to dimensions less than configuration, error.
         StandardEngine.sharedUpdates.cols = (StandardEngine.sharedUpdates.configuration?.points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}))! + 1
         StandardEngine.sharedUpdates.grid.gridCells = gridView.grid
+       
         NSNotificationCenter.defaultCenter().postNotificationName("Change Values", object: nil, userInfo: ["Change the values": gridView])
     }
 }

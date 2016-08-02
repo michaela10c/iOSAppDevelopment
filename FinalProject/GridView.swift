@@ -58,7 +58,7 @@ import UIKit
                     return 10
                 }
             }
-            print("RowVal: \(engine.rows)")
+            //print("RowVal: \(engine.rows)")
 
             return engine.rows
         }
@@ -80,7 +80,7 @@ import UIKit
                     return 10
                 }
             }
-            print("ColVal: \(engine.cols)")
+           // print("ColVal: \(engine.cols)")
             return engine.cols
         }
         set(newValue){
@@ -159,7 +159,7 @@ import UIKit
             grid[cell.row][cell.col] = toggle(getCellState(cell))
             let rect = CGRectMake(CGFloat(cell.col)*cellWidth, CGFloat(cell.row)*cellHeight, cellWidth-1, cellHeight-1)
             setNeedsDisplayInRect(rect)
-            print("\(cell)")
+           // print("\(cell)")
         }
     }
     

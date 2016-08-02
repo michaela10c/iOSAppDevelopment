@@ -626,6 +626,14 @@
                                             <action selector="resetGrid:" destination="W4l-n4-por" eventType="touchUpInside" id="0ms-T6-zrq"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Configuration Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mda-0w-6oE">
+                                        <rect key="frame" x="225" y="43" width="150.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="W4l-n4-por" id="Vx6-IJ-k1C"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="0.69687500000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -640,8 +648,10 @@
                                     <constraint firstItem="isl-dt-sf5" firstAttribute="width" relation="lessThanOrEqual" secondItem="JNE-8p-jej" secondAttribute="width" priority="750" id="ZNQ-WQ-Jes"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="height" relation="lessThanOrEqual" secondItem="ssD-YS-e4T" secondAttribute="height" multiplier="0.61" id="Zr3-Mn-vPu"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="height" secondItem="ssD-YS-e4T" secondAttribute="height" multiplier="0.61" priority="750" id="iDo-aQ-waW"/>
+                                    <constraint firstItem="mda-0w-6oE" firstAttribute="centerX" secondItem="ssD-YS-e4T" secondAttribute="centerX" id="m7A-5N-ikn"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="width" relation="lessThanOrEqual" secondItem="ssD-YS-e4T" secondAttribute="width" multiplier="0.61" id="mGx-sM-udE"/>
                                     <constraint firstItem="JNE-8p-jej" firstAttribute="centerX" secondItem="ssD-YS-e4T" secondAttribute="centerX" id="tAc-SQ-OUt"/>
+                                    <constraint firstItem="JNE-8p-jej" firstAttribute="top" secondItem="mda-0w-6oE" secondAttribute="bottom" constant="10" id="zlh-Iz-RzU"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -675,6 +685,7 @@
                     <tabBarItem key="tabBarItem" title="Simulation" image="second" id="hOV-uN-qDQ"/>
                     <navigationItem key="navigationItem" id="WoP-aY-aDk"/>
                     <connections>
+                        <outlet property="configurationNameText" destination="mda-0w-6oE" id="xtY-UM-Q5h"/>
                         <outlet property="gridView" destination="JNE-8p-jej" id="u8J-JI-1iE"/>
                     </connections>
                 </viewController>

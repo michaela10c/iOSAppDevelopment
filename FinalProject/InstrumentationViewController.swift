@@ -22,6 +22,7 @@ class InstrumentationViewController: UIViewController {
         colText.text =  StandardEngine.sharedUpdates.cols.description
         refreshRateText.text = StandardEngine.sharedUpdates.refreshRate.description
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateValues), name: "Change Values", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setTimerSwitchState), name: timerStopNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +66,10 @@ class InstrumentationViewController: UIViewController {
         rowText.text = String(StandardEngine.sharedUpdates.rows)
         print("\(StandardEngine.sharedUpdates.rows)")
         colText.text = String(StandardEngine.sharedUpdates.cols)
+    }
+    
+    func setTimerSwitchState(){
+        onOffSwitch.setOn(false, animated: true)
     }
     
 }

@@ -7,13 +7,16 @@
 //
 
 import UIKit
+let timerStepNotification = "GridStep"
+let timerStopNotification = "StopStep"
 
 class SimulationViewController: UIViewController, EngineDelegate {
     
     @IBOutlet weak var gridView: GridView!
     var rate = StandardEngine.sharedUpdates.refreshRate
-    let notification = "GridStep"
+    
     let editor = ConfigurationEditorViewController()
+    @IBOutlet weak var configurationNameText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.configuration = nil
         StandardEngine.sharedUpdates.delegate = self
         gridView.setNeedsDisplay()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: notification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: timerStepNotification, object: nil)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -40,8 +43,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
     }
 
     @IBAction func nextStep(sender: AnyObject) {
-        StandardEngine.sharedUpdates.step()
-        gridView.setNeedsDisplay()
+       refreshGrid()
     }
     
     @objc func refreshGrid(){
@@ -51,28 +53,35 @@ class SimulationViewController: UIViewController, EngineDelegate {
     
     @IBAction func saveConfiguration(sender: AnyObject) {
         StandardEngine.sharedUpdates.stopTimer()
-        let controller = UIAlertController(title: "New Configuration", message: "Type in configuration name", preferredStyle: .Alert)
+        let controller = UIAlertController(title: "New Configuration", message: "Save to configurations as \(configurationNameText.text)?", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in
             StandardEngine.sharedUpdates.startTimer()
         })
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in
             StandardEngine.sharedUpdates.startTimer()
             NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
-            
+            StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!
+            print("\(self.configurationNameText.text!)")
         }
         controller.addAction(cancel)
         controller.addAction(add)
-        controller.addTextFieldWithConfigurationHandler ({(textField) -> Void in
-            textField.placeholder = "Configuration name"
-           
-            
-        })
-        self.presentViewController(controller, animated: true, completion: nil)
+       self.presentViewController(controller, animated: true, completion: nil)
+        
     }
     
     @IBAction func resetGrid(sender: AnyObject) {
         StandardEngine.sharedUpdates.emptyGrid()
         gridView.setNeedsDisplay()
+        print("\(StandardEngine.sharedUpdates.grid)")
+        StandardEngine.sharedUpdates.stopTimer()
+        NSNotificationCenter.defaultCenter().postNotificationName(timerStopNotification, object: nil, userInfo: ["Stop": StandardEngine.sharedUpdates.refreshRate])//send a notification to the timerSwitch to change it's physical state (turn it off)
     }
     
+}
+
+extension SimulationViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
