@@ -188,7 +188,7 @@ class StandardEngine: EngineProtocol {
             if refreshRate != 0{
                 if let timer = refreshTimer{timer.invalidate()}
                 refreshTimer = NSTimer.scheduledTimerWithTimeInterval(1/refreshRate, target: self, selector: #selector(timerDidFire), userInfo: ["Timer": refreshRate], repeats: true)
-                NSNotificationCenter.defaultCenter().postNotificationName("GridStep", object: nil, userInfo: ["Timer": refreshRate])
+                NSNotificationCenter.defaultCenter().postNotificationName(timerStepNotification, object: nil, userInfo: ["Timer": refreshRate])
             }
             else if let timer = refreshTimer{timer.invalidate()}
         }
@@ -236,10 +236,12 @@ class StandardEngine: EngineProtocol {
     func startTimer(){
         refreshTimer?.invalidate()
         refreshTimer = NSTimer.scheduledTimerWithTimeInterval(1/refreshRate, target: self, selector: #selector(timerDidFire), userInfo: ["Timer": refreshRate], repeats: true)
+        
     }
     
     func stopTimer(){
         refreshTimer?.invalidate()
+        NSNotificationCenter.defaultCenter().postNotificationName(timerStopNotification, object: nil, userInfo: ["Stop": refreshRate])
     }
     
     func emptyGrid() -> GridProtocol{

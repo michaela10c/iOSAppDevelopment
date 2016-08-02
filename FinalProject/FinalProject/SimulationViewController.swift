@@ -7,6 +7,8 @@
 //
 
 import UIKit
+
+//list of the main notifications to be sent
 let timerStepNotification = "GridStep"
 let timerStopNotification = "StopStep"
 
@@ -54,11 +56,8 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @IBAction func saveConfiguration(sender: AnyObject) {
         StandardEngine.sharedUpdates.stopTimer()
         let controller = UIAlertController(title: "New Configuration", message: "Save to configurations as \(configurationNameText.text)?", preferredStyle: .Alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in
-            StandardEngine.sharedUpdates.startTimer()
-        })
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in
-            StandardEngine.sharedUpdates.startTimer()
             NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
             StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!
             print("\(self.configurationNameText.text!)")
@@ -74,7 +73,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         gridView.setNeedsDisplay()
         print("\(StandardEngine.sharedUpdates.grid)")
         StandardEngine.sharedUpdates.stopTimer()
-        NSNotificationCenter.defaultCenter().postNotificationName(timerStopNotification, object: nil, userInfo: ["Stop": StandardEngine.sharedUpdates.refreshRate])//send a notification to the timerSwitch to change it's physical state (turn it off)
+        //send a notification to the timerSwitch to change it's physical state (turn it off)
     }
     
 }
@@ -83,5 +82,9 @@ extension SimulationViewController: UITextFieldDelegate{
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    //Allow selection for the user
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.selectedTextRange = textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
     }
 }

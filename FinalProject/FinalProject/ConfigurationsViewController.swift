@@ -173,4 +173,8 @@ extension ConfigurationsViewController: UITextFieldDelegate{
         fetch(textField.text!)
         return true
     }
+    //Allow selection for the user
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.selectedTextRange = textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
+    }
 }

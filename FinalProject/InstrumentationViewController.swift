@@ -21,8 +21,10 @@ class InstrumentationViewController: UIViewController {
         rowText.text =  StandardEngine.sharedUpdates.rows.description
         colText.text =  StandardEngine.sharedUpdates.cols.description
         refreshRateText.text = StandardEngine.sharedUpdates.refreshRate.description
+        onOffSwitch.setOn(false, animated: true)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateValues), name: "Change Values", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setTimerSwitchState), name: timerStopNotification, object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +71,7 @@ class InstrumentationViewController: UIViewController {
     }
     
     func setTimerSwitchState(){
-        onOffSwitch.setOn(false, animated: true)
+        StandardEngine.sharedUpdates.refreshTimer == nil ? onOffSwitch.setOn(false, animated: true) : onOffSwitch.setOn(true, animated: true)
     }
     
 }
@@ -82,5 +84,9 @@ extension InstrumentationViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(textField: UITextField) {
         StandardEngine.sharedUpdates.cols = Int(colText.text!)!
         StandardEngine.sharedUpdates.rows = Int(rowText.text!)!
+    }
+    //Allow selection for the user
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.selectedTextRange = textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
     }
 }

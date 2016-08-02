@@ -70,4 +70,8 @@ extension ConfigurationEditorViewController: UITextFieldDelegate{
         textField.resignFirstResponder()
         return true
     }
+    //Allow selection for the user
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.selectedTextRange = textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
+    }
 }
