@@ -161,6 +161,7 @@ class StandardEngine: EngineProtocol {
          delegate?.engineDidUpdate(grid)
         }
     }
+    
     weak var delegate: EngineDelegate?
     //weak - automatic garbage collection
     //Java, Python: at runtime, deallocate, memory
@@ -236,7 +237,6 @@ class StandardEngine: EngineProtocol {
     func startTimer(){
         refreshTimer?.invalidate()
         refreshTimer = NSTimer.scheduledTimerWithTimeInterval(1/refreshRate, target: self, selector: #selector(timerDidFire), userInfo: ["Timer": refreshRate], repeats: true)
-        
     }
     
     func stopTimer(){

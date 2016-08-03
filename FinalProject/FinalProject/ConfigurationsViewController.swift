@@ -62,9 +62,10 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let editingRow = (sender as! UITableViewCell).tag
+        
         let editingString = configurations[editingRow].title
         guard let editingVC = segue.destinationViewController as? ConfigurationEditorViewController
-            else{preconditionFailure("Nanny?")}
+            else{preconditionFailure("WTF?")}
         editingVC.name = editingString
         editingVC.commit = {
             (title,points) in
@@ -76,7 +77,6 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
             
         }
     }
-    
     
     //inspired by Nathan Guerin's section
     func fetch(urlStr: String = "https://dl.dropboxusercontent.com/u/7544475/S65g.json"){
@@ -97,15 +97,12 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
                 NSOperationQueue.mainQueue().addOperation(op)
-                
             }
             
             let op = NSBlockOperation {
                 self.tableView.reloadData()
             }
             NSOperationQueue.mainQueue().addOperation(op)
-            
-            print("\(message)")
         }
     }
     
@@ -118,7 +115,6 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
 
     @IBAction func addConfiguration(sender: AnyObject) {
         configurations.append(configuration)
@@ -126,7 +122,6 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     }
     
     func addConfigurationHelper(){
-        
         for row in 0..<StandardEngine.sharedUpdates.rows{
             for col in 0..<StandardEngine.sharedUpdates.cols{
                 if StandardEngine.sharedUpdates.grid.gridCells[row][col].isLiving(){
@@ -142,8 +137,6 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
                                                forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             configurations.removeAtIndex(indexPath.row)
-            //tableView.deleteRowsAtIndexPaths([indexPath],
-                                             //withRowAnimation: .Automatic)
             tableView.reloadData()
         }
     }

@@ -33,7 +33,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         gridView.setNeedsDisplay()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: timerStepNotification, object: nil)
         
-         print("\(StandardEngine.sharedUpdates.rows),\(StandardEngine.sharedUpdates.cols)")
+        print("\(StandardEngine.sharedUpdates.rows),\(StandardEngine.sharedUpdates.cols)")
     }
     
     override func viewDidDisappear(animated: Bool) {

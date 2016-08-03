@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfigurationEditorViewController: UIViewController {
+class ConfigurationEditorViewController: UIViewController, EngineDelegate {
 
     var name: String?
     var commit: ((String,[(Int,Int)]) -> Void)?
@@ -29,6 +29,7 @@ class ConfigurationEditorViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         configurationNameText.text = name
+        StandardEngine.sharedUpdates.delegate = self
         if let points = StandardEngine.sharedUpdates.configuration?.points{
         StandardEngine.sharedUpdates.rows = points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}) + 1
             StandardEngine.sharedUpdates.cols = points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}) + 1
@@ -69,6 +70,14 @@ class ConfigurationEditorViewController: UIViewController {
         StandardEngine.sharedUpdates.grid.gridCells = gridView.grid
        
         NSNotificationCenter.defaultCenter().postNotificationName("Change Values", object: nil, userInfo: ["Change the values": gridView])
+    }
+    
+    func engineDidUpdate(withGrid: GridProtocol) {
+        
+    }
+    
+    func engineDidUpdate(withConfigurations: [GridConfiguration]) {
+        gridView.setNeedsDisplay()
     }
 }
 
