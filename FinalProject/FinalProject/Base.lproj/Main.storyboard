@@ -112,7 +112,7 @@
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CsB-yA-XVl">
+                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CsB-yA-XVl">
                                                                 <rect key="frame" x="0.0" y="82" width="94" height="29"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="94" id="bFM-Za-Ipk"/>
@@ -122,7 +122,7 @@
                                                                     <action selector="rowStepperChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="rCZ-pK-4Fp"/>
                                                                 </connections>
                                                             </stepper>
-                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="gjO-Pq-lom">
+                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="gjO-Pq-lom">
                                                                 <rect key="frame" x="100" y="81" width="94" height="29"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="29" id="X98-93-fpY"/>
