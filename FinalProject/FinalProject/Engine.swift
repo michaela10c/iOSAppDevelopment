@@ -130,11 +130,7 @@ struct Grid: GridProtocol {
     func getCount(desiredState: CellState) -> Int {
         return gridCells.reduce(0, combine: { (count, column) -> Int in
             return count + column.reduce(0, combine: { (count2, state) -> Int in
-                if state == desiredState {
-                    return count2 + 1
-                } else {
-                    return count2
-                }
+               state == desiredState ? count2 + 1 : count2
             })
         })
     }
