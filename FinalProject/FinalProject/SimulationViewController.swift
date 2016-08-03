@@ -77,6 +77,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.stopTimer()
         //send a notification to the timerSwitch to change it's physical state (turn it off)
     }
+
 }
 
 extension SimulationViewController: UITextFieldDelegate{
