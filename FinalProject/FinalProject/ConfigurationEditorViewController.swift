@@ -30,6 +30,7 @@ class ConfigurationEditorViewController: UIViewController, EngineDelegate {
     override func viewDidAppear(animated: Bool) {
         configurationNameText.text = name
         StandardEngine.sharedUpdates.delegate = self
+        StandardEngine.sharedUpdates.checkConfigurations = true
         if let points = StandardEngine.sharedUpdates.configuration?.points{
         StandardEngine.sharedUpdates.rows = points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}) + 1
             StandardEngine.sharedUpdates.cols = points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}) + 1
@@ -63,10 +64,6 @@ class ConfigurationEditorViewController: UIViewController, EngineDelegate {
     
     @IBAction func reloadGrid(sender: AnyObject) {
         //maximum rows and cols to refill
-        if let points = StandardEngine.sharedUpdates.configuration?.points{
-            StandardEngine.sharedUpdates.rows = points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}) + 1
-            StandardEngine.sharedUpdates.cols = points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}) + 1
-        }
         StandardEngine.sharedUpdates.grid.gridCells = gridView.grid
        
         NSNotificationCenter.defaultCenter().postNotificationName("Change Values", object: nil, userInfo: ["Change the values": gridView])

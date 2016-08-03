@@ -30,6 +30,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         super.viewDidAppear(animated)
         StandardEngine.sharedUpdates.configuration = nil
         StandardEngine.sharedUpdates.delegate = self
+        StandardEngine.sharedUpdates.checkConfigurations = false
         gridView.setNeedsDisplay()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: timerStepNotification, object: nil)
         
@@ -61,8 +62,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in
             NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
-            StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!
-            print("\(self.configurationNameText.text!)")
+            print("\(StandardEngine.sharedUpdates.configuration?.title)")
         }
         controller.addAction(cancel)
         controller.addAction(add)

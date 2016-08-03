@@ -117,7 +117,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     }
 
     @IBAction func addConfiguration(sender: AnyObject) {
-        configuration.points = []
+        configuration.points = []//clear the grid of any living cells
         configurations.append(configuration)
         tableView.reloadData()
     }
