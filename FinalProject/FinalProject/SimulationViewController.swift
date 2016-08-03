@@ -32,6 +32,8 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.delegate = self
         gridView.setNeedsDisplay()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: timerStepNotification, object: nil)
+        
+         print("\(StandardEngine.sharedUpdates.rows),\(StandardEngine.sharedUpdates.cols)")
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -75,7 +77,6 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.stopTimer()
         //send a notification to the timerSwitch to change it's physical state (turn it off)
     }
-    
 }
 
 extension SimulationViewController: UITextFieldDelegate{
