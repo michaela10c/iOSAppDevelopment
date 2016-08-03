@@ -8,7 +8,7 @@
 
 import UIKit
 
-//list of the main notifications to be sent - for the timer
+//list of the main notifications to be sent
 let timerStepNotification = "GridStep"
 let timerStopNotification = "StopStep"
 
@@ -30,7 +30,6 @@ class SimulationViewController: UIViewController, EngineDelegate {
         super.viewDidAppear(animated)
         StandardEngine.sharedUpdates.configuration = nil
         StandardEngine.sharedUpdates.delegate = self
-        StandardEngine.sharedUpdates.checkConfigurations = false
         gridView.setNeedsDisplay()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: timerStepNotification, object: nil)
         
@@ -62,7 +61,8 @@ class SimulationViewController: UIViewController, EngineDelegate {
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in
             NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
-            print("\(StandardEngine.sharedUpdates.configuration?.title)")
+            StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!
+            print("\(self.configurationNameText.text!)")
         }
         controller.addAction(cancel)
         controller.addAction(add)

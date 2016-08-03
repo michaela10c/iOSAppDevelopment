@@ -60,14 +60,11 @@ protocol EngineProtocol{
     var refreshRate:  Double {get set}
     var refreshTimer: NSTimer? {get set}
     
-    var checkConfigurations: Bool {get set}
-    
     func step() -> GridProtocol
     
     func startTimer()
     func stopTimer()
     func emptyGrid() -> GridProtocol
-    func saveTitle(name: String)
 }
 
 typealias InitialCell = (Position) -> CellState
@@ -143,26 +140,16 @@ class StandardEngine: EngineProtocol {
     //GridConfiguration is a struct that takes in a configuration title and an array of points.
     var configuration : GridConfiguration?
     
+    
     var configurations = [GridConfiguration](){
         didSet{
             delegate?.engineDidUpdate(configurations)
-            
         }
     }
     
     var grid: GridProtocol{
         didSet{
          delegate?.engineDidUpdate(grid)
-        }
-    }
-    var checkConfigurations: Bool = false{
-        didSet{
-            if delegate is ConfigurationEditorViewController{
-                self.checkConfigurations = true
-            }
-            else{
-                self.checkConfigurations = false
-            }
         }
     }
     
@@ -175,29 +162,16 @@ class StandardEngine: EngineProtocol {
     var rows: Int {
         didSet {
             if self.rows < 10{self.rows = 10}
-            if checkConfigurations{
-                if let points = configuration?.points{
-                    self.rows = points.reduce(0, combine: {$0 > $1.0 ? $0 : $1.0}) + 1
-                }
-            }
-            
             grid = Grid(rows: self.rows, cols: self.cols)
             delegate?.engineDidUpdate(grid)
-            
         }
     }
     
     var cols: Int {
         didSet{
-            if checkConfigurations{
-                if let points = configuration?.points{
-                    self.cols = points.reduce(0, combine: {$0 > $1.1 ? $0 : $1.1}) + 1
-                }
-            }
             if self.cols < 10{self.cols = 10}
             grid = Grid(rows: self.rows, cols: self.cols)
             delegate?.engineDidUpdate(grid)
-            
         }
     }
     
@@ -266,10 +240,6 @@ class StandardEngine: EngineProtocol {
         emptiedGrid.gridCells = [[CellState]](count: rows, repeatedValue: [CellState](count: cols, repeatedValue: CellState.Empty))
         grid = emptiedGrid
         return grid
-    }
-    
-    func saveTitle(name: String){
-        configuration?.title = name
     }
 }
 
