@@ -118,12 +118,7 @@ struct Grid: GridProtocol {
         let neighborPositions = getNeighbors(position)
         
         return neighborPositions.reduce(0) { (count, neighborPosition) -> Int in
-            let neighborCellState = gridCells[neighborPosition.row][neighborPosition.col]
-            if neighborCellState == .Living || neighborCellState == .Born {
-                return count + 1
-            } else {
-                return count
-            }
+            gridCells[neighborPosition.row][neighborPosition.col].isLiving() ? count + 1 : count
         }
     }
     
