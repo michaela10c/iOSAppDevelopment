@@ -32,7 +32,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         engine.delegate = self
-         let url = NSURL(string: "https://dl.dropboxusercontent.com/u/7544475/S65g.json")!
+        let url = NSURL(string: "https://dl.dropboxusercontent.com/u/7544475/S65g.json")!
         urlTextField.text = String(url)
     }
 
@@ -117,6 +117,7 @@ class ConfigurationsViewController: UITableViewController, EngineDelegate {
     }
 
     @IBAction func addConfiguration(sender: AnyObject) {
+        configuration.points = []
         configurations.append(configuration)
         tableView.reloadData()
     }

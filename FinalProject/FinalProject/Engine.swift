@@ -140,10 +140,10 @@ class StandardEngine: EngineProtocol {
     //GridConfiguration is a struct that takes in a configuration title and an array of points.
     var configuration : GridConfiguration?
     
-    
     var configurations = [GridConfiguration](){
         didSet{
             delegate?.engineDidUpdate(configurations)
+            
         }
     }
     

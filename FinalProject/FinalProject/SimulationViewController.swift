@@ -8,7 +8,7 @@
 
 import UIKit
 
-//list of the main notifications to be sent
+//list of the main notifications to be sent - for the timer
 let timerStepNotification = "GridStep"
 let timerStopNotification = "StopStep"
 
