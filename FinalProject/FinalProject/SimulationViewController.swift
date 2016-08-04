@@ -73,8 +73,6 @@ class SimulationViewController: UIViewController, EngineDelegate {
         
         
        self.presentViewController(controller, animated: true, completion: nil)
-       
-        
     }
     
     @IBAction func resetGrid(sender: AnyObject) {
