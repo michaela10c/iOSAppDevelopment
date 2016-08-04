@@ -152,15 +152,21 @@ import UIKit
         return Position(Int((p.y / bounds.height) * CGFloat(rows))%rows, Int((p.x / bounds.width) * CGFloat(cols))%cols)
     }
 
+    //Drawing by dragging inspired by Karan's section
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first{
-            let location = touch.locationInView(self)
-            cell = getCell(location)
-            grid[cell.row][cell.col] = toggle(getCellState(cell))
-            let rect = CGRectMake(CGFloat(cell.col)*cellWidth, CGFloat(cell.row)*cellHeight, cellWidth-1, cellHeight-1)
-            setNeedsDisplayInRect(rect)
-            print("\(rows), \(cols)")
+        for touch in touches {
+            self.processTouch(touch)
         }
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches {
+            self.processTouch(touch)
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        //just stop whatever you are doing
     }
     
     func toggle(state: CellState)->CellState{
@@ -170,4 +176,21 @@ import UIKit
         }
     }
     
-}
+    func processTouch(touch: UITouch){
+        let location = touch.locationInView(self)
+        
+        
+       
+        if cell.row >= 0 && cell.row < rows && cell.col >= 0 && cell.col < cols {
+            // toggle touched cell in newGrid (replica of grid)
+            cell = getCell(location)
+            grid[cell.row][cell.col] = toggle(getCellState(cell))
+            // send EngineUpdate notification
+            
+        }
+        let rect = CGRectMake(CGFloat(cell.col)*cellWidth, CGFloat(cell.row)*cellHeight, cellWidth-1, cellHeight-1)
+        setNeedsDisplayInRect(rect)
+    }
+
+    }
+
