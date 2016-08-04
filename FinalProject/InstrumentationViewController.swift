@@ -23,7 +23,7 @@ class InstrumentationViewController: UIViewController {
         refreshRateText.text = StandardEngine.sharedUpdates.refreshRate.description
         onOffSwitch.setOn(false, animated: true)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateValues), name: "Change Values", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setTimerSwitchState), name: timerStopNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(setTimerOffState), name: timerStopNotification, object: nil)
         
     }
 
@@ -70,10 +70,9 @@ class InstrumentationViewController: UIViewController {
         colText.text = String(StandardEngine.sharedUpdates.cols)
     }
     
-    func setTimerSwitchState(){
-        StandardEngine.sharedUpdates.refreshTimer == nil ? onOffSwitch.setOn(false, animated: true) : onOffSwitch.setOn(true, animated: true)
+    func setTimerOffState(){
+        onOffSwitch.setOn(false, animated: true)
     }
-    
 }
 
 extension InstrumentationViewController: UITextFieldDelegate{

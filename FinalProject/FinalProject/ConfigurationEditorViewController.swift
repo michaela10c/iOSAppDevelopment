@@ -64,7 +64,6 @@ class ConfigurationEditorViewController: UIViewController, EngineDelegate {
     @IBAction func reloadGrid(sender: AnyObject) {
         //maximum rows and cols to refill
         StandardEngine.sharedUpdates.grid.gridCells = gridView.grid
-       
         NSNotificationCenter.defaultCenter().postNotificationName("Change Values", object: nil, userInfo: ["Change the values": gridView])
     }
     

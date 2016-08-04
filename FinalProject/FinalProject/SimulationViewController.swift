@@ -17,8 +17,10 @@ class SimulationViewController: UIViewController, EngineDelegate {
     @IBOutlet weak var gridView: GridView!
     var rate = StandardEngine.sharedUpdates.refreshRate
     
-    let editor = ConfigurationEditorViewController()
+    //let editor = ConfigurationEditorViewController() //want to attempt to change the title using the editor commit, but could not be accessed
     @IBOutlet weak var configurationNameText: UITextField!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,6 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.delegate = self
         gridView.setNeedsDisplay()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refreshGrid), name: timerStepNotification, object: nil)
-        
         print("\(StandardEngine.sharedUpdates.rows),\(StandardEngine.sharedUpdates.cols)")
     }
     
@@ -61,7 +62,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let add = UIAlertAction(title: "Add", style: .Default) { (action) in
             NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
-            StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!
+            StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!//trying to add the title into the table view
             print("\(self.configurationNameText.text!)")
             let confirmController = UIAlertController(title: "Configuration added", message: "Your configuration has been added", preferredStyle: .Alert)
             let ok = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
@@ -79,12 +80,7 @@ class SimulationViewController: UIViewController, EngineDelegate {
         StandardEngine.sharedUpdates.emptyGrid()
         gridView.setNeedsDisplay()
         print("\(StandardEngine.sharedUpdates.grid)")
-        StandardEngine.sharedUpdates.stopTimer()
-        //send a notification to the timerSwitch to change it's physical state (turn it off)
-    }
-    
-    func showAlertViewController(){
-        
+        StandardEngine.sharedUpdates.stopTimer()//stop timer when grid is reset
     }
 
 }
