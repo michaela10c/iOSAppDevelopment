@@ -178,9 +178,6 @@ import UIKit
     
     func processTouch(touch: UITouch){
         let location = touch.locationInView(self)
-        
-        
-       
         if cell.row >= 0 && cell.row < rows && cell.col >= 0 && cell.col < cols {
             // toggle touched cell in newGrid (replica of grid)
             cell = getCell(location)
