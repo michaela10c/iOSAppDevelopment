@@ -63,10 +63,17 @@ class SimulationViewController: UIViewController, EngineDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("Add configuration", object: nil, userInfo: ["New Configuration": ""])
             StandardEngine.sharedUpdates.configuration?.title = self.configurationNameText.text!
             print("\(self.configurationNameText.text!)")
+            let confirmController = UIAlertController(title: "Configuration added", message: "Your configuration has been added", preferredStyle: .Alert)
+            let ok = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            confirmController.addAction(ok)
+            self.presentViewController(confirmController, animated: true, completion: nil)
         }
         controller.addAction(cancel)
         controller.addAction(add)
+        
+        
        self.presentViewController(controller, animated: true, completion: nil)
+       
         
     }
     
@@ -76,6 +83,10 @@ class SimulationViewController: UIViewController, EngineDelegate {
         print("\(StandardEngine.sharedUpdates.grid)")
         StandardEngine.sharedUpdates.stopTimer()
         //send a notification to the timerSwitch to change it's physical state (turn it off)
+    }
+    
+    func showAlertViewController(){
+        
     }
 
 }
